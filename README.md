@@ -1,23 +1,25 @@
-# TÍTULO DO PROJETO
+# Smarteach
 
-`CURSO`
+`Tecnologia em Análise e Desenvolvimento de Sistemas`
 
-`DISCIPLINA`
+`Eixo 4 - Projeto: Desenvolvimento de uma Aplicação Distribuída`
 
-`SEMESTRE`
+`1º SEMESTRE DE 2024`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+Sistema para a gestão de atividades escolares, onde é possível aos gestores e professores, realizar a gestão das turmas, controle de presença e falta dos alunos, lançamento de notas e deveres de casa.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Felipe Gonçalves Sobrinho
+* Geovanne Marco Correa da Silva
+* João Pedro Nonato Santos
+* Kaliane Silva Diniz
+* Thais Menezes Alves de Souza
+* Victor Igne Franco Rocha
 
 ## Orientador
 
-* Nome completo do professor 1
+* Leonardo Vilela Cardoso
 
 ## Instruções de utilização
 
