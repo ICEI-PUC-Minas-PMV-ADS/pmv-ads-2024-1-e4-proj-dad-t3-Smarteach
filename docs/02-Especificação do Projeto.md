@@ -79,15 +79,24 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| Criar mecânica de restrição de acesso aos usuários conforme o seu respectivo nível | ALTA | 
+|RF-002| Existencia de três níveis de usuário, onde 1- ADM, 2-PROFESSOR, 3-ALUNO | ALTA |
+|RF-003| Habilitar o ação de poder cadastrar novos usuários somente aos usuários ADM | ALTA |
+|RF-004| Mecanismo de Login/Logout dos usuários | ALTA |
+|RF-005| Permição para que os usuários de nível 2 registre o cronograma de suas aulas de suas respectivas turmas | MÉDIA |
+|RF-006| Permição para que os usuários de nível 3 somente visualize o cronograma de aulas de sua respectiva turma  | MÉDIA |
+|RF-007| Sistema gráfico que aumente a clareza da visualização do cronograma das aulas por parte dos usuários | MÉDIA |
+|RF-008| Possibilitar que o usuário atualize os seus dados cadastrais | BAIXA |
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
 |RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|RNF-002| Sera utilizada as seguintes técnologias no desenvolvimento do back-end: Python, Flask, MongoDB | ALTA |
+|RNF-003| Sera utilizada as seguintes técnologias no desenvolvimento do front-end: React, ReactNative, JavaScript | ALTA |  
+|RNF-004| Deve processar requisições do usuário em no máximo 3s | BAIXA | 
+|RNF-005| Deploy Frontend: Vercel | ALTA | 
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
