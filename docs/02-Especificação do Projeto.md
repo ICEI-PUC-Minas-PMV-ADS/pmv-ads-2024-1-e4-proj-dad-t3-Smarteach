@@ -139,7 +139,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ## Diagrama de Casos de Uso
 
-![alt text](diagramUc.png)
+![alt text](img/diagramaUseCase.png)
 
 # Matriz de Rastreabilidade
 
