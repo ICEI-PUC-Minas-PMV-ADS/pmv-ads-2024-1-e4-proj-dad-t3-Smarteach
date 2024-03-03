@@ -120,25 +120,13 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
 |RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Sera utilizada as seguintes técnologias no desenvolvimento do back-end: Python, Flask, MongoDB | ALTA |
-|RNF-003| Sera utilizada as seguintes técnologias no desenvolvimento do front-end: React, ReactNative, JavaScript | ALTA |  
+|RNF-002| Stack a ser utilizada no desenvolvimento do back-end: Flask, MongoDB | ALTA |
+|RNF-003| Stack a ser utilizada no desenvolvimento do front-end: React, ReactNative | ALTA |  
 |RNF-004| Deve processar requisições do usuário em no máximo 3s | BAIXA | 
-|RNF-005| Deploy Frontend: Vercel | ALTA | 
-
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
+|RNF-005| Segurança: proteção adequada dos dados do usuário| ALTA | 
+|RNF-006| Deploy Frontend: Vercel | ALTA | 
+|RNF-007| Deploy Backend: Azure | ALTA | 
+|RNF-008| Escalabilidade: capacidade de lidar com um aumento significativo no número de usuários sem comprometer o desempenho ou a funcionalidade. | ALTA | 
 
 ## Restrições
 
@@ -146,14 +134,8 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
-|01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
-
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
+|01| O projeto deverá ser entregue até o final do 1° semestre de 2024 |
+|02| O idioma do aplicativo será somente em português |
 
 ## Diagrama de Casos de Uso
 
