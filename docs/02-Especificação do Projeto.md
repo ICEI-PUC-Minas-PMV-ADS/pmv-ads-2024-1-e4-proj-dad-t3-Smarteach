@@ -135,7 +135,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |01| O projeto deverá ser entregue até o final do 1° semestre de 2024 |
-|02| O idioma do aplicativo será somente em português |
+|02| O idioma do aplicativo será somente o português |
 
 ## Diagrama de Casos de Uso
 
