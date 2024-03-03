@@ -1,74 +1,60 @@
 # Especificações do Projeto
 
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
-
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
+A definição exata do problema e os pontos mais relevantes a serem tratados neste projeto foi consolidada com a participação dos usuários em um trabalho de imersão feita pelos membros da equipe a partir da observação dos usuários em seu local natural e por meio de entrevistas. Os detalhes levantados nesse processo foram consolidados na forma de personas e histórias de usuários.
 
 ## Personas
 
 <b>Persona 1: Alessandra Gomes</b>
 
-Função: Diretora  Geral Escolar
-Descrição: Carlos é um chef experiente e apaixonado pela culinária. Ele é responsável por supervisionar a cozinha, criar novos pratos e garantir a qualidade dos alimentos. Sua rotina é agitada e ele está sempre em busca de maneiras de otimizar o processo de preparação de alimentos.
-Necessidades e Metas: Receber pedidos claros e detalhados da cozinha. Acesso rápido ao registro de pedidos para referência. Notificações em tempo real sobre pedidos urgentes ou alterações. Interface intuitiva para atualizar o status dos pratos.
+Ocupação: Diretora  Geral Escolar
+Descrição: Alessandra é uma Diretora bastante flexível em seu ambiente de trabalho, ela ama liderar a instituição de ensino e gosta de propor e aplicar mudanças. Mesmo com sua dificuldade em tecnologia, ela sempre está buscando meios de aprender a lidar com a mesma e manter a escola 'conectada'.
+<br/>Necessidades e Metas: Deixar o ambiente de trabalho o mais agradável possível, para garantir maior satisfação dos funcionários, assim, todos podendo trabalhar em seu máximo potencial.
 
 <b>Persona 2: Josiel Almeida</b>
 
-Função: Vice Diretor Escolar
-Descrição: Ana é uma atendente amigável e eficiente. Ela interage diretamente com os clientes, anota os pedidos e garante que a experiência de jantar seja agradável. Ela lida com vários pedidos ao mesmo tempo, enquanto mantém um bom atendimento ao cliente.
-Necessidades e Metas: Receber notificações imediatas sobre novos pedidos ou alterações. Acessar informações detalhadas sobre os pratos (ingredientes, alergias etc.). Rápido registro de pedidos e atualizações em tempo real. Comunicar-se facilmente com a cozinha para feedback ou correções.
+Ocupação: Vice Diretor Escolar
+Descrição: Josiel gosta de inspirar os demais funcionários a resolver diversos desafios, focado em desenvolvimento pessoal, ele está sempre buscando novas inspirações e aprendendo como concretizar e apoiar da melhor forma a diretora em decisões administrativas relacionadas à escola.
+<br/>Necessidades e Metas: Estipular metas, prazos e garantir que os projetos escolares sejam concluídos.
 
 <b>Persona 3: Raelen Gabriela</b>
 
-Função: Coordenadora Pedagogica
-Descrição: Gabriela é responsável pela operação geral do restaurante. Ela supervisiona a equipe, monitora o desempenho e toma decisões estratégicas para melhorar a eficiência e a experiência do cliente. Ela precisa de informações claras para tomar decisões embasadas.
-Necessidades e Metas: Painel de controle com métricas de desempenho da equipe e do restaurante. Acesso a relatórios de vendas, horários de pico e pratos mais populares. Capacidade de ajustar o fluxo de pedidos com base na demanda. Monitorar o status das mesas, pedidos e tempos de espera.
+Ocupação: Coordenadora Pedagógica
+Descrição: Raelen, é uma coordenadora que trabalha em prol de facilitar a vida dos professores na escola, sempre pensando uma melhor forma de criar uma estrutura de ensino eficaz, agrupando alunos por turmas de acordo com o grau de conhecimento, assim, facilitando os professores a não ter alunos com níveis discrepantes de conhecimento dentro de sala de aula.
+<br/>Necessidades e Metas: Reduzir o trabalho manual em relação a pesquisa sobre os níveis dos alunos e conseguir uma maior taxa de aprendizado/aprovação dos alunos mais fracos.
 
 <b>Persona 4: Thais de Paula</b>
 
-Função: Professora de Ensino Fundamental
-Descrição: Carlos é um chef experiente e apaixonado pela culinária. Ele é responsável por supervisionar a cozinha, criar novos pratos e garantir a qualidade dos alimentos. Sua rotina é agitada e ele está sempre em busca de maneiras de otimizar o processo de preparação de alimentos.
-Necessidades e Metas: Receber pedidos claros e detalhados da cozinha. Acesso rápido ao registro de pedidos para referência. Notificações em tempo real sobre pedidos urgentes ou alterações. Interface intuitiva para atualizar o status dos pratos.
+Ocupação: Professora de Ensino Fundamental
+Descrição: Thais é uma professora que tem um amor gigantesco com seus alunos, ela os inspira da melhor forma a se tornarem grandes profissionais no mercado de trabalho. A professora não lida muito bem com tecnologia, e ela sempre está procurando algo para facilitar seu trabalho, pedindo recomendações aos seus alunos sobre como pesquisar melhor este tipo de conteúdo.
+<br/>Necessidades e Metas: Aprender a lidar com tecnologia para facilitar sua forma de lecionar.
 
 <b>Persona 5: Letícia Scarabelli</b>
 
-Função: Professora de Ensino Superior
-Descrição: Carlos é um chef experiente e apaixonado pela culinária. Ele é responsável por supervisionar a cozinha, criar novos pratos e garantir a qualidade dos alimentos. Sua rotina é agitada e ele está sempre em busca de maneiras de otimizar o processo de preparação de alimentos.
-Necessidades e Metas: Receber pedidos claros e detalhados da cozinha. Acesso rápido ao registro de pedidos para referência. Notificações em tempo real sobre pedidos urgentes ou alterações. Interface intuitiva para atualizar o status dos pratos.
+Ocupação: Professora de Ensino Superior
+Descrição: Como professora de Engenharia Civil, Léticia está sempre utilizando vídeos e Slides para exemplificar conteúdos ensinados em sala de aula. Cálculos complexos, formas de pensar, são uma das coisas abordadas na engenharia civil. Sendo uma professora moderna, Leticia faz bastante uso de aplicativos para complementar seu método de ensino.
+<br/>Necessidades e Metas: Garantir que seus alunos sejam profissionais incríveis no ramo da engenharia e para isso, ela tem que garantir que todo conteúdo passado nas aulas foi de fato absorvido por seus alunos.
 
 <b>Persona 6: Leonardo Vieira</b>
 
-Função: Professor de Educação Física
-Descrição: Carlos é um chef experiente e apaixonado pela culinária. Ele é responsável por supervisionar a cozinha, criar novos pratos e garantir a qualidade dos alimentos. Sua rotina é agitada e ele está sempre em busca de maneiras de otimizar o processo de preparação de alimentos.
-Necessidades e Metas: Receber pedidos claros e detalhados da cozinha. Acesso rápido ao registro de pedidos para referência. Notificações em tempo real sobre pedidos urgentes ou alterações. Interface intuitiva para atualizar o status dos pratos.
+Ocupação: Professor de Educação Física
+Descrição: Além de educador físico, Leonardo também trabalha como personal para garantir uma maior renda e por amor a profissão. Geralmente, Leonardo é o professor preferido, seus alunos amam o modelo de aula dinâmica e adoram ser desafiados nas provas do professor, já que elas sempre envolvem alguma atividade física de fato.
+<br/>Necessidades e Metas: Leonardo busca garantir que seus alunos tenham uma vida saudável e entendam que atividades físicas não servem apenas para benefícios estéticos e sim psicológicos de uma maneira geral, assim ajudando eles no âmbito pessoal ou profissional.
 
 <b>Persona 7: Daniele Muneron</b>
 
-Função: Aluna do Ensino Superior
+Ocupação: Aluna do Ensino Superior
+Descrição: Daniele conseguiu seu estágio na área da engenharia, ela se preocupa bastante com suas notas e os prazos de entrega dos trabalhos. Apaixonada por conhecimento, Daniele está sempre buscando melhores maneiras de monitorar seu desempenho escolar, assim podendo observar onde cometeu certos erros e resolvê-los da melhor forma.
+<br/>Necessidades e Metas: Acompanhar projetos relacionados a sua turma de forma fácil e rápida.
+
+<b>Persona 8: Uriel Gomes</b>
+
+Ocupação: Aluno do Ensino Médio
 Descrição: Carlos é um chef experiente e apaixonado pela culinária. Ele é responsável por supervisionar a cozinha, criar novos pratos e garantir a qualidade dos alimentos. Sua rotina é agitada e ele está sempre em busca de maneiras de otimizar o processo de preparação de alimentos.
-Necessidades e Metas: Receber pedidos claros e detalhados da cozinha. Acesso rápido ao registro de pedidos para referência. Notificações em tempo real sobre pedidos urgentes ou alterações. Interface intuitiva para atualizar o status dos pratos.
-
-<b>Persona 2: Uriel Gomes</b>
-
-Função: Aluno do Ensino Médio
-Descrição: Carlos é um chef experiente e apaixonado pela culinária. Ele é responsável por supervisionar a cozinha, criar novos pratos e garantir a qualidade dos alimentos. Sua rotina é agitada e ele está sempre em busca de maneiras de otimizar o processo de preparação de alimentos.
-Necessidades e Metas: Receber pedidos claros e detalhados da cozinha. Acesso rápido ao registro de pedidos para referência. Notificações em tempo real sobre pedidos urgentes ou alterações. Interface intuitiva para atualizar o status dos pratos.
-
-
-
-> **Links Úteis**:
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de Empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de Stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
+<br/>Necessidades e Metas: Ser o melhor aluno de sua classe e planejar o que irá fazer após se formar.
 
 ## Histórias de Usuários
 
-Com base na análise das personas forma identificadas as seguintes histórias de usuários:
+De acordo com as personas, identificamos as seguintes historias de usuários:
 
 |EU COMO... `PERSONA`            | QUERO/PRECISO ... `FUNCIONALIDADE`                            |PARA ... `MOTIVO/VALOR`                                    |
 |--------------------------------|---------------------------------------------------------------|----------------------------------------------------       |
@@ -80,13 +66,6 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 |Professor de Educação Física    |Lembrar os alunos de se exercitarem em casa                    |eles terem uma maior disposição e qualidade de vida geral  |
 |Aluna Ensino Superior           |clareza nas informações em relação a instituição de ensino     |ter um entendimento maior sobre notas, faltas e prazos     |
 |Aluno Ensino Fundamental        |conseguir formar com uma das maiores notas da classe           |para suprir as expectativas da minha família               |
-
-> **Links Úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User Stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de Usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 Common User Story Mistakes](https://airfocus.com/blog/user-story-mistakes/)
 
 ## Modelagem do Processo de Negócio 
 
