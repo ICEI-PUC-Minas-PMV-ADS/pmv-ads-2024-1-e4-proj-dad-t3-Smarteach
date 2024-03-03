@@ -1,16 +1,60 @@
 # Especificações do Projeto
 
-<span style="color:red">Pré-requisitos: <a href="1-Documentação de Contexto.md"> Documentação de Contexto</a></span>
-
 Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
 
 Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
 
 ## Personas
 
-Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente através de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros.
+<b>Persona 1: Alessandra Gomes</b>
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
+Função: Diretora  Geral Escolar
+Descrição: Carlos é um chef experiente e apaixonado pela culinária. Ele é responsável por supervisionar a cozinha, criar novos pratos e garantir a qualidade dos alimentos. Sua rotina é agitada e ele está sempre em busca de maneiras de otimizar o processo de preparação de alimentos.
+Necessidades e Metas: Receber pedidos claros e detalhados da cozinha. Acesso rápido ao registro de pedidos para referência. Notificações em tempo real sobre pedidos urgentes ou alterações. Interface intuitiva para atualizar o status dos pratos.
+
+<b>Persona 2: Josiel Almeida</b>
+
+Função: Vice Diretor Escolar
+Descrição: Ana é uma atendente amigável e eficiente. Ela interage diretamente com os clientes, anota os pedidos e garante que a experiência de jantar seja agradável. Ela lida com vários pedidos ao mesmo tempo, enquanto mantém um bom atendimento ao cliente.
+Necessidades e Metas: Receber notificações imediatas sobre novos pedidos ou alterações. Acessar informações detalhadas sobre os pratos (ingredientes, alergias etc.). Rápido registro de pedidos e atualizações em tempo real. Comunicar-se facilmente com a cozinha para feedback ou correções.
+
+<b>Persona 3: Raelen Gabriela</b>
+
+Função: Coordenadora Pedagogica
+Descrição: Gabriela é responsável pela operação geral do restaurante. Ela supervisiona a equipe, monitora o desempenho e toma decisões estratégicas para melhorar a eficiência e a experiência do cliente. Ela precisa de informações claras para tomar decisões embasadas.
+Necessidades e Metas: Painel de controle com métricas de desempenho da equipe e do restaurante. Acesso a relatórios de vendas, horários de pico e pratos mais populares. Capacidade de ajustar o fluxo de pedidos com base na demanda. Monitorar o status das mesas, pedidos e tempos de espera.
+
+<b>Persona 4: Thais de Paula</b>
+
+Função: Professora de Ensino Fundamental
+Descrição: Carlos é um chef experiente e apaixonado pela culinária. Ele é responsável por supervisionar a cozinha, criar novos pratos e garantir a qualidade dos alimentos. Sua rotina é agitada e ele está sempre em busca de maneiras de otimizar o processo de preparação de alimentos.
+Necessidades e Metas: Receber pedidos claros e detalhados da cozinha. Acesso rápido ao registro de pedidos para referência. Notificações em tempo real sobre pedidos urgentes ou alterações. Interface intuitiva para atualizar o status dos pratos.
+
+<b>Persona 5: Letícia Scarabelli</b>
+
+Função: Professora de Ensino Superior
+Descrição: Carlos é um chef experiente e apaixonado pela culinária. Ele é responsável por supervisionar a cozinha, criar novos pratos e garantir a qualidade dos alimentos. Sua rotina é agitada e ele está sempre em busca de maneiras de otimizar o processo de preparação de alimentos.
+Necessidades e Metas: Receber pedidos claros e detalhados da cozinha. Acesso rápido ao registro de pedidos para referência. Notificações em tempo real sobre pedidos urgentes ou alterações. Interface intuitiva para atualizar o status dos pratos.
+
+<b>Persona 6: Leonardo Vieira</b>
+
+Função: Professor de Educação Física
+Descrição: Carlos é um chef experiente e apaixonado pela culinária. Ele é responsável por supervisionar a cozinha, criar novos pratos e garantir a qualidade dos alimentos. Sua rotina é agitada e ele está sempre em busca de maneiras de otimizar o processo de preparação de alimentos.
+Necessidades e Metas: Receber pedidos claros e detalhados da cozinha. Acesso rápido ao registro de pedidos para referência. Notificações em tempo real sobre pedidos urgentes ou alterações. Interface intuitiva para atualizar o status dos pratos.
+
+<b>Persona 7: Daniele Muneron</b>
+
+Função: Aluna do Ensino Superior
+Descrição: Carlos é um chef experiente e apaixonado pela culinária. Ele é responsável por supervisionar a cozinha, criar novos pratos e garantir a qualidade dos alimentos. Sua rotina é agitada e ele está sempre em busca de maneiras de otimizar o processo de preparação de alimentos.
+Necessidades e Metas: Receber pedidos claros e detalhados da cozinha. Acesso rápido ao registro de pedidos para referência. Notificações em tempo real sobre pedidos urgentes ou alterações. Interface intuitiva para atualizar o status dos pratos.
+
+<b>Persona 2: Uriel Gomes</b>
+
+Função: Aluno do Ensino Médio
+Descrição: Carlos é um chef experiente e apaixonado pela culinária. Ele é responsável por supervisionar a cozinha, criar novos pratos e garantir a qualidade dos alimentos. Sua rotina é agitada e ele está sempre em busca de maneiras de otimizar o processo de preparação de alimentos.
+Necessidades e Metas: Receber pedidos claros e detalhados da cozinha. Acesso rápido ao registro de pedidos para referência. Notificações em tempo real sobre pedidos urgentes ou alterações. Interface intuitiva para atualizar o status dos pratos.
+
+
 
 > **Links Úteis**:
 > - [Rock Content](https://rockcontent.com/blog/personas/)
@@ -26,12 +70,16 @@ Lembre-se que você deve ser enumerar e descrever precisamente e personalizada t
 
 Com base na análise das personas forma identificadas as seguintes histórias de usuários:
 
-|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
-|--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
-
-Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
+|EU COMO... `PERSONA`            | QUERO/PRECISO ... `FUNCIONALIDADE`                            |PARA ... `MOTIVO/VALOR`                                    |
+|--------------------------------|---------------------------------------------------------------|----------------------------------------------------       |
+|Diretora Geral Escolar          |criar ambiente de trabalho prático para os professores         |professores poderem lecionar com qualidade                 |
+|Vice Diretor Escolar            |apoiar o diretor e gerir funções administrativas               |os projetos saírem do papel e serem concluídos             |
+|Coordenadora Pedagógica         |organizar e planejar projetos escolares junto aos professores  |maior engajamento dos alunos com a instituição             |
+|Professora de Ensino Fundamental|facilitar a troca de informações sobre projetos com os alunos  |o aluno poder observar com facilidade os projetos escolares|
+|Professora de Ensino Superior   |reduzir a falta de entrega de para casas e trabalhos dos alunos|garantir o aprendizado em relação a compromissos e prazos  |
+|Professor de Educação Física    |Lembrar os alunos de se exercitarem em casa                    |eles terem uma maior disposição e qualidade de vida geral  |
+|Aluna Ensino Superior           |clareza nas informações em relação a instituição de ensino     |ter um entendimento maior sobre notas, faltas e prazos     |
+|Aluno Ensino Fundamental        |conseguir formar com uma das maiores notas da classe           |para suprir as expectativas da minha família               |
 
 > **Links Úteis**:
 > - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
