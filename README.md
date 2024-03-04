@@ -49,4 +49,4 @@ Assim que a primeira versão do sistema estiver disponível, deverá complementa
 
 # Apresentação
 
-<li><a href="presentation/README.md"> Apresentação da solução</a></li>
+<li><a href="https://drive.google.com/file/d/1mogS2y1XvhCs-nsgrUr0IHyyACteIoGH/view?usp=drive_link"> Apresentação da solução</a></li>
