@@ -1,9 +1,7 @@
 
 # Metodologia
 
-<span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a></span>
-
-Descreva aqui a metodologia de trabalho do grupo para atacar o problema. Definições sobre os ambiente de trabalho utilizados pela  equipe para desenvolver o projeto. Abrange a relação de ambientes utilizados, a estrutura para gestão do código fonte, além da definição do processo e ferramenta através dos quais a equipe se organiza (Gestão de Times).
+A metodologia é uma das partes mais importantes quando se trata do desenvolvimento de um projeto, sendo assim, é bom que a equipe utilize de boas ferramentas e métodos para gerenciar esta parte. Neste caso, para o para versionamento de código, controle de sprints, gestão de código fonte e documentação do projeto, a equipe está utilizando o GitHub e suas funcionalidades, como o próprio GitHub Projects. Além disso, para gerência de cronogramas estamos utilizando o YouTrack.
 
 ## Relação de Ambientes de Trabalho
 
@@ -31,57 +29,45 @@ etiquetas:
 - `enhancement`: uma funcionalidade precisa ser melhorada
 - `feature`: uma nova funcionalidade precisa ser introduzida
 
-Discuta como a configuração do projeto foi feita na ferramenta de versionamento escolhida. Exponha como a gerência de tags, merges, commits e branchs é realizada. Discuta como a gerência de issues foi realizada.
-
-> **Links Úteis**:
-> - [Microfundamento: Gerência de Configuração](https://pucminas.instructure.com/courses/87878/)
-> - [Tutorial GitHub](https://guides.github.com/activities/hello-world/)
-> - [Git e Github](https://www.youtube.com/playlist?list=PLHz_AreHm4dm7ZULPAmadvNhH6vk9oNZA)
->  - [Comparando fluxos de trabalho](https://www.atlassian.com/br/git/tutorials/comparing-workflows)
-> - [Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
-> - [The gitflow workflow - in less than 5 mins](https://www.youtube.com/watch?v=1SXpE08hvGs)
-
 ## Gerenciamento de Projeto
 
 ### Divisão de Papéis
 
-Apresente a divisão de papéis entre os membros do grupo.
-
-Exemplificação: A equipe utiliza metodologias ágeis, tendo escolhido o Scrum como base para definição do processo de desenvolvimento. A equipe está organizada da seguinte maneira:
-- Scrum Master: Felipe Domingos;
-- Product Owner: Rommel Carneiro;
-- Equipe de Desenvolvimento: Pedro Penna, Pedro Ivo, Rodrigo Richard;
-- Equipe de Design: Simone Nogueira.
-
-> **Links Úteis**:
-> - [11 Passos Essenciais para Implantar Scrum no seu Projeto](https://mindmaster.com.br/scrum-11-passos/)
-> - [Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0)
-> - [Os papéis do Scrum e a verdade sobre cargos nessa técnica](https://www.atlassian.com/br/agile/scrum/roles)
+A equipe utiliza metodologias ágeis, tendo escolhido o Scrum como base para definição do processo de desenvolvimento. A equipe está organizada da seguinte maneira:
+- Scrum Master: Felipe Sobrinho;
+- Product Owner: Kaliane Diniz;
+- Equipe de Desenvolvimento: Geovanne Correa, João Pedro Santos, Victor Igne;
+- Equipe de Design: Thais Menezes.
 
 ### Processo
 
-Coloque  informações sobre detalhes da implementação do Scrum seguido pelo grupo. O grupo deverá fazer uso do recurso de gerenciamento de projeto oferecido pelo GitHub, que permite acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução.
- 
-> **Links Úteis**:
-> - [Planejamento e Gestáo Ágil de Projetos](https://pucminas.instructure.com/courses/87878/pages/unidade-2-tema-2-utilizacao-de-ferramentas-para-controle-de-versoes-de-software)
-> - [Sobre quadros de projeto](https://docs.github.com/pt/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards)
-> - [Project management, made simple](https://github.com/features/project-management/)
-> - [Sobre quadros de projeto](https://docs.github.com/pt/github/managing-your-work-on-github/about-project-boards)
-> - [Como criar Backlogs no Github](https://www.youtube.com/watch?v=RXEy6CFu9Hk)
-> - [Tutorial Slack](https://slack.com/intl/en-br/)
+A equipe utiliza do Framework Scrum, sendo assim utilizando o quadro Kanban para gerenciar o backlog do produto, backlog das sprints e andamento das tarefas necessárias para o desenvolvimento da solução.
+
+O quadro está descrito da seguinte forma:
+
+   O quadro está descrito da seguinte forma:
+- `📋 Backlog do produto`: Apresenta todas a tarefas no geral que deverão ser realizadas durante todo o projeto.
+- `📍 A fazer`: Apresenta as tarefas de forma descrita que deversão ser entregues em uma determinada sprint.
+- `🏗 Em Andamento`: Apresenta as tarefas que já foram designadas para algum dos membro da equipe e já foi iniciado o processo de desenvolvimento da mesma.
+- `👀 Em revisão`: Apresenta as tarefas que já foram concluídas e estão prontas para serem colocadas em produção.
+- `✅ Feito`: Apresenta as tarefas que já foram concluídas e enviadas para a produção, nesta etapa ocorre o fechamento das Issues e o arquivamento das tarefas do backlog do produto que estão relacionadas à Issue em questão.
+
+Abaixo a imagem do quadro Kanban utilizado pela equipe:
+
+![Quadro Kanban](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e4-proj-dad-t3-Smarteach/assets/63524496/4a96a56b-187f-44dc-865c-be24209e145b)
 
 ### Ferramentas
 
 As ferramentas empregadas no projeto são:
 
-- Editor de código.
-- Ferramentas de comunicação
-- Ferramentas de desenho de tela (_wireframing_)
+- `Editor de código`: Visual Studio Code.
+- `Ferramentas de comunicação`: Microsoft Teams e WhatsApp.
+- `Ferramentas de criação de telas e layouts`: Figma.
+- `Ferramentas para criação de digramas`: Diagrams.
+- `Ferramenta para gerência de cronogramas`: YouTrack.
 
-O editor de código foi escolhido porque ele possui uma integração com o sistema de versão. As ferramentas de comunicação utilizadas possuem integração semelhante e por isso foram selecionadas. Por fim, para criar diagramas utilizamos essa ferramenta por melhor captar as necessidades da nossa solução.
 
-Liste quais ferramentas foram empregadas no desenvolvimento do projeto, justificando a escolha delas, sempre que possível.
- 
-> **Possíveis Ferramentas que auxiliarão no gerenciamento**: 
-> - [Slack](https://slack.com/)
-> - [Github](https://github.com/)
+O editor de código foi escolhido porque ele possui uma integração com o sistema de versão e uma boa compatibilidade com a maioria das tecnologias utilizadas durante o desenvolvimento do projeto.
+As ferramentas de comunicação utilizadas possuem um uso simples e possibilitam que a equipe tenha uma comunicação efetiva e rápida.
+Para a criação de telas e layouts utilizamos o Figma, pois o mesmo possui boas funcionalidades para o desenvolviemnto de um layout visível, responsivo e possui fácil integração ao desenvolvimento.
+Por fim, para criar diagramas utilizamos o Diagrams por melhor captar as necessidades da nossa solução. 
