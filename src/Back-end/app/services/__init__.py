@@ -10,7 +10,7 @@ def verify_new_teacher_data(data: dict):
     if wrong_keys:
         return f'Campos incorretos inseridos na requisição: {wrong_keys}'
     
-    wrong_values = {key for key in data if not data[key]}
+    wrong_values = {key for key in data if not data[key] or type(data[key]) is not str and type(data[key]) is not list }
 
     if wrong_values:
         return f'Faltou atribuir os valores das seguintes propriedades: {wrong_values}'
