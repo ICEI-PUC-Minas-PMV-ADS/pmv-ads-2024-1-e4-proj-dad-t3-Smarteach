@@ -11,13 +11,14 @@ load_dotenv()
 STR_CONNECTION = os.getenv('DB_STR_CONNECTION')
 client = MongoClient(STR_CONNECTION)
 
-db = client[os.getenv('DB_NAME')]
+db = client['SmarTeach']
 db_collections = db.list_collection_names()
 app_collections = ['Professores', 'Alunos', 'Admin', 'Conteudo']
 
-for collection_name in app_collections:
-    if collection_name not in db_collections:
-        db.create_collection(collection_name)
+if db_collections != app_collections:
+    for collection_name in app_collections:
+        if collection_name not in db_collections:
+            db.create_collection(collection_name)
 
 teacher_collection = db.get_collection('Professores')
 student_collection = db.get_collection('Alunos')
