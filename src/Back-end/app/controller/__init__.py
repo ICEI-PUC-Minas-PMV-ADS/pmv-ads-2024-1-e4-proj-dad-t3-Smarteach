@@ -4,7 +4,6 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 
 from app.model import Teacher
-from app.services import verify_new_teacher_data
 
 load_dotenv()
 
@@ -13,7 +12,7 @@ client = MongoClient(STR_CONNECTION)
 
 db = client['SmarTeach']
 db_collections = db.list_collection_names()
-app_collections = ['Professores', 'Alunos', 'Admin', 'Conteudo']
+app_collections = ['Professores', 'Alunos', 'Admin', 'Aulas']
 
 if db_collections != app_collections:
     for collection_name in app_collections:
@@ -23,18 +22,18 @@ if db_collections != app_collections:
 teacher_collection = db.get_collection('Professores')
 student_collection = db.get_collection('Alunos')
 admin_collection = db.get_collection('Admin')
-content_collection = db.get_collection('Conteudo')
+content_collection = db.get_collection('Aulas')
 
 def insert_new_teacher(data: dict):
 
-    is_wrong_data = verify_new_teacher_data(data)  
+    is_wrong_data = Teacher.verify_new_teacher_data(data)  
 
-    if is_wrong_data:
+    if is_wrong_data: 
         return is_wrong_data, 400
 
-    # new_teacher = Teacher(data['nome'],  data['disciplina'], data['turmas'], data['turno'])
+    new_teacher = Teacher(**data)
 
-    teacher_collection.insert_one(data)
+    teacher_collection.insert_one(new_teacher.__dict__)
 
     return 'Novo Professor registrado com sucesso!', 200
 
