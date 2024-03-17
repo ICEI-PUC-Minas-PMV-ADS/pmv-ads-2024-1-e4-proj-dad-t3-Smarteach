@@ -1,4 +1,5 @@
 from datetime import datetime
+from bson import ObjectId
 
 def verify_user_email(email, collection_data):
 
@@ -11,13 +12,16 @@ def verify_user_email(email, collection_data):
 
 def verify_request_data(request_data):
 
-    email = request_data.get('email')
-    if not email:
-        return 'Necessário enviar a propriedade "email" e seu respectivo valor no corpo da requisição'
+    user_id = request_data.get('id')
+    if not user_id:
+        return 'Necessário enviar a propriedade "id" e seu respectivo valor no corpo da requisição'
+
+    if not ObjectId.is_valid(user_id):
+        return 'O valor da propriedade "id" enviado não é válido'
 
     if len(request_data.keys()) == 1:
-        return  'Necessário enviar os valores para a execução desta requisição'
-
+        return  'Necessário enviar um ou mais valores para a execução desta requisição'
+    
 
 def update_time_data():
 
