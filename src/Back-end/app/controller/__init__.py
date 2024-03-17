@@ -55,6 +55,7 @@ def get_available_teachers():
         teacher_list[index] = {x: elt[x] for x in elt if x != '_id'}
 
     response = teacher_list
+
     return jsonify(response), 200
 
 
@@ -64,6 +65,7 @@ def delete_teachers_profiles(data):
     
     if verify_user_email(data.get('email'), teacher_collection.find({})):
         teacher_collection.delete_one(email_teacher)
+
         return 'Perfil de Professor deletado com sucesso!', 200
     
     else:
@@ -72,17 +74,14 @@ def delete_teachers_profiles(data):
 
 def update_teacher_profile(data):
 
-    user_id = str(data.get('id'))
-
-    wrong_data_request = verify_request_data(data)
+    wrong_data_request = verify_request_data(data, teacher_collection)
     if wrong_data_request: 
         return wrong_data_request, 400
-    
-    teacher_data = teacher_collection.find({'_id' : ObjectId(user_id)})
-    if not teacher_data:
-        return 'Usuário inexistente', 400
 
+    user_id = data.get('id')
+    
     for key in data.keys():
+
         if key != 'id':
             new_values = {"$set": {key: data[key]} }
             teacher_collection.update_one({'_id' : ObjectId(user_id)}, new_values)
