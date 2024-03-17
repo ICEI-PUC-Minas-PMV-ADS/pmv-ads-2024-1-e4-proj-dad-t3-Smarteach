@@ -8,6 +8,3 @@ def post_routes(app):
     def register_teacher():
         data = request.get_json()
         return insert_new_teacher(data)
-
-
-    

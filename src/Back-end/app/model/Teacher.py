@@ -2,6 +2,7 @@ from datetime import datetime
 
 class Teacher():
     def __init__(self, **kwargs):
+        self.email = kwargs['email']
         self.nome = kwargs['nome']
         self.disciplina = kwargs['disciplina']
         self.turmas = kwargs['turmas']
@@ -13,11 +14,11 @@ class Teacher():
     @staticmethod
     def verify_new_teacher_data(data: dict):
 
-        available_keys = ['nome', 'disciplina', 'turmas', 'turno']
+        available_keys = ['email' ,'nome', 'disciplina', 'turmas', 'turno']
 
         data_keys = data.keys()
 
-        if len(data_keys) != 4:
+        if len(data_keys) != 5:
             return f'há campos faltantes no corpo da requisição.'
 
         wrong_keys = [key for key in data_keys if key not in available_keys]
