@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 
 from app.model import Teacher
+from app.services import verify_user_email, verify_request_data, update_time_data
 
 load_dotenv()
 
@@ -24,6 +25,7 @@ student_collection = db.get_collection('Alunos')
 admin_collection = db.get_collection('Admin')
 content_collection = db.get_collection('Aulas')
 
+
 def insert_new_teacher(data: dict):
 
     is_wrong_data = Teacher.verify_new_teacher_data(data)  
@@ -33,7 +35,7 @@ def insert_new_teacher(data: dict):
 
     new_teacher = Teacher(**data)
 
-    is_same_email = verify_user_email(data["email"], teacher_collection)
+    is_same_email = verify_user_email(data["email"], teacher_collection.find({}))
 
     if is_same_email: 
         return is_same_email, 400
@@ -41,6 +43,7 @@ def insert_new_teacher(data: dict):
     teacher_collection.insert_one(new_teacher.__dict__)
 
     return 'Novo Professor registrado com sucesso!', 200
+
 
 def get_available_teachers():
 
@@ -53,20 +56,35 @@ def get_available_teachers():
     response = teacher_list
     return jsonify(response), 200
 
+
 def delete_teachers_profiles(data):
 
     email_teacher = {"email": data["email"] }
     
-    if verify_user_email(data["email"], teacher_collection):
+    if verify_user_email(data.get('email'), teacher_collection.find({})):
         teacher_collection.delete_one(email_teacher)
         return 'Perfil de Professor deletado com sucesso!', 200
     else:
         return 'Email inexistente', 400
     
-def verify_user_email(email, collection):
 
-    data_verification = collection.find({})
-    teacher_list = [teacher for teacher in data_verification]
-    for teacher in teacher_list:
-        if teacher["email"] == email:
-            return 'Email já cadastrado!'
+def update_teacher_profile(data):
+
+    wrong_data_request = verify_request_data(data)
+    if wrong_data_request: 
+        return wrong_data_request, 400
+
+    email = data.get('email')
+    if verify_user_email(email, teacher_collection.find({})):
+
+        for key in data.keys():
+            if key != 'email':
+                new_values = {"$set": {key: data[key]} }
+                teacher_collection.update_one({'email' : email}, new_values)
+        
+        teacher_collection.update_one({'email': email}, update_time_data())
+
+        return 'Perfil de Professor atualizado com sucesso!', 200
+    
+    else:
+        return 'Email inexistente', 400
