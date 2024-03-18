@@ -33,4 +33,13 @@ def update_time_data():
     now_datetime = datetime.now().strftime("%d/%m/%Y - %H:%M")
     return {"$set": {'data_atualizacao': now_datetime}}
 
+def get_items_data(data_collection):
+
+    data_list = [data for data in data_collection]
+
+    for index, elt in enumerate(data_list):
+        data_list[index] = {key: elt[key] for key in elt if key != '_id'}
+    
+    return data_list
+
     

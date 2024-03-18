@@ -4,8 +4,8 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 from bson import ObjectId
 
-from app.model import Teacher
-from app.services import verify_user_email, verify_request_data, update_time_data
+from app.model import Teacher, Class
+from app.services import verify_user_email, verify_request_data, update_time_data, get_items_data
 
 load_dotenv()
 
@@ -14,7 +14,7 @@ client = MongoClient(STR_CONNECTION)
 
 db = client['SmarTeach']
 db_collections = db.list_collection_names()
-app_collections = ['Professores', 'Alunos', 'Admin', 'Aulas', 'Email']
+app_collections = ['Professores', 'Alunos', 'Admin', 'Turmas']
 
 if db_collections != app_collections:
     for collection_name in app_collections:
@@ -24,7 +24,7 @@ if db_collections != app_collections:
 teacher_collection = db.get_collection('Professores')
 student_collection = db.get_collection('Alunos')
 admin_collection = db.get_collection('Admin')
-content_collection = db.get_collection('Aulas')
+classes_collection = db.get_collection('Turmas')
 
 
 def insert_new_teacher(data: dict):
@@ -48,15 +48,9 @@ def insert_new_teacher(data: dict):
 
 def get_available_teachers():
 
-    available_teachers = teacher_collection.find({})
-    teacher_list = [teacher for teacher in available_teachers]
+    teacher_list = get_items_data(teacher_collection.find({}))
 
-    for index, elt in enumerate(teacher_list):
-        teacher_list[index] = {x: elt[x] for x in elt if x != '_id'}
-
-    response = teacher_list
-
-    return jsonify(response), 200
+    return jsonify(teacher_list), 200
 
 
 def delete_teachers_profiles(data):
@@ -79,7 +73,7 @@ def update_teacher_profile(data):
         return wrong_data_request, 400
 
     user_id = data.get('id')
-    
+
     for key in data.keys():
 
         if key != 'id':
@@ -89,4 +83,24 @@ def update_teacher_profile(data):
     teacher_collection.update_one({'_id' : ObjectId(user_id)}, update_time_data())
 
     return 'Perfil de Professor atualizado com sucesso!', 200
+
+
+
+def insert_new_class(data):
+
+    is_wrong_data = Class.verify_new_class_data(data, classes_collection.find({}))  
+
+    if is_wrong_data: 
+        return is_wrong_data, 400
+
+    new_class = Class(**data)
+
+    classes_collection.insert_one(new_class.__dict__)
+
+    return 'Nova turma registrada com sucesso!', 200
+
+
+def get_available_classes():
+    classes_list = get_items_data(classes_collection.find({}))
+    return jsonify(classes_list), 200
     
