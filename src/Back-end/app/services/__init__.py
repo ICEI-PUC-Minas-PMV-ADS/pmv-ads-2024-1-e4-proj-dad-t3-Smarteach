@@ -10,7 +10,7 @@ def verify_user_email(email, collection_data):
             return 'Email já cadastrado!'
     
 
-def verify_request_data(request_data, collection):
+def verify_request_data(request_data, collection, request_type='PATCH'):
     
     user_id = request_data.get('id')
 
@@ -20,7 +20,7 @@ def verify_request_data(request_data, collection):
     if not ObjectId.is_valid(user_id):
         return 'O valor da propriedade "id" enviado não é válida'
 
-    if len(request_data.keys()) == 1:
+    if len(request_data.keys()) == 1 and request_type == 'PATCH':
         return  'Necessário enviar um ou mais valores para a execução desta requisição'
     
     user_data = collection.find_one({"_id": ObjectId(user_id)})

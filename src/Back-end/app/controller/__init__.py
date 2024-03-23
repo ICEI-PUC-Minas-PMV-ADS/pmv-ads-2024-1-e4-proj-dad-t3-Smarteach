@@ -53,7 +53,7 @@ def get_available_teachers():
     return jsonify(teacher_list), 200
 
 
-def delete_teachers_profiles(data):
+def delete_teacher_profile(data):
 
     email_teacher = {"email": data["email"] }
     
@@ -103,4 +103,33 @@ def insert_new_class(data):
 def get_available_classes():
     classes_list = get_items_data(classes_collection.find({}))
     return jsonify(classes_list), 200
+
+
+def update_student_profile(data):
+    wrong_data_request = verify_request_data(data, student_collection)
+    if wrong_data_request: 
+        return wrong_data_request, 400
+
+    user_id = data.get('id')
+
+    for key in data.keys():
+
+        if key != 'id':
+            new_values = {"$set": {key: data[key]} }
+            student_collection.update_one({'_id' : ObjectId(user_id)}, new_values)
     
+    student_collection.update_one({'_id' : ObjectId(user_id)}, update_time_data())
+
+    return 'Perfil de Estudante atualizado com sucesso!', 200
+
+
+def delete_student_profile(data):
+
+    wrong_data_request = verify_request_data(data, student_collection, "DELETE")
+    if wrong_data_request: 
+        return wrong_data_request, 400
+    
+    user_id = data.get('id')
+    student_collection.delete_one({"_id": ObjectId(user_id) })
+
+    return 'Perfil de Estudante deletado com sucesso!', 200  
