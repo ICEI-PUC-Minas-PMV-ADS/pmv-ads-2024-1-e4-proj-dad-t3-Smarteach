@@ -1,5 +1,6 @@
 from datetime import datetime
 from bson import ObjectId
+from pymongo.collection import Collection
 
 def verify_user_email(email, collection_data):
 
@@ -10,7 +11,7 @@ def verify_user_email(email, collection_data):
             return 'Email já cadastrado!'
     
 
-def verify_request_data(request_data, collection):
+def verify_request_data(request_data, collection, type='PATCH'):
     
     user_id = request_data.get('id')
 
@@ -20,7 +21,7 @@ def verify_request_data(request_data, collection):
     if not ObjectId.is_valid(user_id):
         return 'O valor da propriedade "id" enviado não é válida'
 
-    if len(request_data.keys()) == 1:
+    if len(request_data.keys()) == 1 and type == 'PATCH':
         return  'Necessário enviar um ou mais valores para a execução desta requisição'
     
     user_data = collection.find_one({"_id": ObjectId(user_id)})
@@ -33,6 +34,7 @@ def update_time_data():
     now_datetime = datetime.now().strftime("%d/%m/%Y - %H:%M")
     return {"$set": {'data_atualizacao': now_datetime}}
 
+
 def get_items_data(data_collection):
 
     data_list = [data for data in data_collection]
@@ -42,4 +44,10 @@ def get_items_data(data_collection):
     
     return data_list
 
+def get_data_by_id(item_id, collection):
+
+    item = collection.find_one({'_id': ObjectId(item_id)})
+    item['_id'] = item_id
+
+    return item
     

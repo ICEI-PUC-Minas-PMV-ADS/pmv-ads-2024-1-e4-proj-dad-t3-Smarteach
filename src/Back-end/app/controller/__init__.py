@@ -85,7 +85,6 @@ def update_teacher_profile(data):
     return 'Perfil de Professor atualizado com sucesso!', 200
 
 
-
 def insert_new_class(data):
 
     is_wrong_data = Class.verify_new_class_data(data, classes_collection.find({}))  
