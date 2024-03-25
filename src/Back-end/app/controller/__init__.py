@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 from bson import ObjectId
 
-from app.model import Teacher, Class
+from app.model import Teacher, Class, Student
 from app.services import verify_user_email, verify_request_data, update_time_data, get_items_data
 
 load_dotenv()
@@ -104,3 +104,15 @@ def get_available_classes():
     classes_list = get_items_data(classes_collection.find({}))
     return jsonify(classes_list), 200
     
+    
+def insert_new_student(data: dict):
+    is_wrong_data = Student.verify_student_data(data)
+    
+    if(is_wrong_data):
+        return 400
+    
+    new_student = Student(**data)
+    
+    student_collection.insert_one(new_student.__dict__)
+    
+    return 'Novo aluno cadastrado com sucesso!', 200
