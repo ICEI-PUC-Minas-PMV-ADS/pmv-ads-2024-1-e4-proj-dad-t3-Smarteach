@@ -103,4 +103,16 @@ def insert_new_class(data):
 def get_available_classes():
     classes_list = get_items_data(classes_collection.find({}))
     return jsonify(classes_list), 200
-    
+
+#kali alterações e testes logo abaixo:
+
+def get_available_admins():
+
+    admin_list = get_items_data(admin_collection.find({}))
+    return jsonify(admin_list), 200
+
+def get_available_students():
+
+    student_list = get_items_data(student_collection.find({}))
+
+    return jsonify(student_list), 200
