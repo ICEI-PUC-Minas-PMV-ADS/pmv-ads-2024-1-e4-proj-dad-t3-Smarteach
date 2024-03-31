@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 from bson import ObjectId
 
-from app.model import Teacher, Class
+from app.model import Teacher, Class, Student, Admin 
 from app.services import verify_user_email, verify_request_data, update_time_data, get_items_data
 
 load_dotenv()
@@ -103,7 +103,6 @@ def update_class(data):
     return 'Classe atualizada com sucesso', 200
 
 
-
 def insert_new_class(data):
 
     is_wrong_data = Class.verify_new_class_data(data, classes_collection.find({}))  
@@ -134,3 +133,53 @@ def delete_class(data):
     
     else:
         return 'Turma inexistente', 400
+    
+    
+def insert_new_student(data: dict):
+    is_wrong_data = Student.verify_student_data(data)
+    
+    if(is_wrong_data):
+        return is_wrong_data, 400
+    
+    new_student = Student(**data)
+
+    is_same_email = verify_user_email(data["email"], admin_collection.find({}))
+    
+    if is_same_email: 
+        return is_same_email, 400
+    
+    student_collection.insert_one(new_student.__dict__)
+    
+    return 'Novo aluno cadastrado com sucesso!', 200
+
+  
+def insert_new_admin(data: dict):
+
+    is_wrong_data = Admin.verify_new_admin_data(data)
+
+    if is_wrong_data: 
+        return is_wrong_data, 400
+
+    new_Admin = Admin(**data)
+
+    is_same_email = verify_user_email(data["email"], admin_collection.find({}))
+
+    if is_same_email: 
+        return is_same_email, 400
+
+    admin_collection.insert_one(new_Admin.__dict__)
+
+    return 'Novo Administrador registrado com sucesso!', 200
+
+  
+def get_available_admins():
+
+    admin_list = get_items_data(admin_collection.find({}))
+    return jsonify(admin_list), 200
+
+
+def get_available_students():
+
+    student_list = get_items_data(student_collection.find({}))
+
+    return jsonify(student_list), 200
