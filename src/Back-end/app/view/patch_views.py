@@ -1,6 +1,8 @@
 from flask import request
 
-from app.controller import update_teacher_profile, update_student_profile, update_class
+from app.controller.teacher_controller import update_teacher_profile
+from app.controller.student_controller import update_student_profile
+from app.controller.class_controller import update_class
 
 
 def patch_routes(app):

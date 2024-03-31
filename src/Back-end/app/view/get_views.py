@@ -1,8 +1,9 @@
 from flask import request
 
-from app.controller import get_available_teachers, get_available_admins, get_available_classes, get_available_students
-from app.controller.teacher_controller import get_teacher_profile
-from app.controller.class_controller import get_class_profile
+from app.controller.teacher_controller import get_teacher_profile, get_available_teachers
+from app.controller.class_controller import get_class_profile, get_available_classes
+from app.controller.student_controller import get_available_students
+from app.controller.admin_controller import get_available_admins
 
 
 def get_routes(app):

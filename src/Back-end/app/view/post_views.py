@@ -1,6 +1,10 @@
 from flask import request
 
-from app.controller import insert_new_teacher, insert_new_admin, insert_new_class, insert_new_student
+from app.controller.teacher_controller import insert_new_teacher
+from app.controller.class_controller import insert_new_class
+from app.controller.student_controller import insert_new_student
+from app.controller.admin_controller import insert_new_admin
+
 
 def post_routes(app):
 
