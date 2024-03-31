@@ -85,7 +85,6 @@ def update_teacher_profile(data):
     return 'Perfil de Professor atualizado com sucesso!', 200
 
 
-
 def insert_new_class(data):
 
     is_wrong_data = Class.verify_new_class_data(data, classes_collection.find({}))  
@@ -104,12 +103,12 @@ def get_available_classes():
     classes_list = get_items_data(classes_collection.find({}))
     return jsonify(classes_list), 200
 
-#kali alterações e testes logo abaixo:
 
 def get_available_admins():
 
     admin_list = get_items_data(admin_collection.find({}))
     return jsonify(admin_list), 200
+
 
 def get_available_students():
 

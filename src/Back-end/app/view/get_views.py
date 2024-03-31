@@ -11,16 +11,12 @@ def get_routes(app):
     def show_classes():
         return get_available_classes()
     
-#kali testes e afins logo abaixo:
-    
-    
     @app.get('/student')
     def show_students():
         return get_available_students()
     
     @app.get('/admin')
     def show_admins():
-        # Rota para retornar os administradores disponíveis
         admins = get_available_admins()
 
         return jsonify(admins)
