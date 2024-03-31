@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 from bson import ObjectId
 
-from app.model import Teacher, Class
+from app.model import Teacher, Class, Student, Admin 
 from app.services import verify_user_email, verify_request_data, update_time_data, get_items_data
 
 load_dotenv()
@@ -53,7 +53,7 @@ def get_available_teachers():
     return jsonify(teacher_list), 200
 
 
-def delete_teachers_profiles(data):
+def delete_teacher_profile(data):
 
     email_teacher = {"email": data["email"] }
     
@@ -68,7 +68,7 @@ def delete_teachers_profiles(data):
 
 def update_teacher_profile(data):
 
-    wrong_data_request = verify_request_data(data, teacher_collection)
+    wrong_data_request = verify_request_data(data, teacher_collection, 'PATCH')
     if wrong_data_request: 
         return wrong_data_request, 400
 
@@ -84,6 +84,23 @@ def update_teacher_profile(data):
 
     return 'Perfil de Professor atualizado com sucesso!', 200
 
+def update_class(data):
+
+    wrong_data_request = verify_request_data(data, classes_collection, 'PATCH')
+    if wrong_data_request: 
+        return wrong_data_request, 400
+
+    class_id = data.get('id')
+
+    for key in data.keys():
+
+        if key != 'id':
+            new_values = {"$set": {key: data[key]} }
+            classes_collection.update_one({'_id' : ObjectId(class_id)}, new_values)
+    
+    classes_collection.update_one({'_id' : ObjectId(class_id)}, update_time_data())
+
+    return 'Turma atualizada com sucesso', 200
 
 def insert_new_class(data):
 
@@ -102,4 +119,96 @@ def insert_new_class(data):
 def get_available_classes():
     classes_list = get_items_data(classes_collection.find({}))
     return jsonify(classes_list), 200
+
+
+def update_student_profile(data):
     
+    wrong_data_request = verify_request_data(data, student_collection, 'PATCH')
+    if wrong_data_request: 
+        return wrong_data_request, 400
+
+    user_id = data.get('id')
+
+    for key in data.keys():
+
+        if key != 'id':
+            new_values = {"$set": {key: data[key]} }
+            student_collection.update_one({'_id' : ObjectId(user_id)}, new_values)
+    
+    student_collection.update_one({'_id' : ObjectId(user_id)}, update_time_data())
+
+    return 'Perfil de Estudante atualizado com sucesso!', 200
+
+
+def delete_student_profile(data):
+
+    wrong_data_request = verify_request_data(data, student_collection)
+    if wrong_data_request: 
+        return wrong_data_request, 400
+    
+    user_id = data.get('id')
+    student_collection.delete_one({"_id": ObjectId(user_id) })
+
+    return 'Perfil de Estudante deletado com sucesso!', 200  
+
+  
+def delete_class(data):
+
+    wrong_data = verify_request_data(data, classes_collection)
+    if wrong_data:
+        return wrong_data, 400
+ 
+    class_id = {"_id": ObjectId(data.get("id"))}
+    classes_collection.delete_one(class_id)
+
+    return 'Turma removida com sucesso', 200
+    
+    
+def insert_new_student(data: dict):
+    is_wrong_data = Student.verify_student_data(data)
+    
+    if(is_wrong_data):
+        return is_wrong_data, 400
+    
+    new_student = Student(**data)
+
+    is_same_email = verify_user_email(data["email"], admin_collection.find({}))
+
+    if is_same_email: 
+        return is_same_email, 400
+    
+    student_collection.insert_one(new_student.__dict__)
+    
+    return 'Novo aluno cadastrado com sucesso!', 200
+
+  
+def insert_new_admin(data: dict):
+
+    is_wrong_data = Admin.verify_new_admin_data(data)
+
+    if is_wrong_data: 
+        return is_wrong_data, 400
+
+    new_Admin = Admin(**data)
+
+    is_same_email = verify_user_email(data["email"], admin_collection.find({}))
+
+    if is_same_email: 
+        return is_same_email, 400
+
+    admin_collection.insert_one(new_Admin.__dict__)
+
+    return 'Novo Administrador registrado com sucesso!', 200
+
+  
+def get_available_admins():
+
+    admin_list = get_items_data(admin_collection.find({}))
+    return jsonify(admin_list), 200
+
+
+def get_available_students():
+
+    student_list = get_items_data(student_collection.find({}))
+
+    return jsonify(student_list), 200
