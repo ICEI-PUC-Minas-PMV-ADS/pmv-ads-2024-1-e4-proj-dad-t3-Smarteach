@@ -16,7 +16,7 @@ class Admin():
 
         data_keys = data.keys()
 
-        if len(data_keys) != 2:
+        if len(data_keys) < 2:
             return f'há campos faltantes no corpo da requisição.'
 
         wrong_keys = [key for key in data_keys if key not in available_keys]

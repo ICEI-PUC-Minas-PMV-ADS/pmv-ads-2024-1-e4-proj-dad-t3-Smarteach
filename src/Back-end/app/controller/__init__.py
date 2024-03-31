@@ -108,9 +108,14 @@ def insert_new_student(data: dict):
     is_wrong_data = Student.verify_student_data(data)
     
     if(is_wrong_data):
-        return 400
+        return is_wrong_data, 400
     
     new_student = Student(**data)
+
+    is_same_email = verify_user_email(data["email"], admin_collection.find({}))
+    
+    if is_same_email: 
+        return is_same_email, 400
     
     student_collection.insert_one(new_student.__dict__)
     
