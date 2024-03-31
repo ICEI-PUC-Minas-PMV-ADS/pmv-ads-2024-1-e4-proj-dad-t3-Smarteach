@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 from bson import ObjectId
 
-from app.model import Teacher, Class
+from app.model import Teacher, Class, Admin 
 from app.services import verify_user_email, verify_request_data, update_time_data, get_items_data
 
 load_dotenv()
@@ -103,7 +103,26 @@ def get_available_classes():
     classes_list = get_items_data(classes_collection.find({}))
     return jsonify(classes_list), 200
 
+  
+def insert_new_admin(data: dict):
 
+    is_wrong_data = Admin.verify_new_admin_data(data)
+
+    if is_wrong_data: 
+        return is_wrong_data, 400
+
+    new_Admin = Admin(**data)
+
+    is_same_email = verify_user_email(data["email"], admin_collection.find({}))
+
+    if is_same_email: 
+        return is_same_email, 400
+
+    admin_collection.insert_one(new_Admin.__dict__)
+
+    return 'Novo Administrador registrado com sucesso!', 200
+
+  
 def get_available_admins():
 
     admin_list = get_items_data(admin_collection.find({}))
