@@ -6,7 +6,7 @@ def verify_user_email(email, collection_data):
     teacher_list = [teacher for teacher in collection_data]
 
     for teacher in teacher_list:
-        if teacher["email"] == email:
+        if teacher.get("email") == email:
             return 'Email já cadastrado!'
     
 
