@@ -17,7 +17,4 @@ def get_routes(app):
     
     @app.get('/admin')
     def show_admins():
-        admins = get_available_admins()
-
-        return jsonify(admins)
-
+        return get_available_admins()
