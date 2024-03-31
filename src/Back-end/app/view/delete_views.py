@@ -2,7 +2,7 @@ from flask import request
 
 from app.controller.teacher_controller import delete_teacher_profile
 from app.controller.student_controller import delete_student_profile
-from app.controller.class_controller import delete_class
+from app.controller.class_controller import delete_class_profile
 
 
 def delete_routes(app):
@@ -17,6 +17,6 @@ def delete_routes(app):
         return delete_student_profile(data)
          
     @app.delete('/class')
-    def delete_classes():
+    def delete_class_data_profile():
         data = request.get_json()
-        return delete_class(data)
+        return delete_class_profile(data)

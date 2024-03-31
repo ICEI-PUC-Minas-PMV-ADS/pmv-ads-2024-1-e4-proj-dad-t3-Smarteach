@@ -1,6 +1,6 @@
 from datetime import datetime
 from bson import ObjectId
-from pymongo.collection import Collection
+
 
 def verify_user_email(email, collection_data):
 

@@ -7,7 +7,7 @@ from app.services import verify_request_data, get_data_by_id, get_items_data, up
 
 
 def get_available_classes():
-    
+
     classes_list = get_items_data(classes_collection.find({}))
     return jsonify(classes_list), 200
 
@@ -38,7 +38,7 @@ def insert_new_class(data):
     return 'Nova turma registrada com sucesso!', 200
 
 
-def update_class(data):
+def update_class_profile(data):
 
     wrong_data_request = verify_request_data(data, classes_collection, 'PATCH')
     if wrong_data_request: 
@@ -57,7 +57,7 @@ def update_class(data):
     return 'Turma atualizada com sucesso', 200
 
 
-def delete_class(data):
+def delete_class_profile(data):
 
     wrong_data = verify_request_data(data, classes_collection)
     if wrong_data:
