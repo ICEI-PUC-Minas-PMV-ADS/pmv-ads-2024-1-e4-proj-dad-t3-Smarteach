@@ -1,5 +1,6 @@
 from datetime import datetime
 from bson import ObjectId
+from pymongo.collection import Collection
 
 def verify_user_email(email, collection_data):
 
@@ -60,4 +61,10 @@ def get_items_data(data_collection):
     
     return data_list
 
+def get_data_by_id(item_id, collection):
+
+    item = collection.find_one({'_id': ObjectId(item_id)})
+    item['_id'] = item_id
+
+    return item
     
