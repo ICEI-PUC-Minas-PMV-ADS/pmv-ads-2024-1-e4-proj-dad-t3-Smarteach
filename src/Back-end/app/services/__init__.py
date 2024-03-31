@@ -10,9 +10,10 @@ def verify_user_email(email, collection_data):
             return 'Email já cadastrado!'
     
 
-def verify_request_data(request_data, collection, collection_name, request_type=None):
+def verify_request_data(request_data, collection, request_type=None):
     
     data_id = request_data.get('id')
+    collection_name = collection.name
     
     if not data_id:
         return 'Necessário enviar a propriedade "id" e seu respectivo valor no corpo da requisição'
@@ -25,13 +26,13 @@ def verify_request_data(request_data, collection, collection_name, request_type=
     
     item_data = collection.find_one({"_id": ObjectId(data_id)})
     if not item_data:
-        if collection_name not in ['class', 'content']:
+        if collection_name not in ['Turmas', 'Aulas']:
             return 'Usuário inexistente'
         
-        if collection_name == 'class':
+        if collection_name == 'Turmas':
             return "Turma inexistente"
         
-        if collection_name == 'content':
+        if collection_name == 'Aulas':
             return "Aula inexistente"
 
 

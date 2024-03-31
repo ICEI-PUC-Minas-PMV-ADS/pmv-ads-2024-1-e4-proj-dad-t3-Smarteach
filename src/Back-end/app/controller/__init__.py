@@ -68,7 +68,7 @@ def delete_teacher_profile(data):
 
 def update_teacher_profile(data):
 
-    wrong_data_request = verify_request_data(data, teacher_collection, "teacher")
+    wrong_data_request = verify_request_data(data, teacher_collection, 'PATCH')
     if wrong_data_request: 
         return wrong_data_request, 400
 
@@ -86,7 +86,7 @@ def update_teacher_profile(data):
 
 def update_class(data):
 
-    wrong_data_request = verify_request_data(data, classes_collection, "class")
+    wrong_data_request = verify_request_data(data, classes_collection, 'PATCH')
     if wrong_data_request: 
         return wrong_data_request, 400
 
@@ -123,7 +123,8 @@ def get_available_classes():
 
 
 def update_student_profile(data):
-    wrong_data_request = verify_request_data(data, student_collection)
+    
+    wrong_data_request = verify_request_data(data, student_collection, 'PATCH')
     if wrong_data_request: 
         return wrong_data_request, 400
 
@@ -142,7 +143,7 @@ def update_student_profile(data):
 
 def delete_student_profile(data):
 
-    wrong_data_request = verify_request_data(data, student_collection, "DELETE")
+    wrong_data_request = verify_request_data(data, student_collection)
     if wrong_data_request: 
         return wrong_data_request, 400
     
@@ -154,7 +155,7 @@ def delete_student_profile(data):
   
 def delete_class(data):
 
-    wrong_data = verify_request_data(data, classes_collection, "class")
+    wrong_data = verify_request_data(data, classes_collection)
     if wrong_data:
         return wrong_data, 400
  
