@@ -84,6 +84,24 @@ def update_teacher_profile(data):
 
     return 'Perfil de Professor atualizado com sucesso!', 200
 
+def update_class(data):
+
+    wrong_data_request = verify_request_data(data, teacher_collection)
+    if wrong_data_request: 
+        return wrong_data_request, 400
+
+    class_id = data.get('number')
+
+    for key in data.keys():
+
+        if key != 'number':
+            new_values = {"$set": {key: data[key]} }
+            teacher_collection.update_one({'_id' : ObjectId(class_id)}, new_values)
+    
+    teacher_collection.update_one({'_id' : ObjectId(class_id)}, update_time_data())
+
+    return 'Classe atualizada com sucesso', 200
+
 
 def insert_new_class(data):
 
@@ -102,6 +120,19 @@ def insert_new_class(data):
 def get_available_classes():
     classes_list = get_items_data(classes_collection.find({}))
     return jsonify(classes_list), 200
+
+
+def delete_class(data):
+
+    number_class = {"number": data["number"] }
+    
+    if verify_request_data(data.get('number'), classes_collection.find({})):
+        classes_collection.delete_one(number_class)
+
+        return 'Turma removida com sucesso', 200
+    
+    else:
+        return 'Turma inexistente', 400
     
     
 def insert_new_student(data: dict):
