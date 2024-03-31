@@ -68,7 +68,7 @@ def delete_teachers_profiles(data):
 
 def update_teacher_profile(data):
 
-    wrong_data_request = verify_request_data(data, teacher_collection)
+    wrong_data_request = verify_request_data(data, teacher_collection, "teacher")
     if wrong_data_request: 
         return wrong_data_request, 400
 
@@ -86,21 +86,21 @@ def update_teacher_profile(data):
 
 def update_class(data):
 
-    wrong_data_request = verify_request_data(data, teacher_collection)
+    wrong_data_request = verify_request_data(data, classes_collection, "class")
     if wrong_data_request: 
         return wrong_data_request, 400
 
-    class_id = data.get('number')
+    class_id = data.get('id')
 
     for key in data.keys():
 
-        if key != 'number':
+        if key != 'id':
             new_values = {"$set": {key: data[key]} }
-            teacher_collection.update_one({'_id' : ObjectId(class_id)}, new_values)
+            classes_collection.update_one({'_id' : ObjectId(class_id)}, new_values)
     
-    teacher_collection.update_one({'_id' : ObjectId(class_id)}, update_time_data())
+    classes_collection.update_one({'_id' : ObjectId(class_id)}, update_time_data())
 
-    return 'Classe atualizada com sucesso', 200
+    return 'Turma atualizada com sucesso', 200
 
 
 def insert_new_class(data):
@@ -124,15 +124,14 @@ def get_available_classes():
 
 def delete_class(data):
 
-    number_class = {"number": data["number"] }
-    
-    if verify_request_data(data.get('number'), classes_collection.find({})):
-        classes_collection.delete_one(number_class)
+    wrong_data = verify_request_data(data, classes_collection, "class")
+    if wrong_data:
+        return wrong_data, 400
+ 
+    class_id = {"_id": ObjectId(data.get("id"))}
+    classes_collection.delete_one(class_id)
 
-        return 'Turma removida com sucesso', 200
-    
-    else:
-        return 'Turma inexistente', 400
+    return 'Turma removida com sucesso', 200
     
     
 def insert_new_student(data: dict):
@@ -144,7 +143,7 @@ def insert_new_student(data: dict):
     new_student = Student(**data)
 
     is_same_email = verify_user_email(data["email"], admin_collection.find({}))
-    
+
     if is_same_email: 
         return is_same_email, 400
     
