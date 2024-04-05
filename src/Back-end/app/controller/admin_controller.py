@@ -41,4 +41,20 @@ def delete_admin_profiles(data):
         return 'Administrador não encontrado', 400
 
 
+def update_admin_profile(data):
+
+    wrong_data_request = verify_request_data(data, admin_collection)
+    if wrong_data_request: 
+        return wrong_data_request, 400
+
+    user_id = data.get('_id')
+    update_data = {key: data[key] for key in data.keys() if key != '_id'}
+
+    if update_data:
+        new_values = {"$set": update_data}
+        admin_collection.update_one({'_id': ObjectId(user_id)}, new_values)
+        admin_collection.update_one({'_id': ObjectId(user_id)}, update_time_data())
+
+        return 'Perfil de Administrador atualizado com sucesso!', 200
+
 
