@@ -27,3 +27,18 @@ def insert_new_admin(data: dict):
     admin_collection.insert_one(new_Admin.__dict__)
 
     return 'Novo Administrador registrado com sucesso!', 200
+
+
+def delete_admin_profiles(data):
+
+    admin_id = ObjectId(data['_id'])
+    admin = admin_collection.delete_one({'_id': admin_id})
+
+    if admin:
+        admin_collection.delete_one({'_id': admin_id})
+        return 'Perfil de Administrador deletado com sucesso!', 200
+    else:
+        return 'Administrador não encontrado', 400
+
+
+
