@@ -57,6 +57,4 @@ def delete_student_profile(data):
     user_id = data.get('id')
     student_collection.delete_one({"_id": ObjectId(user_id) })
 
-    return 'Perfil de Estudante deletado com sucesso!', 200  
-
-  
+    return 'Perfil de Estudante deletado com sucesso!', 200
