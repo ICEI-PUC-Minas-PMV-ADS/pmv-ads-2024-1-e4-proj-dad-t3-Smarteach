@@ -1,14 +1,16 @@
 from flask import jsonify
+from bson import ObjectId
 
 from app.model import Admin 
 from app.controller import admin_collection
-from app.services import get_items_data, verify_user_email
+from app.services import get_items_data, verify_user_email, verify_request_data, update_time_data
 
 def get_available_admins():
 
     admin_list = get_items_data(admin_collection.find({}))
 
     return jsonify(admin_list), 200
+
 
 def insert_new_admin(data: dict):
 
@@ -29,9 +31,9 @@ def insert_new_admin(data: dict):
     return 'Novo Administrador registrado com sucesso!', 200
 
 
-def delete_admin_profiles(data):
+def delete_admin_profile(data):
 
-    admin_id = ObjectId(data['_id'])
+    admin_id = ObjectId(data['id'])
     admin = admin_collection.delete_one({'_id': admin_id})
 
     if admin:
@@ -47,8 +49,8 @@ def update_admin_profile(data):
     if wrong_data_request: 
         return wrong_data_request, 400
 
-    user_id = data.get('_id')
-    update_data = {key: data[key] for key in data.keys() if key != '_id'}
+    user_id = data.get('id')
+    update_data = {key: data[key] for key in data.keys() if key != 'id'}
 
     if update_data:
         new_values = {"$set": update_data}

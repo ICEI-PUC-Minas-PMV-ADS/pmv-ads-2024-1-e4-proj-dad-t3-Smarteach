@@ -3,6 +3,7 @@ from flask import request
 from app.controller.teacher_controller import update_teacher_profile
 from app.controller.student_controller import update_student_profile
 from app.controller.class_controller import update_class_profile
+from app.controller.admin_controller import update_admin_profile
 
 
 def patch_routes(app):
@@ -20,3 +21,8 @@ def patch_routes(app):
     def change_class_data_profile():
         data = request.get_json()
         return update_class_profile(data)
+    
+    @app.patch('/admin')
+    def change_admin_data_profile():
+        data = request.get_json()
+        return update_admin_profile(data)
