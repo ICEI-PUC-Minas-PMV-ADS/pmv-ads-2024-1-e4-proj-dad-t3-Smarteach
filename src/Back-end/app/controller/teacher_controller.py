@@ -1,8 +1,8 @@
 from flask import jsonify
 from bson import ObjectId
 
-from app.model import Teacher
-from app.controller import teacher_collection
+from app.model import Teacher, Class
+from app.controller import teacher_collection, classes_collection
 from app.services import verify_request_data, get_items_data, get_data_by_id, verify_user_email, update_time_data
 
 
@@ -38,6 +38,18 @@ def insert_new_teacher(data: dict):
 
     if is_same_email: 
         return is_same_email, 400
+    
+    inexistent_class_numbers = []
+    for number_class in data.get("turmas"):
+        print('>>>>>>>>>>', number_class)
+        inexistent_register_msg = Class.verify_new_class_data(
+            {'number': number_class}, classes_collection.find({}))
+
+        if inexistent_register_msg:
+           inexistent_class_numbers.append(inexistent_register_msg)
+    print('777777777777', inexistent_class_numbers)
+    if inexistent_class_numbers:
+        return "Turma(s) inexistente(s):{}".format(*inexistent_class_numbers), 400
 
     teacher_collection.insert_one(new_teacher.__dict__)
 

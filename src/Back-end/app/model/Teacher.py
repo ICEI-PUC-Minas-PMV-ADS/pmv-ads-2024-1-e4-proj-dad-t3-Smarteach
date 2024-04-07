@@ -26,7 +26,7 @@ class Teacher():
         if wrong_keys:
             return f'Campos incorretos inseridos na requisição: {wrong_keys}'
         
-        none_values = {key for key in data if not data[key]}
+        none_values = {key for key in data if not data[key] and type(data[key]) != list}
 
         if none_values:
             return f'Foi atribuido um valor nulo nas seguintes propriedades: {none_values}'

@@ -36,16 +36,7 @@ def verify_request_data(request_data, collection, request_type=None):
         
         if collection_name == 'Aulas':
             return "Aula inexistente"
-
-
-def verify_class_number(class_number, collection_data):
-
-    class_data_list = [class_data for class_data in collection_data]
-
-    for class_data in class_data_list:
-        if class_data.get("number") == class_number:
-            return 'Email já cadastrado!'
-
+        
 
 def update_time_data():
 

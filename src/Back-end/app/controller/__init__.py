@@ -8,7 +8,7 @@ client = MongoClient(STR_CONNECTION)
 
 db = client['SmarTeach']
 db_collections = db.list_collection_names()
-app_collections = ['Professores', 'Alunos', 'Admin', 'Turmas']
+app_collections = ['Professores', 'Alunos', 'Admins', 'Turmas']
 
 if db_collections != app_collections:
     for collection_name in app_collections:
