@@ -5,7 +5,6 @@ class Student():
         self.nome = kwargs['nome']
         self.turma = kwargs['turma']
         self.email = kwargs['email']
-        self.email = kwargs['email']
     
     @staticmethod
     def verify_student_data(data: dict):

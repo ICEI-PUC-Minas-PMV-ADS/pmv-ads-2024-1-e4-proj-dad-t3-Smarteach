@@ -4,6 +4,7 @@ from app.controller.teacher_controller import insert_new_teacher
 from app.controller.class_controller import insert_new_class
 from app.controller.student_controller import insert_new_student
 from app.controller.admin_controller import insert_new_admin
+from app.controller.activity_controller import insert_new_class_activity
 
 
 def post_routes(app):
@@ -27,3 +28,9 @@ def post_routes(app):
     def register_student():
         data = request.get_json()
         return insert_new_student(data)
+    
+    @app.post('/activity')
+    def register_new_class_activity():
+        data = request.get_json()
+        return insert_new_class_activity(data)
+    

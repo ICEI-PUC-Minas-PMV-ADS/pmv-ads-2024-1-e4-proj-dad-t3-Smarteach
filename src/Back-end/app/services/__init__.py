@@ -1,5 +1,6 @@
 from datetime import datetime
 from bson import ObjectId
+import re
 
 
 def verify_user_email(email, collection_data):
@@ -58,9 +59,9 @@ def get_items_data(data_collection):
 
     for index, elt in enumerate(data_list):
         data_list[index] = {key: elt[key] if key != '_id' else str(elt[key]) for key in elt}
-        # data_list[index] = {key: elt[key] for key in elt if key != '_id'}
     
     return data_list
+
 
 def get_data_by_id(item_id, collection):
 
@@ -68,4 +69,16 @@ def get_data_by_id(item_id, collection):
     item['_id'] = item_id
 
     return item
+
+
+def verify_data_format(data, type):
+        
+        regex = r"^'([01]?[0-9]|2[0-3]):([0-5][0-9])-([01]?[0-9]|2[0-3]):([0-5][0-9])$'"
+
+        if type == 'DATE':
+            regex = r"^'(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\d{4}$'"
+
+        is_wrong_format = re.search(regex, data)
+        if is_wrong_format:
+            return True
     
