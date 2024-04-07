@@ -57,7 +57,8 @@ def get_items_data(data_collection):
     data_list = [data for data in data_collection]
 
     for index, elt in enumerate(data_list):
-        data_list[index] = {key: elt[key] for key in elt if key != '_id'}
+        data_list[index] = {key: elt[key] if key != '_id' else str(elt[key]) for key in elt}
+        # data_list[index] = {key: elt[key] for key in elt if key != '_id'}
     
     return data_list
 

@@ -33,6 +33,10 @@ def insert_new_admin(data: dict):
 
 def delete_admin_profile(data):
 
+    wrong_data_request = verify_request_data(data, admin_collection)
+    if wrong_data_request: 
+        return wrong_data_request, 400
+
     admin_id = ObjectId(data['id'])
     admin = admin_collection.delete_one({'_id': admin_id})
 

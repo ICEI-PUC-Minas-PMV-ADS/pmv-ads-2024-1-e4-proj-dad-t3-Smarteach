@@ -14,5 +14,13 @@ available_school_subjects = [
     'Educação física'
 ]
 
-def get_data_id():
-    pass
+def get_fake_data_profile(client, fake_key_property):
+
+    response = client.get(f"/{fake_key_property.get('type')}")
+    property = 'email' if fake_key_property.get('email') else 'number'
+    # print('>>>>'*6, property)
+    # print('<><>'*6, fake_key_property.get(property))
+    for user_data in response.json:
+        # print('<<<<'*6, user_data.get(property))
+        if user_data.get(property) == fake_key_property.get(property):
+            return user_data
