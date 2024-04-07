@@ -3,7 +3,7 @@ from bson import ObjectId
 
 from app.model import Teacher, Class
 from app.controller import teacher_collection, classes_collection
-from app.services import verify_request_data, get_items_data, get_data_by_id, verify_user_email, update_time_data
+from app.services import verify_request_data, get_items_data, get_data_by_id, verify_user_email, update_time_data, verify_update_sent_data_request
 
 
 def get_available_teachers():
@@ -41,13 +41,12 @@ def insert_new_teacher(data: dict):
     
     inexistent_class_numbers = []
     for number_class in data.get("turmas"):
-        print('>>>>>>>>>>', number_class)
-        inexistent_register_msg = Class.verify_new_class_data(
+        inexistent_register_msg = Class.verify_if_exist_class_data(
             {'number': number_class}, classes_collection.find({}))
 
         if inexistent_register_msg:
            inexistent_class_numbers.append(inexistent_register_msg)
-    print('777777777777', inexistent_class_numbers)
+
     if inexistent_class_numbers:
         return "Turma(s) inexistente(s):{}".format(*inexistent_class_numbers), 400
 
@@ -63,6 +62,11 @@ def update_teacher_profile(data):
         return wrong_data_request, 400
 
     user_id = data.get('id')
+    available_teacher_keys = ['nome', 'email', 'turmas', 'disciplina', 'turno', 'id']
+
+    wrong_properties = verify_update_sent_data_request(data, available_teacher_keys)
+    if wrong_properties:
+        return wrong_properties, 400
 
     for key in data.keys():
 

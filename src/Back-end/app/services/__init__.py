@@ -72,4 +72,13 @@ def verify_data_format(data, type):
         is_wrong_format = re.search(regex, data)
         if is_wrong_format:
             return True
+
+def verify_update_sent_data_request(data, available_keys):
+        
+    wrong_properties = []
+    for key in data.keys():
+        if key not in available_keys:
+            wrong_properties.append({key: data[key]})
     
+    if wrong_properties:
+        return f"Propriedade(s) invalida(s): {wrong_properties}"

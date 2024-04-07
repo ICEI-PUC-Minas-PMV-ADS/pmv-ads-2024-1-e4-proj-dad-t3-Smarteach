@@ -3,7 +3,7 @@ from flask import jsonify
 
 from app.model import Class
 from app.controller import classes_collection
-from app.services import verify_request_data, get_data_by_id, get_items_data, update_time_data
+from app.services import verify_request_data, get_data_by_id, get_items_data, update_time_data, verify_update_sent_data_request
 
 
 def get_available_classes():
@@ -47,6 +47,11 @@ def update_class_profile(data):
         return wrong_data_request, 400
 
     class_id = data.get('id')
+    available_class_keys = ['teachers', 'students', 'number', 'id']
+
+    wrong_properties = verify_update_sent_data_request(data, available_class_keys)
+    if wrong_properties:
+        return wrong_properties, 400
 
     for key in data.keys():
 

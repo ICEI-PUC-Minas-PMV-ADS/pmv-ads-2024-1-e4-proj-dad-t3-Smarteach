@@ -17,5 +17,5 @@ if db_collections != app_collections:
 
 teacher_collection = db.get_collection('Professores')
 student_collection = db.get_collection('Alunos')
-admin_collection = db.get_collection('Admin')
+admin_collection = db.get_collection('Admins')
 classes_collection = db.get_collection('Turmas')

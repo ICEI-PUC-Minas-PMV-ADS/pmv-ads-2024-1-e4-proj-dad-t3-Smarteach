@@ -3,7 +3,7 @@ from bson import ObjectId
 
 from app.model import Admin 
 from app.controller import admin_collection
-from app.services import get_items_data, verify_user_email, verify_request_data, update_time_data
+from app.services import get_items_data, verify_user_email, verify_request_data, update_time_data, verify_update_sent_data_request
 
 def get_available_admins():
 
@@ -54,6 +54,13 @@ def update_admin_profile(data):
         return wrong_data_request, 400
 
     user_id = data.get('id')
+    available_student_keys = ['nome', 'email', 'id']
+
+    wrong_properties = verify_update_sent_data_request(data, available_student_keys)
+    if wrong_properties:
+        return wrong_properties, 400
+
+
     update_data = {key: data[key] for key in data.keys() if key != 'id'}
 
     if update_data:
