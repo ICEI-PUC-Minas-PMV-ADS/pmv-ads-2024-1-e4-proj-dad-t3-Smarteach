@@ -3,18 +3,18 @@ from datetime import datetime
 class Teacher():
     def __init__(self, **kwargs):
         self.email = kwargs['email']
-        self.nome = kwargs['nome']
-        self.disciplina = kwargs['disciplina']
-        self.turmas = kwargs['turmas']
-        self.turno = kwargs['turno']
-        self.data_cadastro = datetime.now().strftime("%d/%m/%Y - %H:%M")
-        self.data_atualizacao = datetime.now().strftime("%d/%m/%Y - %H:%M") 
+        self.name = kwargs['name']
+        self.subject= kwargs['subject']
+        self.classes = kwargs['classes']
+        self.period = kwargs['period']
+        self.register_date = datetime.now().strftime("%d/%m/%Y - %H:%M")
+        self.last_update_date = datetime.now().strftime("%d/%m/%Y - %H:%M") 
     
 
     @staticmethod
     def verify_new_teacher_data(data: dict):
 
-        available_keys = ['email' ,'nome', 'disciplina', 'turmas', 'turno']
+        available_keys = ['email' ,'name', 'subject', 'classes', 'period']
 
         data_keys = data.keys()
 

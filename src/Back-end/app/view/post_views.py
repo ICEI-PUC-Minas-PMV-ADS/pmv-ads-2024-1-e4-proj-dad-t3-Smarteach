@@ -29,7 +29,7 @@ def post_routes(app):
         data = request.get_json()
         return insert_new_student(data)
     
-    @app.post('/activity')
+    @app.post('/class/activity')
     def register_new_class_activity():
         data = request.get_json()
         return insert_new_class_activity(data)

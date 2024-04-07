@@ -18,6 +18,16 @@ def test_register_new_admin(client):
     assert response.status_code == 201
 
 
+def test_register_new_admin_with_registered_email(client):
+    
+    response = client.post('/admin', json={
+        "nome":"Lex Lutor",
+	    "email": fake_profile.get("email")
+    })
+
+    assert response.status_code == 400
+
+
 def test_get_all_admins(client):
 
     response = client.get('/admin')
@@ -34,6 +44,19 @@ def test_update_admin_register(client):
     })
 
     assert response.status_code == 200
+
+def test_update_admin_sent_wrong_properties(client):
+
+    user = get_fake_data_profile(client, fake_profile)
+
+    response = client.patch('/admin', json={
+    "id": user.get("_id"),
+    "teachers": [],
+    "@@@&&hwkbh": "6985",
+    "agumon": [0],
+    })
+
+    assert response.status_code == 400
 
 
 def test_update_admin_without_send_id(client):

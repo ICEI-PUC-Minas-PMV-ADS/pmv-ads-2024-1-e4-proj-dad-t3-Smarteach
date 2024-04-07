@@ -22,6 +22,15 @@ def test_register_new_class(client):
     assert response.status_code == 201
 
 
+def test_register_new_class_with_invalid_data_type(client):
+
+    response = client.post('/class', json={
+	    "number": 'batata congelada'
+    })
+
+    assert response.status_code == 400
+
+
 def test_register_new_class_breaking_class_number_rule(client):
     
     response = client.post('/class', json={
@@ -43,6 +52,19 @@ def test_update_class_number(client):
     })
 
     assert response.status_code == 200
+
+def test_update_class_register_sent_wrong_properties(client):
+
+    user = get_fake_data_profile(client, fake_profile)
+
+    response = client.patch('/class', json={
+    "id": user.get("_id"),
+    "teachers": [],
+    "startgate": "frita_646985",
+    "pokemon": 119819,
+    })
+
+    assert response.status_code == 400
 
 
 def test_update_class_without_send_id(client):

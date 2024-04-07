@@ -17,14 +17,29 @@ def test_register_new_teacher(client):
     fake_profile.update({'email': random_email})
     
     response = client.post('/teacher', json={
-        "nome":"Fulano de Tal",
+        "name":"Fulano de Tal",
 	    "email": random_email,
-	    "disciplina": random_subject,
-	    "turmas": [101],
-	    "turno": "vespertino"
+	    "subject": random_subject,
+	    "classes": [101],
+	    "period": "vespertino"
     })
 
     assert response.status_code == 201
+
+
+def test_register_new_teacher_with_registered_email_in_data_base(client):
+
+    random_subject = choice(available_school_subjects)
+    
+    response = client.post('/teacher', json={
+        "nome":"Fulano de Tal",
+	    "email": fake_profile.get('email'),
+	    "subject": random_subject,
+	    "classes": [101],
+	    "period": "vespertino"
+    })
+
+    assert response.status_code == 400
 
 
 def test_update_teacher_register(client):
@@ -33,20 +48,35 @@ def test_update_teacher_register(client):
     
     response = client.patch('/teacher', json={
     "id": user.get("_id"),
-    "nome": "Fulano de Tal Silva",
-    "turno": "Noturno",
-    "disciplina": choice(available_school_subjects)
+    "name": "Fulano de Tal Silva",
+    "period": "Noperiod",
+    "subject": choice(available_school_subjects)
     })
 
     assert response.status_code == 200
+
+def test_update_teacher_sent_wrong_properties(client):
+
+    user = get_fake_data_profile(client, fake_profile)
+    random_number = randrange(1, 700)
+
+    response = client.patch('/teacher', json={
+    "id": user.get("_id"),
+    "nome": "Fulano de Tal Silva",
+    "fake77777": "batata",
+    "foo_921": random_number,
+    "subject": choice(available_school_subjects)
+    })
+
+    assert response.status_code == 400
 
 
 def test_update_teacher_without_send_id(client):
     
     response = client.patch('/teacher', json={
     "email": "folano@mail.com",
-    "turno": "Noturno",
-    "disciplina": choice(available_school_subjects)
+    "period": "Noperiod",
+    "subject": choice(available_school_subjects)
     })
 
     assert response.status_code == 400

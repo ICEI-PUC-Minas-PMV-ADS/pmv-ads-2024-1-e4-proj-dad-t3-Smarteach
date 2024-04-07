@@ -28,7 +28,6 @@ class Class():
     @staticmethod
     def verify_if_exist_class_data(number, classes_data):
         db_classes_number_list = [x.get('number') for x in classes_data]
-
         if number in db_classes_number_list:
             return 'Já existe uma turma registrada com este número'
 

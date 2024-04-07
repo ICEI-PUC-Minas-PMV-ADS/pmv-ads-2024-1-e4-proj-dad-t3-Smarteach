@@ -1,4 +1,4 @@
-from random import randrange, choice
+from random import randrange
 
 from tests import get_fake_data_profile
 
@@ -16,20 +16,20 @@ def test_register_new_student(client):
     fake_profile.update({'email': random_email})
     
     response = client.post('/student', json={
-        "nome":"Ciclano de Tal",
+        "name":"Ciclano de Tal",
 	    "email": random_email,
-	    "turma": 101
+	    "class_number": 101
     })
 
     assert response.status_code == 201
 
 
-def test_register_new_student_with_one_registered_email(client):
+def test_register_new_student_with_registered_email(client):
     
     response = client.post('/student', json={
-        "nome":"Peter parker",
+        "name":"Peter parker",
 	    "email": fake_profile.get("email"),
-	    "turma": 101
+	    "class_number": 101
     })
 
     assert response.status_code == 400
@@ -41,8 +41,8 @@ def test_update_student_register(client):
     
     response = client.patch('/student', json={
     "id": user.get("_id"),
-    "nome": "Ciclano de Tal dos Santos",
-    "turma": 102
+    "name": "Ciclano de Tal dos Santos",
+    "class_number": 102
     })
 
     assert response.status_code == 200
@@ -53,6 +53,21 @@ def test_update_student_without_send_id(client):
     response = client.patch('/student', json={
     "email": "ciclano@mail.com",
     "turno": "Noturno"
+    })
+
+    assert response.status_code == 400
+
+
+def test_update_student_sent_wrong_properties(client):
+
+    user = get_fake_data_profile(client, fake_profile)
+    random_number = randrange(1, 700)
+
+    response = client.patch('/student', json={
+    "id": user.get("_id"),
+    "name": "Fulano de Tal Silva",
+    "batata": "frita_646985",
+    "luluzinha77": random_number,
     })
 
     assert response.status_code == 400

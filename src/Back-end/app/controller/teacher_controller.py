@@ -40,7 +40,7 @@ def insert_new_teacher(data: dict):
         return is_same_email, 400
     
     inexistent_class_numbers = []
-    for number_class in data.get("turmas"):
+    for number_class in data.get("classes"):
         inexistent_register_msg = Class.verify_if_exist_class_data(
             {'number': number_class}, classes_collection.find({}))
 
@@ -62,7 +62,7 @@ def update_teacher_profile(data):
         return wrong_data_request, 400
 
     user_id = data.get('id')
-    available_teacher_keys = ['nome', 'email', 'turmas', 'disciplina', 'turno', 'id']
+    available_teacher_keys = ['name', 'email', 'classes', 'subject', 'period', 'id']
 
     wrong_properties = verify_update_sent_data_request(data, available_teacher_keys)
     if wrong_properties:

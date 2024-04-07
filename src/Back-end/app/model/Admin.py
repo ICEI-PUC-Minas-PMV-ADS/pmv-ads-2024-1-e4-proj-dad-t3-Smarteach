@@ -4,9 +4,9 @@ class Admin():
   
     def __init__(self, **kwargs):
         self.email = kwargs['email']
-        self.nome = kwargs['nome']
-        self.data_cadastro = datetime.now().strftime("%d/%m/%Y - %H:%M")
-        self.data_atualizacao = datetime.now().strftime("%d/%m/%Y - %H:%M") 
+        self.name = kwargs['nome']
+        self.register_date = datetime.now().strftime("%d/%m/%Y - %H:%M")
+        self.last_update_date = datetime.now().strftime("%d/%m/%Y - %H:%M") 
     
 
     @staticmethod

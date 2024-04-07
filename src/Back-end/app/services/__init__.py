@@ -14,9 +14,9 @@ def verify_user_email(email, collection_data):
 
 def verify_request_data(request_data, collection, request_type=None):
     
-    data_id = request_data.get('id')
+    data_id = request_data.get('id') or request_data.get('class_id') 
     collection_name = collection.name
-    
+
     if not data_id:
         return 'Necessário enviar a propriedade "id" e seu respectivo valor no corpo da requisição'
 

@@ -3,7 +3,7 @@ from bson import ObjectId
 
 from app.model import Student
 from app.controller import student_collection
-from app.services import verify_request_data, get_items_data, get_data_by_id, verify_user_email, update_time_data, verify_update_sent_data_request
+from app.services import verify_request_data, get_items_data, verify_user_email, update_time_data, verify_update_sent_data_request
 
 def get_available_students():
 
@@ -36,7 +36,7 @@ def update_student_profile(data):
         return wrong_data_request, 400
 
     user_id = data.get('id')
-    available_student_keys = ['nome', 'email', 'turma', 'id']
+    available_student_keys = ['name', 'email', 'class_number', 'id']
 
     wrong_properties = verify_update_sent_data_request(data, available_student_keys)
     if wrong_properties:

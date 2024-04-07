@@ -2,8 +2,8 @@ from app.services import verify_data_format
 
 class Activity():
     def __init__(self, **kwargs):
-        self.nome = kwargs['name']
-        self.materia = kwargs["subject"]
+        self.name = kwargs['name']
+        self.subject = kwargs["subject"]
         self.teacher_email = kwargs["teacher_email"]
         self.recorrencia = kwargs["recurrency"]
 
