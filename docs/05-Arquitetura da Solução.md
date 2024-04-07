@@ -9,6 +9,8 @@ Definição de como o software é estruturado em termos dos componentes que faze
 
 O diagrama de classes ilustra graficamente como será a estrutura do software, e como cada uma das classes da sua estrutura estarão interligadas. Essas classes servem de modelo para materializar os objetos que executarão na memória.
 
+![DiagramaClassesSmarteach](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e4-proj-dad-t3-Smarteach/assets/63524496/d1acab0a-1d17-4f70-8733-64cf7c18bde9)
+
 ## Esquema do Banco de Dados
 
 Esquema do banco de dados NoSql na estrutura de collections correlacionadas usando o Banco MongoDB
