@@ -35,7 +35,7 @@ def insert_new_class(data):
     new_class = Class(**data)
     classes_collection.insert_one(new_class.__dict__)
 
-    return 'Nova turma registrada com sucesso!', 200
+    return 'Nova turma registrada com sucesso!', 201
 
 
 def update_class_profile(data):

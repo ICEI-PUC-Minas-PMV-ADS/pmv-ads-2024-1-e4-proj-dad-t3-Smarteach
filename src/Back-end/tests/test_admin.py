@@ -15,7 +15,7 @@ def test_register_new_admin(client):
 	    "email": random_email
     })
 
-    assert response.status_code == 200
+    assert response.status_code == 201
 
 
 def test_get_all_admins(client):

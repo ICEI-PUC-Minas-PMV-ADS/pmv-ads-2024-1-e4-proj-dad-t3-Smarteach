@@ -21,7 +21,7 @@ def test_register_new_student(client):
 	    "turma": 101
     })
 
-    assert response.status_code == 200
+    assert response.status_code == 201
 
 
 def test_register_new_student_with_one_registered_email(client):

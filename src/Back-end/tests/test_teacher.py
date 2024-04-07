@@ -24,7 +24,7 @@ def test_register_new_teacher(client):
 	    "turno": "vespertino"
     })
 
-    assert response.status_code == 200
+    assert response.status_code == 201
 
 
 def test_update_teacher_register(client):

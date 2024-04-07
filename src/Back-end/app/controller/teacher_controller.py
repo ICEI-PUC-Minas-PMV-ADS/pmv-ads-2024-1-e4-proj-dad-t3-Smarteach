@@ -41,7 +41,7 @@ def insert_new_teacher(data: dict):
 
     teacher_collection.insert_one(new_teacher.__dict__)
 
-    return 'Novo Professor registrado com sucesso!', 200
+    return 'Novo Professor registrado com sucesso!', 201
     
 
 def update_teacher_profile(data):

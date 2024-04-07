@@ -28,7 +28,7 @@ def insert_new_admin(data: dict):
 
     admin_collection.insert_one(new_Admin.__dict__)
 
-    return 'Novo Administrador registrado com sucesso!', 200
+    return 'Novo Administrador registrado com sucesso!', 201
 
 
 def delete_admin_profile(data):

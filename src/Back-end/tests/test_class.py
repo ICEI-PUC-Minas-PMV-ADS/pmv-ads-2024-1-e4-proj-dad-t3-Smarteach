@@ -19,7 +19,7 @@ def test_register_new_class(client):
 	    "number": random_number
     })
 
-    assert response.status_code == 200
+    assert response.status_code == 201
 
 
 def test_register_new_class_breaking_class_number_rule(client):

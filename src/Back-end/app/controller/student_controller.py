@@ -26,7 +26,7 @@ def insert_new_student(data: dict):
     
     student_collection.insert_one(new_student.__dict__)
     
-    return 'Novo aluno cadastrado com sucesso!', 200
+    return 'Novo aluno cadastrado com sucesso!', 201
 
 
 def update_student_profile(data):
