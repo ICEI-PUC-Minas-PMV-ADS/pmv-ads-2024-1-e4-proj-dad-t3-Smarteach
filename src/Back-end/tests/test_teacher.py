@@ -1,4 +1,4 @@
-from random import randrange, choice
+from random import randrange, choice, randint
 
 from tests import available_school_subjects, get_fake_data_profile
 
@@ -15,12 +15,16 @@ def test_register_new_teacher(client):
     random_subject = choice(available_school_subjects)
     random_email = f"fulano_{randrange(1, 1000000000)}@mail.com"
     fake_profile.update({'email': random_email})
+
+    random_number = randint(100, 1000)
+    client.post('/class', json={"number": random_number})
+    fake_profile.update({'class_number': random_number})
     
     response = client.post('/teacher', json={
         "name":"Fulano de Tal",
 	    "email": random_email,
 	    "subject": random_subject,
-	    "classes": [101],
+	    "classes": [fake_profile.get('class_number')],
 	    "period": "vespertino"
     })
 
@@ -32,14 +36,14 @@ def test_register_new_teacher_with_registered_email_in_data_base(client):
     random_subject = choice(available_school_subjects)
     
     response = client.post('/teacher', json={
-        "nome":"Fulano de Tal",
+        "name":"Fulano de Tal",
 	    "email": fake_profile.get('email'),
 	    "subject": random_subject,
-	    "classes": [101],
+	    "classes": [fake_profile.get('class_number')],
 	    "period": "vespertino"
     })
 
-    assert response.status_code == 400
+    assert response.status_code == 409
 
 
 def test_update_teacher_register(client):

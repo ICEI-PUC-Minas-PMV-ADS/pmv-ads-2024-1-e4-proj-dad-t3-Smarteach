@@ -37,7 +37,7 @@ def insert_new_teacher(data: dict):
     is_same_email = verify_user_email(data["email"], teacher_collection.find({}))
 
     if is_same_email: 
-        return is_same_email, 400
+        return is_same_email, 409
     
     inexistent_class_numbers = []
     for number_class in data.get("classes"):

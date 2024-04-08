@@ -24,7 +24,7 @@ def insert_new_admin(data: dict):
     is_same_email = verify_user_email(data["email"], admin_collection.find({}))
 
     if is_same_email: 
-        return is_same_email, 400
+        return is_same_email, 409
 
     admin_collection.insert_one(new_Admin.__dict__)
 
@@ -54,7 +54,7 @@ def update_admin_profile(data):
         return wrong_data_request, 400
 
     user_id = data.get('id')
-    available_student_keys = ['nome', 'email', 'id']
+    available_student_keys = ['name', 'email', 'id']
 
     wrong_properties = verify_update_sent_data_request(data, available_student_keys)
     if wrong_properties:

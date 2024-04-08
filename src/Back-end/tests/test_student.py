@@ -32,7 +32,7 @@ def test_register_new_student_with_registered_email(client):
 	    "class_number": 101
     })
 
-    assert response.status_code == 400
+    assert response.status_code == 409
 
 
 def test_update_student_register(client):

@@ -22,7 +22,7 @@ def insert_new_student(data: dict):
     is_same_email = verify_user_email(data["email"], student_collection.find({}))
 
     if is_same_email: 
-        return is_same_email, 400
+        return is_same_email, 409
     
     student_collection.insert_one(new_student.__dict__)
     

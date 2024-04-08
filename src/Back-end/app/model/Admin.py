@@ -4,7 +4,7 @@ class Admin():
   
     def __init__(self, **kwargs):
         self.email = kwargs['email']
-        self.name = kwargs['nome']
+        self.name = kwargs['name']
         self.register_date = datetime.now().strftime("%d/%m/%Y - %H:%M")
         self.last_update_date = datetime.now().strftime("%d/%m/%Y - %H:%M") 
     
@@ -12,7 +12,7 @@ class Admin():
     @staticmethod
     def verify_new_admin_data(data: dict):
 
-        available_keys = ['email','nome']
+        available_keys = ['email','name']
 
         data_keys = data.keys()
 

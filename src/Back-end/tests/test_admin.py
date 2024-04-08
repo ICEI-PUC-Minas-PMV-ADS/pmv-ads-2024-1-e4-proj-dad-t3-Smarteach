@@ -25,7 +25,7 @@ def test_register_new_admin_with_registered_email(client):
 	    "email": fake_profile.get("email")
     })
 
-    assert response.status_code == 400
+    assert response.status_code == 409
 
 
 def test_get_all_admins(client):
