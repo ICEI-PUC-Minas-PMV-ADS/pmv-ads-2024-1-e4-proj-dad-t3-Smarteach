@@ -11,7 +11,7 @@ def test_register_new_admin(client):
     fake_profile.update({'email': random_email})
     
     response = client.post('/admin', json={
-        "nome":"Beltrano de Tal",
+        "name":"Beltrano de Tal",
 	    "email": random_email
     })
 
@@ -21,7 +21,7 @@ def test_register_new_admin(client):
 def test_register_new_admin_with_registered_email(client):
     
     response = client.post('/admin', json={
-        "nome":"Lex Lutor",
+        "name":"Lex Lutor",
 	    "email": fake_profile.get("email")
     })
 
@@ -40,7 +40,7 @@ def test_update_admin_register(client):
 
     response = client.patch('/admin', json={
     "id": user.get("_id"),
-    "nome": "Beltrano de tal da Silva",
+    "name": "Beltrano de tal da Silva",
     })
 
     assert response.status_code == 200
