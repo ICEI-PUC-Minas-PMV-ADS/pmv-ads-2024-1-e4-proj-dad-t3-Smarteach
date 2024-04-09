@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-const Logo = () => {
+const Title = () => {
     return (
         <div className="flex items-center justify-center gap-3">
             <Image 
@@ -13,4 +13,4 @@ const Logo = () => {
     );
 }
 
-export default Logo;
+export default Title;
