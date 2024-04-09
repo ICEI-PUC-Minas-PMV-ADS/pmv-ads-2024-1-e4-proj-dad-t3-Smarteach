@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.0.2",
     "@tanstack/react-query": "^5.29.0",
     "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
@@ -24,10 +25,10 @@
     "validator": "^13.11.0"
   },
   "devDependencies": {
-    "autoprefixer": "^10.0.1",
+    "autoprefixer": "^10.4.19",
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
-    "postcss": "^8",
+    "postcss": "^8.4.38",
     "tailwindcss": "^3.3.0"
   }
 }
