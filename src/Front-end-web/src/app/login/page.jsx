@@ -40,7 +40,7 @@ const Login = () => {
             required: true,
           })}
         />
-        {errors.name?.type === 'required' && <p className="pt-2 text-red-500 text-sm"> É obrigatório informar o email </p>}
+        {errors.name?.type === 'required' && <p className="pt-2 text-red-500 text-sm"> É obrigatório informar o nome </p>}
       </div>
 
       <div className="flex flex-col w-full">
@@ -74,9 +74,11 @@ const Login = () => {
           placeholder="Digite sua senha"
           {...register("password", { 
             required: true, 
+            // minLength: 8,
           })}
         />
         {errors.password?.type === 'required' && <p className="pt-2 p text-red-500 text-sm"> É obrigatório informar a senha </p>}
+        {/* {errors.password?.type === 'minLength' && <p className="pt-2 p text-red-500 text-sm"> A senha deve ser maior que 8 digitos </p>} */}
       </div>
 
       <Button className="mt-5 shadow-lg w-full" type="submit">

@@ -17,9 +17,9 @@ export default async function Header() {
  return (
   <>
     {session && (
-        <div className="w-full h-[60px] bg-zinc-700 flex items-center justify-center shadow-2xl">
+        <div className="w-full h-[60px] bg-zinc-800 flex items-center justify-center shadow-2xl">
           <div className="w-[1280px] flex items-center justify-between">
-            <Title/>
+            <Title />
             <div className="flex items-center gap-4">
               <DropdownMenu>
                 <DropdownMenuTrigger>

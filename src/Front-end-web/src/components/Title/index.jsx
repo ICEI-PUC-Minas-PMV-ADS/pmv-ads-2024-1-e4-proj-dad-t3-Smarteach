@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 const Title = () => {
     return (
-        <div className="flex items-center justify-center gap-3">
+        <div className="flex items-center justify-center gap-3 shadow-2xl">
             <Image 
                 width={50}
                 height={50}
