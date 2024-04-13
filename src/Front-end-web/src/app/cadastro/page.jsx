@@ -6,6 +6,7 @@ import { LogIn } from "lucide-react";
 import validator from "validator";
 import Link from "next/link";
 import Title from "@/components/Title";
+import { createStudent } from "@/services/alunos.services";
 
 const Cadastro = () => {
   const {
@@ -14,12 +15,10 @@ const Cadastro = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    createStudent(data)
   };
   
-  console.log(errors)
-
   return (
     <div className="w-screen h-screen bg-[#111] flex justify-center items-center flex-col">
       <div className="flex flex-col items-center justify-center w-[500px]">
@@ -73,6 +72,27 @@ const Cadastro = () => {
           )}
           {errors.email?.type === "validate" && (
             <p className="pt-2 text-red-500 text-sm"> O email é inválido </p>
+          )}
+        </div>
+
+        <div className="flex flex-col w-full">
+          <label className="pt-3 pb-2 text-white font-[500]"> Número da Turma </label>
+          <Input
+            className={
+              errors.class_number &&
+              "bg-red-300 border-red-500 placeholder:text-red-500 placeholder:font-bold text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
+            }
+            type="number"
+            placeholder="Digite o número da turma"
+            {...register("class_number", {
+              required: true,
+              maxLength: 3,
+            })}
+          />
+          {errors.class_number?.type === "required" && (
+            <p className="pt-2 text-red-500 text-sm">
+              É obrigatório informar o número da turma
+            </p>
           )}
         </div>
 

@@ -10,6 +10,7 @@ import {
  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import ButtonLogout from "../ButtonLogout";
+import Link from "next/link"
 
 export default async function Header() {
   const session = await getServerSession();
@@ -33,7 +34,7 @@ export default async function Header() {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>Configurações</DropdownMenuItem>
                   <DropdownMenuItem>Turmas</DropdownMenuItem>
-                  <DropdownMenuItem>Alunos</DropdownMenuItem>
+                  <DropdownMenuItem><Link href="/alunos"> Alunos </Link></DropdownMenuItem>
                   <ButtonLogout />
                 </DropdownMenuContent>
               </DropdownMenu>

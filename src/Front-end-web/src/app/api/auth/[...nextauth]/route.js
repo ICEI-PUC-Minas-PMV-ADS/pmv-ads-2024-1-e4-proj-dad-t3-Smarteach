@@ -1,3 +1,4 @@
+import { BASE_URL } from '@/services/url';
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
@@ -11,15 +12,33 @@ const handler = NextAuth({
           password: { label: "Password", type: "password" },
         },
         async authorize(credentials) {
-          if (credentials.name === "Felipe" && credentials.email === "felipe@puc.com" && credentials.password === "123" ){
-            return {
-              id: "1",
-              name: "Felipe",
-              email: "felipe@puc.com",
-              password: "123"
-            }
-          }
-        },
+      //     const response = await fetch(`${BASE_URL}student`, {
+      //       method: 'POST',
+      //       headers: {
+      //         'Content-Type': 'application/json'
+      //       },
+      //       body: JSON.stringify({
+      //         email: credentials.email,
+      //         password: credentials.password,
+      //       })
+      //     })
+          
+      //     const user = await response.json()
+
+      //     if (user && response.ok) {
+      //       return user
+      //     }
+
+      //     return null;
+      if (credentials.name === "Felipe" && credentials.email === "felipe@puc.com" && credentials.password === "123" ){
+        return {
+          id: "1",
+          name: "Felipe",
+          email: "felipe@puc.com",
+          password: "123"
+        }
+      }
+      },
       }),
     ],
     pages: {
