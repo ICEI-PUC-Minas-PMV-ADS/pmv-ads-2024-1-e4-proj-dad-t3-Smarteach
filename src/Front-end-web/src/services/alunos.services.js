@@ -27,3 +27,4 @@ export async function createStudent(data) {
         password: data.senha
     });
 }
+

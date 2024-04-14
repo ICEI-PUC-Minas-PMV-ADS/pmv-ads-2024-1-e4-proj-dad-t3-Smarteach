@@ -1,12 +1,12 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { LogIn } from "lucide-react";
 import validator from "validator";
 import Link from "next/link";
-import Title from "@/components/Title";
+import Logo from "@/components/logo";
 import { createStudent } from "@/services/alunos.services";
+import { SubmitButton } from "@/components/submit-button";
 
 const Cadastro = () => {
   const {
@@ -20,16 +20,16 @@ const Cadastro = () => {
   };
   
   return (
-    <div className="w-screen h-screen bg-[#111] flex justify-center items-center flex-col">
+    <div className="w-screen h-screen flex justify-center items-center flex-col">
       <div className="flex flex-col items-center justify-center w-[500px]">
-        <Title />
-
+        <Logo />
+        <h1 className="text-3xl text-blackpt-3"> Cadastro </h1>
         <div className="flex flex-col w-full">
-          <label className="pt-3 pb-2 text-white font-[500]"> Nome </label>
+          <label className="pt-3 pb-2 text-black font-[500]"> Nome </label>
           <Input
             className={
               errors.nome &&
-              "bg-red-300 border-red-500 placeholder:text-red-500 placeholder:font-bold text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
+              "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
             }
             type="text"
             placeholder="Digite seu nome completo"
@@ -49,11 +49,11 @@ const Cadastro = () => {
         </div>
 
         <div className="flex flex-col w-full">
-          <label className="pt-3 pb-2 text-white font-[500]"> Email </label>
+          <label className="pt-3 pb-2 text-black font-[500]"> Email </label>
           <Input
             className={
               errors.email &&
-              "bg-red-300 border-red-500 placeholder:text-red-500 placeholder:font-bold text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
+              "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
             }
             type="text"
             placeholder="Digite seu e-mail"
@@ -76,11 +76,11 @@ const Cadastro = () => {
         </div>
 
         <div className="flex flex-col w-full">
-          <label className="pt-3 pb-2 text-white font-[500]"> Número da Turma </label>
+          <label className="pt-3 pb-2 text-black font-[500]"> Número da Turma </label>
           <Input
             className={
               errors.class_number &&
-              "bg-red-300 border-red-500 placeholder:text-red-500 placeholder:font-bold text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
+              "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
             }
             type="number"
             placeholder="Digite o número da turma"
@@ -97,11 +97,11 @@ const Cadastro = () => {
         </div>
 
         <div className="flex flex-col w-full">
-          <label className="pt-3 pb-2 text-white font-[500]"> Senha </label>
+          <label className="pt-3 pb-2 text-black font-[500]"> Senha </label>
           <Input
             className={
               errors.senha &&
-              "bg-red-300 border-red-500 placeholder:text-red-500 placeholder:font-bold text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
+              "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
             }
             type="password"
             placeholder="Digite sua senha"
@@ -117,13 +117,11 @@ const Cadastro = () => {
           )}
         </div>
 
-        <Button className="mt-5 shadow-lg w-full" onClick={handleSubmit(onSubmit)}>
-          <LogIn className="mr-2" /> Cadastrar-se
-        </Button>
+        <SubmitButton label="Cadastre-se" icon={<LogIn />} submitFunction={handleSubmit(onSubmit)}/>
 
-        <p className="text-white pt-3 font-bold">
+        <p className="text-black pt-3 ">
 
-          Ou então <Link href="/login" className="text-slate-600 hover:text-red-500 pr-3"> Fazer Login</Link>
+          Já possui uma conta? <Link href="/login" className="text-slate-600 hover:text-red-500 pr-3"> Fazer Login </Link>
         </p>
       </div>
     </div>

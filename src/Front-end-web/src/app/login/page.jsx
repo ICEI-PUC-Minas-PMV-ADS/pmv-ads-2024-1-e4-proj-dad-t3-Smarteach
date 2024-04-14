@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import Link from 'next/link'
 import {LogIn} from 'lucide-react'
 import validator from "validator";
-import Title from "@/components/Title";
+import Logo from "@/components/logo";
 import { signIn } from "next-auth/react";
 
 const Login = () => {
@@ -23,15 +23,16 @@ const Login = () => {
 };
 
  return (
-  <div className="w-screen h-screen bg-[#111] flex justify-center items-center flex-col">
-    <Title />
+  <div className="w-screen h-screen flex justify-center items-center flex-col">
+    <Logo />
+    <h1 className="text-3xl text-black pt-3"> Login </h1>
     <form className="flex flex-col items-center justify-center w-[500px]" onSubmit={handleSubmit(handleLogin)}>
       <div className="flex flex-col w-full">
-        <label className="pt-3 pb-2 text-white font-[500]"> Nome </label>
+        <label className="pt-3 pb-2 text-black font-[500]"> Nome </label>
         <Input
           className={
             errors.name &&
-            "bg-red-300 border-red-500 placeholder:text-red-500 placeholder:font-bold text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
+            "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
           }
           type="text"
           name="name"
@@ -44,11 +45,11 @@ const Login = () => {
       </div>
 
       <div className="flex flex-col w-full">
-        <label className="pt-3 pb-2 text-white font-[500]"> Email </label>
+        <label className="pt-3 pb-2 text-black font-[500]"> Email </label>
         <Input
           className={
             errors.email &&
-            "bg-red-300 border-red-500 placeholder:text-red-500 placeholder:font-bold text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
+            "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
           }
           type="email"
           name="email"
@@ -63,11 +64,11 @@ const Login = () => {
       </div>
 
       <div className="flex flex-col w-full">
-        <label className="pt-3 pb-2 text-white font-[500]"> Senha </label>
+        <label className="pt-3 pb-2 text-black font-[500]"> Senha </label>
         <Input
           className={
             errors.password &&
-            "bg-red-300 border-red-500 placeholder:text-red-500 placeholder:font-bold text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
+            "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
           }
           type="password"
           name="password"
@@ -81,11 +82,11 @@ const Login = () => {
         {/* {errors.password?.type === 'minLength' && <p className="pt-2 p text-red-500 text-sm"> A senha deve ser maior que 8 digitos </p>} */}
       </div>
 
-      <Button className="mt-5 shadow-lg w-full" type="submit">
+      <Button className="mt-5 shadow-lg w-full bg-[#8C52FF]" type="submit">
         <LogIn className="mr-2"/> Entrar
       </Button>
 
-      <p className="text-white pt-3 font-bold"> Ou então <Link href="/cadastro" className="text-slate-600 hover:text-red-500"> Cadastre-se </Link> </p>
+      <p className="text-black pt-3"> Não possui uma conta? <Link href="/cadastro" className="text-slate-600 hover:text-red-500"> Cadastre-se </Link> </p>
     </form>
   </div>
  );

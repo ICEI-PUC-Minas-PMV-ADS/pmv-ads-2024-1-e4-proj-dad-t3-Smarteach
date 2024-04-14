@@ -1,10 +1,15 @@
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import NextAuthSessionProvider from "@/providers/session-provider";
-import Header from "@/components/Header";
+import Header from "@/components/header";
 import { ReactQueryProvider } from "@/providers/query-client-provider";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+    weight: ["400", "900"],   
+    display: "swap",
+    subsets: ["latin"],
+    variable: "--poppins-font",
+  });
 
 export const metadata = {
  title: "Smarteach",
@@ -16,7 +21,7 @@ export default function RootLayout({ children }) {
   <NextAuthSessionProvider>
    <ReactQueryProvider>
     <html lang="en">
-     <body className={inter.className}>
+     <body className={poppins.className}>
       <Header />
       {children}
      </body>

@@ -1,3 +1,4 @@
+import ClassList from "@/components/class-list";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
@@ -9,8 +10,9 @@ export default async function Home() {
   }
   
   return (
-    <div className="flex flex-col">
-      <h1> Homepage </h1>
+    <div className="w-full h-full flex flex-col justify-center items-center">
+      <h1 className="text-2xl"> Turmas </h1>
+      <ClassList />
     </div>
   );
 }
