@@ -8,7 +8,7 @@ const Logo = () => {
                 height={50}
                 src={'/icon-512.png'}
             />
-            <h1 className="text-[#8C52FF] font-[500] text-3xl"> Smarteach </h1>
+            <h1 className="text-primaryPurple font-[500] text-3xl"> Smarteach </h1>
         </div>
     );
 }
