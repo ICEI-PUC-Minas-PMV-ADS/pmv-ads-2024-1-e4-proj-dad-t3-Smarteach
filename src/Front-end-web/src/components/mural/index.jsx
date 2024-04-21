@@ -28,7 +28,7 @@ const Mural = () => {
                 <div className="flex w-full gap-3 justify-between items-center" key={data.id}>
                   <div className="flex">
                     <Avatar className="mr-5" >
-                      <AvatarImage src="https://github.com/shadcn.png" />
+                      <AvatarImage src="https://img.freepik.com/premium-vector/green-folder-with-checklist-isolated-vector-white-background_349999-919.jpg"/>
                     </Avatar>
                     <div className="flex flex-col">  
                       <p className="text-left"> {data.title} </p>
