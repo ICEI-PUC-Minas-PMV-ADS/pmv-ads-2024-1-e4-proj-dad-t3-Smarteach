@@ -14,29 +14,33 @@
 ## RESUMO DAS ROTAS
 
 **LOGIN**
-   - POST - /login faz a checagem  e retorna se credenciais enviadas do usuário existem ou não
+   - POST - /login faz a checagem e retorna se credenciais enviadas do usuário existem ou não e o level do usuário
 
 **ESTUDANTES**
    - POST - /student Registra um novo estudante
    - GET - /student  Retorna todos os estudantes registrados
+   - GET - /student/profile/id  Retorna um aluno específico
    - PATCH - /student Atualiza o registro de um estudante
    - DELETE - /student  Deleta um registro de estudante
 
 **PROFESSORES**
    - POST - /teacher Registra um novo professor
    - GET - /teacher Retorna todos os professores registrados
+   - GET - /teacher/profile/id  Retorna um professor específico
    - PATCH - /teacher Atualiza o registro de um professor
    - DELETE - /teacher  Deleta um registro de professor
 
 **ADMINS**
    - POST - /admin Registra um novo professor
    - GET - /admin Retorna todos os professores registrados
+   - GET - /admin/profile/id  Retorna um admin específico
    - PATCH - /admin Atualiza o registro de um professor
    - DELETE - /admin  Deleta um registro de professor
 
 **TURMAS**
    - POST - /class Registra um novo professor
    - GET - /class Retorna todos os professores registrados
+   - GET - /class/profile/id  Retorna uma turma específica
    - PATCH - /class Atualiza o registro de um professor
    - DELETE - /class  Deleta um registro de professor
 
@@ -54,10 +58,14 @@
         ```
         
         - Retorno da requisição caso as credencias enviadas correspondam as registradas no banco de dados, status code 200 (OK)
+            - user_level corresponde ao nível do usuário faver alterações no banco de dados sendo:
+                - "1" -> Estudante
+                - "2" -> Professor
+                - "3" -> Admin
         
         ```json
         {
-         "OK"
+         "2"
         }, 200
         
         ```
@@ -115,6 +123,14 @@
         	"error": "Campos incorretos inseridos na requisição: [campos_errados]"
         }, 400
         ```
+
+        - Retorno da requisição caso o class_number não exista no banco de dados, status code 400 (BAD_REQUEST)
+        
+        ```json
+        {
+        	"error": "Turma inexistente"
+        }, 400
+        ```
         
         
     - **GET** /student
@@ -137,7 +153,30 @@
                 }
             ]
         ```
+    
+    - **GET** /student/profile/:id
+        - Parâmetro necessário a essa requisição: id
+        - Necessário enviar o parâmetro acima na URL desta requisição
+
+        - Retorno da requisição quando há um estudante com o id enviado na URL, status code 200 (OK)
         
+        ```json
+                {
+                    "_id": "66133b5d213ef81daa1f3532",
+                    "class_number": 7,
+                    "email": "yahoo@mail.com",
+                    "name": "Joana"
+                }, 200            
+        ```
+
+        - Retorno da requisição caso não exista um estudante com o id informado, status code 400(BAD_REQUEST)
+        
+        ```json
+        {
+            "Usuário inexistente"
+        }, 400
+        ```
+
     - **PATCH** /student
         - Parâmetros necessários : "id"
         - Parâmetros que podem ser atualizados : ['name', 'email', 'class_number']
@@ -160,7 +199,7 @@
         }, 200
         ```
         
-        - Retorno da requisição caso não exista um estudando com o id informado, status code 400(BAD_REQUEST)
+        - Retorno da requisição caso não exista um estudante com o id informado, status code 400(BAD_REQUEST)
         
         ```json
         {
@@ -198,6 +237,7 @@
     - **POST** /teacher
         - Parâmetros necessários a essa requisição: ['email' ,'name', 'subject', 'classes', 'period']
         - Não será aceito nenhum parâmetro diferente dos mencionados acima
+        - E necessário que o(s) Número(s) da(s) turma(s) exista(m) no banco de dados
         
         ```json
         {
@@ -205,7 +245,7 @@
             "email": "spider@mail.com",
             "password": "PASSWORD_CONTENT",
             "subject": "Biologia",
-            "classes": [280],
+            "classes": [280, 211, 107],
             "period": "vespertino"
         }
         ```
@@ -240,6 +280,14 @@
         {
         	"Foi atribuido um valor nulo nas seguintes propriedades: {'chave_onde_recebeu_valor_errado'}"
         },400
+        ```
+
+        - Retorno da requisição caso haja um número de turma que não exista no banco de dados, status code 400 (BAD_REQUEST)
+        
+        ```json
+        {
+        	"error": "Turma(s) inexistente(s):[777, 806]"
+        }, 400
         ```
         
     - **GET** /teacher
@@ -287,6 +335,34 @@
         }, 200
         ```
         
+    - **GET** /teacher/profile/:id
+        - Parâmetro necessário a essa requisição: id
+        - Necessário enviar o parâmetro acima na URL desta requisição
+
+
+        - Retorno da requisição quando há um professor com o id enviado na URL, status code 200 (OK)
+        
+        ```json
+                {
+                    "_id": "66134efc767db56eb350f95c",
+                    "classes": [202],
+                    "email": "ox@mail.com",
+                    "last_update_date": "07/04/2024 - 22:57",
+                    "name": "Oxer Lux",
+                    "period": "vespertino",
+                    "register_date": "07/04/2024 - 22:57",
+                    "subject": "Matematica"
+                }, 200            
+        ```    
+        
+        - Retorno da requisição caso não exista um professor com o id informado, status code 400(BAD_REQUEST)
+        
+        ```json
+        {
+            "Usuário inexistente"
+        }, 400
+        ```
+
     - **PATCH** /teacher
         - Parâmetros necessários : "id"
         - Parâmetros que podem ser atualizados : ['email' ,'name', 'subject', 'classes', 'period']
@@ -413,6 +489,32 @@
         	[]
         }, 200
         ```
+    
+    - **GET** /admin/profile/:id
+    - Parâmetro necessário a essa requisição: id
+    - Necessário enviar o parâmetro acima na URL desta requisição
+
+
+    - Retorno da requisição quando há um admin com o id enviado na URL, status code 200 (OK)
+    
+    ```json
+        {
+            "_id": "66254f7ed8c150d334543771",
+            "email": "ana77@mail.com",
+            "last_update_date": "21/04/2024 - 14:40",
+            "name": "Ana Maia",
+            "password": "ana-123456",
+            "register_date": "21/04/2024 - 14:40"
+        }, 200            
+    ```    
+    
+    - Retorno da requisição caso não exista um admin com o id informado, status code 400(BAD_REQUEST)
+    
+    ```json
+    {
+        "Usuário inexistente"
+    }, 400
+    ```
         
     - **PATCH** /admin
         - Parâmetros necessários : "id"
@@ -523,6 +625,32 @@
         }, 200
         ```
 
+    - **GET** /class/profile/:id
+        - Parâmetro necessário a essa requisição: id
+        - Necessário enviar o parâmetro acima na URL desta requisição
+
+
+        - Retorno da requisição quando há uma turma com o id enviado na URL, status code 200 (OK)
+        
+        ```json
+            {
+                "_id": "661349b9dd0843bd401e0613",
+                "last_update_date": "07/04/2024 - 22:34",
+                "number": 280,
+                "register_date": "07/04/2024 - 22:34",
+                "students": [],
+                "teachers": [],
+                "timeline": {...}
+            }, 200            
+        ```    
+        
+        - Retorno da requisição caso não exista uma turma com o id informado, status code 400(BAD_REQUEST)
+        
+        ```json
+        {
+            "Turma inexistente"
+        }, 400
+        ```
         
     - **PATCH** /class
         - Parâmetros necessários : "id"
