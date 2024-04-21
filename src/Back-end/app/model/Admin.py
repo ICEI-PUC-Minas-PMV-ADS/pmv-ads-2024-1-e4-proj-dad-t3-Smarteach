@@ -3,8 +3,9 @@ from datetime import datetime
 class Admin():
   
     def __init__(self, **kwargs):
-        self.email = kwargs['email']
         self.name = kwargs['name']
+        self.email = kwargs['email']
+        self.password = kwargs['password']
         self.register_date = datetime.now().strftime("%d/%m/%Y - %H:%M")
         self.last_update_date = datetime.now().strftime("%d/%m/%Y - %H:%M") 
     
@@ -12,7 +13,7 @@ class Admin():
     @staticmethod
     def verify_new_admin_data(data: dict):
 
-        available_keys = ['email','name']
+        available_keys = ['email','name', 'password']
 
         data_keys = data.keys()
 

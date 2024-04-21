@@ -46,6 +46,7 @@ DELETE - /class  Deleta um registro de professor
         {
             "name":"Logan",
             "email": "Wolwerine@mail.com",
+            "password": "PASSWORD_CONTENT",
             "class_number": 107
         }
         ```
@@ -162,6 +163,7 @@ DELETE - /class  Deleta um registro de professor
         {
             "name":"Peter parker",
             "email": "spider@mail.com",
+            "password": "PASSWORD_CONTENT",
             "subject": "Biologia",
             "classes": [280],
             "period": "vespertino"
@@ -307,7 +309,8 @@ DELETE - /class  Deleta um registro de professor
         ```json
         {
             "name":"Peter parker",
-            "email": "spider@mail.com"
+            "email": "spider@mail.com",
+            "password": "PASSWORD_CONTENT"
         }
         ```
         
