@@ -29,10 +29,9 @@ def insert_new_class_activity(data):
     return 'Nova Aula registrada com sucesso!', 201
 
 
-def get_month_class_activities(data):
+def get_month_class_activities(class_number, date):
 
-    class_number = data.get('class_number')
-    month, year = data.get('date').split('/')
+    month, year = date.split('-')
     classes_data = classes_collection.find({})
 
     is_existent_data = Class.verify_if_exist_class_data(class_number, classes_data)  
