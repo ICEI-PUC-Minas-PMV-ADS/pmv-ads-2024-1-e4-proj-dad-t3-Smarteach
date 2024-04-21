@@ -7,7 +7,6 @@ import {LogIn} from 'lucide-react'
 import validator from "validator";
 import Logo from "@/components/logo";
 import { signIn, useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 const Login = () => {

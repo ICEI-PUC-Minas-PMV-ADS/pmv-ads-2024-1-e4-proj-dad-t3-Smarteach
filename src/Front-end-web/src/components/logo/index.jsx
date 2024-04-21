@@ -7,6 +7,7 @@ const Logo = () => {
                 width={50}
                 height={50}
                 src={'/icon-512.png'}
+                alt="LOGO"
             />
             <h1 className="text-primaryPurple font-[500] text-3xl"> Smarteach </h1>
         </div>

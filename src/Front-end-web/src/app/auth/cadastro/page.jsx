@@ -9,7 +9,7 @@ import { SubmitButton } from "@/components/submit-button";
 import { createStudent } from "@/hooks/alunos-hooks"
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { getClassList } from "@/hooks/tumas-hooks";
+import { getClassList } from "@/hooks/turmas-hooks";
 
 const Cadastro = () => {
   const {
