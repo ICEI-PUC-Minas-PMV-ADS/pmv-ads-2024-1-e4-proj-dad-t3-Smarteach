@@ -12,7 +12,7 @@ const ButtonLogout = () => {
             redirect:false,
         })
 
-        route.replace('/login')
+        route.replace('/auth')
         route.refresh()
     }
 

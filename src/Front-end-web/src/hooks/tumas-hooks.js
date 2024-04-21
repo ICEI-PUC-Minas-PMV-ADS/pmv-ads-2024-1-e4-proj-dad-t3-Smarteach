@@ -1,7 +1,7 @@
 "use client"
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { BASE_URL } from './url';
+import { BASE_URL } from '../services/url';
 
 export function getClassList() {
     const query = useQuery({

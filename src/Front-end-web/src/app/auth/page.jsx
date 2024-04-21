@@ -86,7 +86,7 @@ const Login = () => {
         <LogIn className="mr-2"/> Entrar
       </Button>
 
-      <p className="text-black pt-3"> Não possui uma conta? <Link href="/cadastro" className="text-slate-600 hover:text-red-500"> Cadastre-se </Link> </p>
+      <p className="text-black pt-3"> Não possui uma conta? <Link href="/auth/cadastro" className="text-slate-600 hover:text-red-500"> Cadastre-se </Link> </p>
     </form>
   </div>
  );

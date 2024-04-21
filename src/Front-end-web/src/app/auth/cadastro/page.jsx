@@ -5,8 +5,8 @@ import { LogIn } from "lucide-react";
 import validator from "validator";
 import Link from "next/link";
 import Logo from "@/components/logo";
-import { createStudent } from "@/services/alunos.services";
 import { SubmitButton } from "@/components/submit-button";
+import { createStudent } from "@/hooks/alunos-hooks"
 
 const Cadastro = () => {
   const {
@@ -121,7 +121,7 @@ const Cadastro = () => {
 
         <p className="text-black pt-3 ">
 
-          Já possui uma conta? <Link href="/login" className="text-slate-600 hover:text-red-500 pr-3"> Fazer Login </Link>
+          Já possui uma conta? <Link href="/auth" className="text-slate-600 hover:text-red-500 pr-3"> Fazer Login </Link>
         </p>
       </div>
     </div>
