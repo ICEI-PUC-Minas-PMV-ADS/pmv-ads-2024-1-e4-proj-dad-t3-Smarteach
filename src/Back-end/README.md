@@ -13,30 +13,70 @@
 
 ## RESUMO DAS ROTAS
 
+**LOGIN**
+   - POST - /login faz a checagem  e retorna se credenciais enviadas do usuário existem ou não
+
 **ESTUDANTES**
-POST - /student Registra um novo estudante
-GET - /student  Retorna todos os estudantes registrados
-PATCH - /student Atualiza o registro de um estudante
-DELETE - /student  Deleta um registro de estudante
+   - POST - /student Registra um novo estudante
+   - GET - /student  Retorna todos os estudantes registrados
+   - PATCH - /student Atualiza o registro de um estudante
+   - DELETE - /student  Deleta um registro de estudante
 
 **PROFESSORES**
-POST - /teacher Registra um novo professor
-GET - /teacher Retorna todos os professores registrados
-PATCH - /teacher Atualiza o registro de um professor
-DELETE - /teacher  Deleta um registro de professor
+   - POST - /teacher Registra um novo professor
+   - GET - /teacher Retorna todos os professores registrados
+   - PATCH - /teacher Atualiza o registro de um professor
+   - DELETE - /teacher  Deleta um registro de professor
 
 **ADMINS**
-POST - /admin Registra um novo professor
-GET - /admin Retorna todos os professores registrados
-PATCH - /admin Atualiza o registro de um professor
-DELETE - /admin  Deleta um registro de professor
+   - POST - /admin Registra um novo professor
+   - GET - /admin Retorna todos os professores registrados
+   - PATCH - /admin Atualiza o registro de um professor
+   - DELETE - /admin  Deleta um registro de professor
 
 **TURMAS**
-POST - /class Registra um novo professor
-GET - /class Retorna todos os professores registrados
-PATCH - /class Atualiza o registro de um professor
-DELETE - /class  Deleta um registro de professor
+   - POST - /class Registra um novo professor
+   - GET - /class Retorna todos os professores registrados
+   - PATCH - /class Atualiza o registro de um professor
+   - DELETE - /class  Deleta um registro de professor
 
+## ROTAS
+
+- **LOGIN**
+    - **POST** /login
+        
+        ```json
+        
+        {
+            "email": "Wolwerine@mail.com",
+            "password": "Logan_178",
+        }
+        ```
+        
+        - Retorno da requisição caso as credencias enviadas correspondam as registradas no banco de dados, status code 200 (OK)
+        
+        ```json
+        {
+         "OK"
+        }, 200
+        
+        ```
+        
+        - Retorno da requisição caso o enviado email não exista, status code 400 (BAD REQUEST)
+        
+        ```json
+        {
+         "Usuário não registrado!"
+        }, 400
+        ```
+        
+        - Retorno da requisição caso a senha enviada não condiza com a registrada no banco de dados, status code 400 (BAD_REQUEST)
+        
+        ```json
+        {
+         "Senha incorreta"
+        }, 400
+        ```
 
 - **STUDENT**
     - **POST** /student
@@ -46,6 +86,7 @@ DELETE - /class  Deleta um registro de professor
         {
             "name":"Logan",
             "email": "Wolwerine@mail.com",
+            "password": "PASSWORD_CONTENT",
             "class_number": 107
         }
         ```
@@ -162,6 +203,7 @@ DELETE - /class  Deleta um registro de professor
         {
             "name":"Peter parker",
             "email": "spider@mail.com",
+            "password": "PASSWORD_CONTENT",
             "subject": "Biologia",
             "classes": [280],
             "period": "vespertino"
@@ -307,7 +349,8 @@ DELETE - /class  Deleta um registro de professor
         ```json
         {
             "name":"Peter parker",
-            "email": "spider@mail.com"
+            "email": "spider@mail.com",
+            "password": "PASSWORD_CONTENT"
         }
         ```
         

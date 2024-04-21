@@ -3,16 +3,17 @@ from datetime import datetime
 class Student():
     def __init__(self, **kwargs):
         self.name = kwargs['name']
-        self.class_number = kwargs['class_number']
         self.email = kwargs['email']
+        self.password = kwargs['password']
+        self.class_number = kwargs['class_number']
     
     @staticmethod
     def verify_student_data(data: dict):
     
-        available_keys = ['name', 'email', 'class_number']
+        available_keys = ['name', 'email', 'password', 'class_number']
         data_keys = data.keys()
 
-        if len(data_keys) < 3:
+        if len(data_keys) < 4:
             return f'há campos faltantes no corpo da requisição.'
 
         wrong_keys = [key for key in data_keys if key not in available_keys]

@@ -2,11 +2,12 @@ from datetime import datetime
 
 class Teacher():
     def __init__(self, **kwargs):
-        self.email = kwargs['email']
         self.name = kwargs['name']
+        self.email = kwargs['email']
+        self.password = kwargs['password']
+        self.period = kwargs['period']
         self.subject= kwargs['subject']
         self.classes = kwargs['classes']
-        self.period = kwargs['period']
         self.register_date = datetime.now().strftime("%d/%m/%Y - %H:%M")
         self.last_update_date = datetime.now().strftime("%d/%m/%Y - %H:%M") 
     
@@ -14,11 +15,11 @@ class Teacher():
     @staticmethod
     def verify_new_teacher_data(data: dict):
 
-        available_keys = ['email' ,'name', 'subject', 'classes', 'period']
+        available_keys = ['email' ,'name', 'password', 'subject', 'classes', 'period']
 
         data_keys = data.keys()
 
-        if len(data_keys) < 5:
+        if len(data_keys) < 6:
             return f'há campos faltantes no corpo da requisição.'
 
         wrong_keys = [key for key in data_keys if key not in available_keys]
