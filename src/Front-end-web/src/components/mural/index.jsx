@@ -24,8 +24,8 @@ const Mural = () => {
           <h2 className="text-3xl pb-5"> Mural </h2>
           <div className="flex flex-col gap-4">
             {data.map(data => (
-              <>
-                <div className="flex w-full gap-3 justify-between items-center" key={data.id}>
+              <div key={data.id}>
+                <div className="flex w-full gap-3 justify-between items-center">
                   <div className="flex">
                     <Avatar className="mr-5" >
                       <AvatarImage src="https://img.freepik.com/premium-vector/green-folder-with-checklist-isolated-vector-white-background_349999-919.jpg"/>
@@ -40,7 +40,7 @@ const Mural = () => {
                   </div>
                 </div>
                 <Separator />
-              </>
+              </div>
             ))}
           </div>
         </div>

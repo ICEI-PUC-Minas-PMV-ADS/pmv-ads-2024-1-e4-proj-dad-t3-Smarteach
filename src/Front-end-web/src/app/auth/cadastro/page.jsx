@@ -7,6 +7,9 @@ import Link from "next/link";
 import Logo from "@/components/logo";
 import { SubmitButton } from "@/components/submit-button";
 import { createStudent } from "@/hooks/alunos-hooks"
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { getClassList } from "@/hooks/tumas-hooks";
 
 const Cadastro = () => {
   const {
@@ -15,10 +18,22 @@ const Cadastro = () => {
     formState: { errors },
   } = useForm();
 
+  const {data} = getClassList();
+
+  const session = useSession();
+
+  const route = useRouter();
+
+  if(session.status == "authenticated") {
+    route.push('/')
+  }
+
   const onSubmit = async (data) => {
     createStudent(data)
+    route.push('/auth');
   };
   
+
   return (
     <div className="w-screen h-screen flex justify-center items-center flex-col">
       <div className="flex flex-col items-center justify-center w-[500px]">
@@ -77,24 +92,32 @@ const Cadastro = () => {
 
         <div className="flex flex-col w-full">
           <label className="pt-3 pb-2 text-black font-[500]"> Número da Turma </label>
-          <Input
-            className={
-              errors.class_number &&
-              "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
-            }
-            type="number"
-            placeholder="Digite o número da turma"
-            {...register("class_number", {
-              required: true,
-              maxLength: 3,
-            })}
-          />
-          {errors.class_number?.type === "required" && (
-            <p className="pt-2 text-red-500 text-sm">
-              É obrigatório informar o número da turma
-            </p>
-          )}
+
+          <div>
+            <select 
+                name="Turma"
+                placeholder="Selecione a turma"
+                {...register("class_number", {required: true})}
+                className={
+                  errors.class_number 
+                  ? "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
+                  : "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                }
+              >
+                {data?.map(turma => (
+                    <option value={turma.number}>{turma.number}</option>
+                  ))}
+                {errors.class_number?.type === "required" && (
+                  <p className="pt-2 text-red-500 text-sm">
+                    É obrigatório informar o número da turma
+                  </p>
+                )}
+              </select>
+          </div>
+
         </div>
+
+        
 
         <div className="flex flex-col w-full">
           <label className="pt-3 pb-2 text-black font-[500]"> Senha </label>

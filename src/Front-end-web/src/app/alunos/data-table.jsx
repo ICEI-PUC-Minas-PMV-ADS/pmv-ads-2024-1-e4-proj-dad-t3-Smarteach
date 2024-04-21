@@ -43,7 +43,7 @@ export function DataTable() {
                     <ChevronDown />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuItem> <Link href="/alunos" className='flex justify-between items-center w-full text-yellow-500'> Editar <Pen className="w-4 h-4 "/> </Link></DropdownMenuItem>
+                  <DropdownMenuItem> <Link href="/" className='flex justify-between items-center w-full text-yellow-500'> Editar <Pen className="w-4 h-4 "/> </Link></DropdownMenuItem>
                   <DropdownMenuItem> <Link href="/" className='flex justify-between w-full items-center text-red-500'> Excluir <Trash2 className="w-4 h-4"/></Link></DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

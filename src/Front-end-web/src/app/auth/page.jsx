@@ -6,7 +6,9 @@ import Link from 'next/link'
 import {LogIn} from 'lucide-react'
 import validator from "validator";
 import Logo from "@/components/logo";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
  const {
@@ -15,10 +17,18 @@ const Login = () => {
   formState: { errors },
  } = useForm();
 
+ const session = useSession();
+
+ const route = useRouter();
+
+ if(session.status == "authenticated") {
+  route.push('/')
+ }
+
  const handleLogin = async (data) =>  {
   await signIn('credentials', {
-      ...data,
-      callbackUrl: '/'
+    ...data,
+    callbackUrl: '/',
   })
 };
 
@@ -27,23 +37,6 @@ const Login = () => {
     <Logo />
     <h1 className="text-3xl text-black pt-3"> Login </h1>
     <form className="flex flex-col items-center justify-center w-[500px]" onSubmit={handleSubmit(handleLogin)}>
-      <div className="flex flex-col w-full">
-        <label className="pt-3 pb-2 text-black font-[500]"> Nome </label>
-        <Input
-          className={
-            errors.name &&
-            "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
-          }
-          type="text"
-          name="name"
-          placeholder="Digite seu nome"
-          {...register("name", { 
-            required: true,
-          })}
-        />
-        {errors.name?.type === 'required' && <p className="pt-2 text-red-500 text-sm"> É obrigatório informar o nome </p>}
-      </div>
-
       <div className="flex flex-col w-full">
         <label className="pt-3 pb-2 text-black font-[500]"> Email </label>
         <Input
