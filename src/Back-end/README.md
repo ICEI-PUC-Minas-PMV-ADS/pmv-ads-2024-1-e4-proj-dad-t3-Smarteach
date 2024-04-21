@@ -14,31 +14,33 @@
 ## RESUMO DAS ROTAS
 
 **LOGIN**
-POST - /login faz a checagem  e retorna se credenciais enviadas do usuário existem ou não
+   - POST - /login faz a checagem  e retorna se credenciais enviadas do usuário existem ou não
 
 **ESTUDANTES**
-POST - /student Registra um novo estudante
-GET - /student  Retorna todos os estudantes registrados
-PATCH - /student Atualiza o registro de um estudante
-DELETE - /student  Deleta um registro de estudante
+   - POST - /student Registra um novo estudante
+   - GET - /student  Retorna todos os estudantes registrados
+   - PATCH - /student Atualiza o registro de um estudante
+   - DELETE - /student  Deleta um registro de estudante
 
 **PROFESSORES**
-POST - /teacher Registra um novo professor
-GET - /teacher Retorna todos os professores registrados
-PATCH - /teacher Atualiza o registro de um professor
-DELETE - /teacher  Deleta um registro de professor
+   - POST - /teacher Registra um novo professor
+   - GET - /teacher Retorna todos os professores registrados
+   - PATCH - /teacher Atualiza o registro de um professor
+   - DELETE - /teacher  Deleta um registro de professor
 
 **ADMINS**
-POST - /admin Registra um novo professor
-GET - /admin Retorna todos os professores registrados
-PATCH - /admin Atualiza o registro de um professor
-DELETE - /admin  Deleta um registro de professor
+   - POST - /admin Registra um novo professor
+   - GET - /admin Retorna todos os professores registrados
+   - PATCH - /admin Atualiza o registro de um professor
+   - DELETE - /admin  Deleta um registro de professor
 
 **TURMAS**
-POST - /class Registra um novo professor
-GET - /class Retorna todos os professores registrados
-PATCH - /class Atualiza o registro de um professor
-DELETE - /class  Deleta um registro de professor
+   - POST - /class Registra um novo professor
+   - GET - /class Retorna todos os professores registrados
+   - PATCH - /class Atualiza o registro de um professor
+   - DELETE - /class  Deleta um registro de professor
+
+## ROTAS
 
 - **LOGIN**
     - **POST** /login
@@ -51,7 +53,7 @@ DELETE - /class  Deleta um registro de professor
         }
         ```
         
-        - Retorno da requisição status code 200 (OK)
+        - Retorno da requisição caso as credencias enviadas correspondam as registradas no banco de dados, status code 200 (OK)
         
         ```json
         {
@@ -72,7 +74,7 @@ DELETE - /class  Deleta um registro de professor
         
         ```json
         {
-        	"error": "Senha incorreta"
+         "Senha incorreta"
         }, 400
         ```
 
