@@ -13,13 +13,12 @@ def get_available_teachers():
     return jsonify(teacher_list), 200
 
 
-def get_teacher_profile(data: dict):
+def get_teacher_profile(user_id):
 
-    wrong_request_data = verify_request_data(data, teacher_collection, 'GET')
+    wrong_request_data = verify_request_data({'id': user_id}, teacher_collection, 'GET')
     if wrong_request_data:
         return wrong_request_data, 400
     
-    user_id = data.get('id')
     teacher_profile = get_data_by_id(user_id, teacher_collection)
 
     return jsonify(teacher_profile), 200
@@ -40,15 +39,16 @@ def insert_new_teacher(data: dict):
         return is_same_email, 409
     
     inexistent_class_numbers = []
-    for number_class in data.get("classes"):
-        inexistent_register_msg = Class.verify_if_exist_class_data(
-            {'number': number_class}, classes_collection.find({}))
+    classes_data = classes_collection.find({})
 
-        if inexistent_register_msg:
-           inexistent_class_numbers.append(inexistent_register_msg)
+    for number_class in data.get("classes"):
+        is_existent_class = Class.verify_if_exist_class_data(number_class, classes_collection.find({}))
+
+        if not is_existent_class:
+           inexistent_class_numbers.append(number_class)
 
     if inexistent_class_numbers:
-        return "Turma(s) inexistente(s):{}".format(*inexistent_class_numbers), 400
+        return "Turma(s) inexistente(s):{}".format(inexistent_class_numbers), 400
 
     teacher_collection.insert_one(new_teacher.__dict__)
 

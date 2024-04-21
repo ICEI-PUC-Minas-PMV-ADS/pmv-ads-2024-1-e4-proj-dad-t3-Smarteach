@@ -1,9 +1,9 @@
 from flask import jsonify
 from bson import ObjectId
 
-from app.model import Student
-from app.controller import student_collection
-from app.services import verify_request_data, get_items_data, verify_user_email, update_time_data, verify_update_sent_data_request
+from app.model import Student, Class
+from app.controller import student_collection, classes_collection
+from app.services import verify_request_data, get_items_data, verify_user_email, update_time_data, verify_update_sent_data_request, get_data_by_id
 
 def get_available_students():
 
@@ -11,14 +11,21 @@ def get_available_students():
 
     return jsonify(student_list), 200
 
+
 def insert_new_student(data: dict):
+
     is_wrong_data = Student.verify_student_data(data)
-    
-    if(is_wrong_data):
+
+    if is_wrong_data: 
         return is_wrong_data, 400
     
-    new_student = Student(**data)
+    classes_data = classes_collection.find({})
+    is_existent_class = Class.verify_if_exist_class_data(data.get('class_number'), classes_data)
 
+    if not is_existent_class: 
+        return "Turma inexistente", 400  
+    
+    new_student = Student(**data)
     is_same_email = verify_user_email(data["email"], student_collection.find({}))
 
     if is_same_email: 
@@ -63,3 +70,14 @@ def delete_student_profile(data):
     student_collection.delete_one({"_id": ObjectId(user_id) })
 
     return 'Perfil de Estudante deletado com sucesso!', 200
+
+
+def get_student_profile(user_id):
+
+    wrong_request_data = verify_request_data({'id': user_id}, student_collection, 'GET')
+    if wrong_request_data:
+        return wrong_request_data, 400
+    
+    teacher_profile = get_data_by_id(user_id, student_collection)
+
+    return jsonify(teacher_profile), 200

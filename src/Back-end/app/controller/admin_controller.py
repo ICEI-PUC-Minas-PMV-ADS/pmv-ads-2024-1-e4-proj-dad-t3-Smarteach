@@ -3,7 +3,7 @@ from bson import ObjectId
 
 from app.model import Admin 
 from app.controller import admin_collection
-from app.services import get_items_data, verify_user_email, verify_request_data, update_time_data, verify_update_sent_data_request
+from app.services import get_items_data, verify_user_email, verify_request_data, update_time_data, verify_update_sent_data_request, get_data_by_id
 
 def get_available_admins():
 
@@ -69,5 +69,16 @@ def update_admin_profile(data):
         admin_collection.update_one({'_id': ObjectId(user_id)}, update_time_data())
 
         return 'Perfil de Administrador atualizado com sucesso!', 200
+
+
+def get_admin_profile(user_id):
+
+    wrong_request_data = verify_request_data({'id': user_id}, admin_collection, 'GET')
+    if wrong_request_data:
+        return wrong_request_data, 400
+    
+    admin_profile = get_data_by_id(user_id, admin_collection)
+
+    return jsonify(admin_profile), 200
 
 
