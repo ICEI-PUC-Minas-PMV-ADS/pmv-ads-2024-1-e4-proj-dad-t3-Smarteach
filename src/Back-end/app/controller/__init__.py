@@ -35,6 +35,8 @@ def signin_user(data):
             continue
         
         if user.get('password') == password:
-            return 'OK', 200 
+            return 'OK', 200
+        else:
+            return 'Senha incorreta', 400 
 
     return 'Usuário não registrado!', 400

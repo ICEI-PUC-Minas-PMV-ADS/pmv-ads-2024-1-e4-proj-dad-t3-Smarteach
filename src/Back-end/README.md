@@ -13,6 +13,9 @@
 
 ## RESUMO DAS ROTAS
 
+**LOGIN**
+POST - /login faz a checagem  e retorna se credenciais enviadas do usuário existem ou não
+
 **ESTUDANTES**
 POST - /student Registra um novo estudante
 GET - /student  Retorna todos os estudantes registrados
@@ -37,6 +40,41 @@ GET - /class Retorna todos os professores registrados
 PATCH - /class Atualiza o registro de um professor
 DELETE - /class  Deleta um registro de professor
 
+- **LOGIN**
+    - **POST** /login
+        
+        ```json
+        
+        {
+            "email": "Wolwerine@mail.com",
+            "password": "Logan_178",
+        }
+        ```
+        
+        - Retorno da requisição status code 200 (OK)
+        
+        ```json
+        {
+         "OK"
+        }, 200
+        
+        ```
+        
+        - Retorno da requisição caso o enviado email não exista, status code 400 (BAD REQUEST)
+        
+        ```json
+        {
+         "Usuário não registrado!"
+        }, 400
+        ```
+        
+        - Retorno da requisição caso a senha enviada não condiza com a registrada no banco de dados, status code 400 (BAD_REQUEST)
+        
+        ```json
+        {
+        	"error": "Senha incorreta"
+        }, 400
+        ```
 
 - **STUDENT**
     - **POST** /student
