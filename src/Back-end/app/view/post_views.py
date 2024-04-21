@@ -1,5 +1,6 @@
 from flask import request
 
+from app.controller import signin_user
 from app.controller.teacher_controller import insert_new_teacher
 from app.controller.class_controller import insert_new_class
 from app.controller.student_controller import insert_new_student
@@ -33,4 +34,9 @@ def post_routes(app):
     def register_new_class_activity():
         data = request.get_json()
         return insert_new_class_activity(data)
+    
+    @app.post('/login')
+    def check_user_credentials_to_signin():
+        data = request.get_json()
+        return signin_user(data)
     

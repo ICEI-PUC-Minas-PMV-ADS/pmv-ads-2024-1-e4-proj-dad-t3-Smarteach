@@ -19,3 +19,24 @@ teacher_collection = db.get_collection('Professores')
 student_collection = db.get_collection('Alunos')
 admin_collection = db.get_collection('Admins')
 classes_collection = db.get_collection('Turmas')
+
+
+def signin_user(data):
+    email = data.get('email')
+    password = data.get('password')
+
+    if not email or not password:
+        return 'Necessário enviar email e password do usuário!', 404
+    
+    for collection in [student_collection, teacher_collection, admin_collection]:
+
+        user = collection.find_one({'email': email})
+        if not user:
+            continue
+        
+        if user.get('password') == password:
+            return 'OK', 200
+        else:
+            return 'Senha incorreta', 400 
+
+    return 'Usuário não registrado!', 400
