@@ -21,7 +21,7 @@ class Class():
         if type(class_number) != int:
             return 'O valor da propriedade "number" deve ser um número inteiro, maior ou igual a 100 e menor que 1000'
         
-        if class_number < 100 or class_number >= 1000:
+        if class_number < 100 or class_number >= 10000:
             return 'O valor da propriedade "number" deve ser um número inteiro, maior ou igual a 100 e menor que 1000'
 
 

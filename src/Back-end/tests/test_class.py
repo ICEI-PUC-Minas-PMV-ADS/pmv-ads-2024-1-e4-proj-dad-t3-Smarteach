@@ -12,7 +12,7 @@ def test_get_all_classes(client):
 
 def test_register_new_class(client):
 
-    random_number = randint(100, 1001)
+    random_number = randint(100, 10000)
     fake_profile.update({'number': random_number})
 
     response = client.post('/class', json={
@@ -52,6 +52,7 @@ def test_update_class_number(client):
     })
 
     assert response.status_code == 200
+
 
 def test_update_class_register_sent_wrong_properties(client):
 

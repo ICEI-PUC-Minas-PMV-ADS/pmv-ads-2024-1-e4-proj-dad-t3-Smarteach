@@ -3,6 +3,7 @@ from bson import ObjectId
 
 from app.model import Teacher, Class
 from app.controller import teacher_collection, classes_collection
+from app.controller.class_controller import update_class_profile
 from app.services import verify_request_data, get_items_data, get_data_by_id, verify_user_email, update_time_data, verify_update_sent_data_request
 
 
@@ -31,26 +32,33 @@ def insert_new_teacher(data: dict):
     if is_wrong_data: 
         return is_wrong_data, 400
 
-    new_teacher = Teacher(**data)
-
     is_same_email = verify_user_email(data["email"], teacher_collection.find({}))
 
     if is_same_email: 
         return is_same_email, 409
     
     inexistent_class_numbers = []
-    classes_data = classes_collection.find({})
 
-    for number_class in data.get("classes"):
-        is_existent_class = Class.verify_if_exist_class_data(number_class, classes_collection.find({}))
+    for class_number in data.get("classes"):
+        is_existent_class = Class.verify_if_exist_class_data(class_number, classes_collection.find({}))
 
         if not is_existent_class:
-           inexistent_class_numbers.append(number_class)
+           inexistent_class_numbers.append(class_number)
 
     if inexistent_class_numbers:
         return "Turma(s) inexistente(s):{}".format(inexistent_class_numbers), 400
 
+    new_teacher = Teacher(**data)
     teacher_collection.insert_one(new_teacher.__dict__)
+
+    for class_number in data.get("classes"):
+        teacher_class = classes_collection.find_one({'number': class_number})
+        class_id = teacher_class.get('_id')
+        class_teachers = teacher_class.get('students')
+
+        if class_number not in class_teachers:
+            class_teachers.append(class_number)
+            update_class_profile({'id': class_id, 'students': class_teachers})
 
     return 'Novo Professor registrado com sucesso!', 201
     
@@ -62,7 +70,7 @@ def update_teacher_profile(data):
         return wrong_data_request, 400
 
     user_id = data.get('id')
-    available_teacher_keys = ['name', 'email', 'classes', 'subject', 'period', 'id']
+    available_teacher_keys = ['name', 'email', 'password', 'classes', 'subject', 'period', 'id']
 
     wrong_properties = verify_update_sent_data_request(data, available_teacher_keys)
     if wrong_properties:
