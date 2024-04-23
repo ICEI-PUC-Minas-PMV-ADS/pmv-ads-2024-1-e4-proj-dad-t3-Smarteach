@@ -9,7 +9,7 @@ def test_insert_new_class_activity(client):
     random_class_number = randint(100, 1000)
     random_time_number = randint(10, 21)
 
-    random_date = f"{randint(10, 31)}/03/2024"
+    random_date = f"{randint(10, 31)}/04/2024"
     random_time = f"{random_time_number}:00-{random_time_number + 1}:00" 
 
     fake_profile.update({'date': random_date})
@@ -24,6 +24,7 @@ def test_insert_new_class_activity(client):
     client.post('/teacher', json={
         "name":"Charles Xavier",
         "email": fake_profile.get('email'),
+        "password": f"mutacao$${randint(100, 1000)}",
         "subject": "Genética",
         "classes": [fake_profile.get('class_number')],
         "period": "vespertino"
@@ -89,21 +90,18 @@ def test_insert_new_class_activity_with_same_timeline_of_another_activity(client
 
 def test_get_monthly_class_activities(client):
 
-    response = client.get('/class/activity', json={
-        "class_number": fake_profile.get('class_number'),
-	    "date":"03/2024"
-    })
+    date = f'0{randint(1, 9)}-2024'
+    class_number = fake_profile.get('class_number')
+    response = client.get(f'/class/activity/{class_number}/{date}')
     
     assert response.status_code == 200
 
 
 def test_get_monthly_class_activities_in_a_inexistent_class(client):
 
-    response = client.get('/class/activity', json={
-        "class_number": 1849498494949,
-	    "date":"03/2024"
-    })
-    
+    date = f'0{randint(1, 9)}-2024'
+    class_number = randint(1001, 7000)
+    response = client.get(f'/class/activity/{class_number}/{date}')
     assert response.status_code == 400
 
 
@@ -139,6 +137,10 @@ def test_delete_an_existent_class_activity(client):
         "time": fake_profile.get('time'),
         "class_number": fake_profile.get('class_number')
     })
+
+    fake_class_data = {'type': 'class', 'number': fake_profile.get('class_number')}
+    fake_class = get_fake_data_profile(client, fake_class_data)
+    client.delete('/class', json={"id": fake_class.get('_id')})
 
     assert response.status_code == 200
     

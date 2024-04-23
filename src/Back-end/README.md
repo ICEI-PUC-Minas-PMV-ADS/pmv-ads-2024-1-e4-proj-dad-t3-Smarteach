@@ -616,12 +616,16 @@
         
         ```json
         {
-            "number": 280,
-            "teachers": [],
-            "students": [],
-            "timeline": {...},
-            "register_date": "07/04/2024 - 22:34",
-            "last_update_date": "07/04/2024 - 22:34"
+            [
+                {
+                    "number": 280,
+                    "teachers": [],
+                    "students": [],
+                    "timeline": {...},
+                    "register_date": "07/04/2024 - 22:34",
+                    "last_update_date": "07/04/2024 - 22:34"
+                },....
+            ]
         }, 200
         ```
 

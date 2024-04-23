@@ -14,12 +14,11 @@ def insert_new_class_activity(data):
     is_registered_teacher = verify_user_email(data.get('teacher_email'), teacher_collection.find({}))
     if not is_registered_teacher:
         return "Professor inexistente!", 400
-    
-    new_activity = Activity(**data).__dict__
 
     day, month, year = data.get('date').split('/')
     time_interval = data.get('time')
 
+    new_activity = Activity(**data).__dict__
     class_profile = classes_collection.find_one({'number': data.get('class_number')})
     class_profile['timeline'][year][month][day].update({time_interval: new_activity})
 

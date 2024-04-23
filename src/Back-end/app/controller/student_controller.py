@@ -3,6 +3,7 @@ from bson import ObjectId
 
 from app.model import Student, Class
 from app.controller import student_collection, classes_collection
+from app.controller.class_controller import update_class_profile
 from app.services import verify_request_data, get_items_data, verify_user_email, update_time_data, verify_update_sent_data_request, get_data_by_id
 
 def get_available_students():
@@ -20,18 +21,27 @@ def insert_new_student(data: dict):
         return is_wrong_data, 400
     
     classes_data = classes_collection.find({})
-    is_existent_class = Class.verify_if_exist_class_data(data.get('class_number'), classes_data)
+    class_number = data.get('class_number')
+    is_existent_class = Class.verify_if_exist_class_data(class_number, classes_data)
 
     if not is_existent_class: 
         return "Turma inexistente", 400  
     
-    new_student = Student(**data)
-    is_same_email = verify_user_email(data["email"], student_collection.find({}))
+    student_email = data.get("email")
+    is_same_email = verify_user_email( student_email, student_collection.find({}))
 
     if is_same_email: 
         return is_same_email, 409
     
+    new_student = Student(**data)
     student_collection.insert_one(new_student.__dict__)
+
+    student_class = classes_collection.find_one({'number': class_number})
+    class_id = student_class.get('_id')
+    class_students = student_class.get('students')
+
+    class_students.append(student_email)
+    update_class_profile({'id': class_id, 'students': class_students})
     
     return 'Novo aluno cadastrado com sucesso!', 201
 
@@ -43,7 +53,8 @@ def update_student_profile(data):
         return wrong_data_request, 400
 
     user_id = data.get('id')
-    available_student_keys = ['name', 'email', 'class_number', 'id', 'password']
+    
+    available_student_keys = ['name', 'email', 'password', 'class_number', 'id']
 
     wrong_properties = verify_update_sent_data_request(data, available_student_keys)
     if wrong_properties:
