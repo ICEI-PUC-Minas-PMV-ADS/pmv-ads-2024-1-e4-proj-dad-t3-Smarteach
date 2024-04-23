@@ -12,17 +12,19 @@ def test_register_new_admin(client):
     
     response = client.post('/admin', json={
         "name":"Beltrano de Tal",
-	    "email": random_email
+	    "email": random_email,
+        "password": f"kishiq-{randrange(1, 100)}"
     })
 
     assert response.status_code == 201
-
+    
 
 def test_register_new_admin_with_registered_email(client):
     
     response = client.post('/admin', json={
         "name":"Lex Lutor",
-	    "email": fake_profile.get("email")
+	    "email": fake_profile.get("email"),
+        "password": f"foo_{randrange(1, 100)}",
     })
 
     assert response.status_code == 409

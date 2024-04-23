@@ -40,7 +40,7 @@ def signin_user(data):
             if collection.name == 'Professores':
                 user_level += 1
 
-            elif collection_name == 'Admins':
+            elif collection.name == 'Admins':
                 user_level += 2
 
             return str(user_level), 200

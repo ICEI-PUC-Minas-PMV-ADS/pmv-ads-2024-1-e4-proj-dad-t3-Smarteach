@@ -55,7 +55,7 @@ def update_class_profile(data):
     for key in data.keys():
 
         if key != 'id':
-            new_values = {"$set": {key: data[key]} }
+            new_values = {"$set": {key: data[key]}}
             classes_collection.update_one({'_id' : ObjectId(class_id)}, new_values)
     
     classes_collection.update_one({'_id' : ObjectId(class_id)}, update_time_data())
