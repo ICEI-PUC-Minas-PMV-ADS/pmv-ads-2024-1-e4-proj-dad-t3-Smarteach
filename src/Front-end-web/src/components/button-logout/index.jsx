@@ -11,8 +11,7 @@ const ButtonLogout = () => {
         await signOut({
             redirect:false,
         })
-
-        route.replace('/login')
+        route.push('/auth')
         route.refresh()
     }
 

@@ -53,6 +53,7 @@ def update_student_profile(data):
         return wrong_data_request, 400
 
     user_id = data.get('id')
+    
     available_student_keys = ['name', 'email', 'password', 'class_number', 'id']
 
     wrong_properties = verify_update_sent_data_request(data, available_student_keys)
