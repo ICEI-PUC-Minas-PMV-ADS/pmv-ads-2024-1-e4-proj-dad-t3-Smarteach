@@ -21,8 +21,19 @@ const handler = NextAuth({
               password: credentials.password,
             });
 
+            
             if (response.data) {
-              return response.data; // Assuming your user data is returned in the response data
+              let userRole = response.data.user_level;
+              
+              if (userRole == 3) {
+                userRole = "admin";
+              } else if (userRole == 2) {
+                userRole = "professor";
+              } else {
+                userRole = "aluno";
+              }
+        
+              return { ...credentials, role: userRole, name: response.data.name };
             } else {
               return null;
             }
@@ -39,12 +50,12 @@ const handler = NextAuth({
       error: "/auth"
     },
     callbacks: {
-      jwt: ({ token}) => {
-        return { 
-          ...token,
-        }
+      jwt: ({ token, user }) => {
+        if (user) token.role = user.role;
+        return token
       },
-      session: async ({session}) => {
+      session: async ({ session, token }) => {
+        if (session?.user ) session.user.role = token.role;
         return session
       }
     }

@@ -1,19 +1,37 @@
 import { withAuth } from "next-auth/middleware"
 import { NextResponse } from "next/server"
 
-const middleware = (request) => {
-    const token = request.nextauth.token
-    const isPrivateRoutes = request.nextUrl.pathname.startsWith('/')
+export default withAuth(
+    function middleware(request) {
 
-    if (isPrivateRoutes && !token ) {
-        return NextResponse.rewrite(new URL('/auth'))
+        if (request.nextUrl.pathname.startsWith("/alunos")
+            && request.nextauth.token?.role !== "admin") {
+            return NextResponse.rewrite(
+                new URL("/auth", request.url)
+            )
+        }
+
+        if (request.nextUrl.pathname.startsWith("/alunos")
+            && request.nextauth.token?.role !== "admin") {
+            return NextResponse.rewrite(
+                new URL("/", request.url)
+            )
+        }
+
+        if (request.nextUrl.pathname.startsWith("/turmas")
+            && request.nextauth.token?.role !== "admin") {
+            return NextResponse.rewrite(
+                new URL("/", request.url)
+            )
+        }
+    },
+    {
+        callbacks: {
+            authorized: ({ token }) => !!token
+        },
     }
-}
-
-const callbackOptions = {}
-
-export default withAuth(middleware, callbackOptions)
+)
 
 export const config = {
-    matcher: ["/", "/alunos"]
+    matcher: ["/", "/alunos", "/turmas"]
 }
