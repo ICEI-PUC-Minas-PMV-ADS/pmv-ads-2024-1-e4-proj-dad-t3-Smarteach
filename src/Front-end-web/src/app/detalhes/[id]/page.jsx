@@ -5,10 +5,10 @@ import { PenLine, Trash2  } from "lucide-react";
 import validator from "validator";
 import { SubmitButton } from "@/components/submit-button";
 import { Button } from "@/components/ui/button"
-import { deleteStudent } from "@/hooks/alunos-hooks"
+import { deleteStudent } from "@/services/alunos-services"
 import { useRouter } from "next/navigation";
-import { getStudentProfile, updateStudent } from "@/hooks/alunos-hooks"
-import { getClassList } from "@/hooks/turmas-hooks";
+import { getStudentProfile, updateStudent } from "@/services/alunos-services"
+import { getClassList } from "@/services/turmas-services";
 import {
   AlertDialog,
   AlertDialogAction,

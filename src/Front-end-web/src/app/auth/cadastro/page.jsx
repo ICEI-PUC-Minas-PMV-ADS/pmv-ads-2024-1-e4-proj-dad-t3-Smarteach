@@ -6,10 +6,10 @@ import validator from "validator";
 import Link from "next/link";
 import Logo from "@/components/logo";
 import { SubmitButton } from "@/components/submit-button";
-import { createStudent } from "@/hooks/alunos-hooks"
+import { createStudent } from "@/services/alunos-services"
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { getClassList } from "@/hooks/turmas-hooks";
+import { getClassList } from "@/services/turmas-services";
 
 const Cadastro = () => {
   const {

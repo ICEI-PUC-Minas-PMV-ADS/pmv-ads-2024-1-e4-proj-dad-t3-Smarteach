@@ -43,7 +43,12 @@ def signin_user(data):
             elif collection.name == 'Admins':
                 user_level += 2
 
-            return str(user_level), 200
+            user_info = {
+                'user_level': str(user_level),
+                'name': user.get('name'),
+            }
+
+            return user_info, 200
         
         else:
             return 'Senha incorreta', 400 
