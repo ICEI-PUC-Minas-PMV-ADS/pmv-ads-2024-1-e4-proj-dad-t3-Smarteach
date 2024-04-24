@@ -1,5 +1,5 @@
 'use client'
-import { getClassList } from "@/hooks/turmas-hooks";
+import { getClassList } from "@/services/turmas-services";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import Link from "next/link";
 

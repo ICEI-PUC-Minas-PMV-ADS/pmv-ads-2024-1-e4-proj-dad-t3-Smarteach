@@ -1,7 +1,9 @@
+'use client'
 import ClassList from "@/components/class-list";
 import Mural from "@/components/mural";
 
-export default async function Home() { 
+export default function Home() { 
+
   return (
     <div className="w-full h-full flex flex-col justify-center items-center gap-10">
       <h1 className="text-2xl"> Turmas </h1>

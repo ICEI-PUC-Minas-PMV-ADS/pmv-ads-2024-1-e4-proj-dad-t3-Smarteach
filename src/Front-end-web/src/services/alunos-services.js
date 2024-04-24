@@ -1,7 +1,7 @@
 'use client'
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { BASE_URL } from '../services/url';
+import { BASE_URL } from './url';
 
 export function getStudentsList() {
     const query = useQuery({

@@ -15,7 +15,7 @@ import {
  } from "@/components/ui/dropdown-menu";
 import { ChevronDown, Pen, Trash2 } from 'lucide-react';
 import Link from 'next/link';
-import { getStudentsList } from "@/hooks/alunos-hooks";
+import { getStudentsList } from "@/services/alunos-services";
 
 export function DataTable() {
   const {data} = getStudentsList();
