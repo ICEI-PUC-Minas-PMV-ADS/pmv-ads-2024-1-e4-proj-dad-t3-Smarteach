@@ -1,30 +1,29 @@
 'use client'
 import { getClassList } from "@/services/turmas-services";
-import { Avatar, AvatarImage } from "../ui/avatar";
 import Link from "next/link";
+import { AppWindow, CalendarCheck } from "lucide-react";
+import Image from "next/image";
 
 const ClassList = () => {
     const {classData} = getClassList();
     
     return (
-        <div className="container grid grid-cols-classgrid gap-10 max-w-[1280px]"> 
+        <div className="container grid grid-cols-classgrid gap-5 max-w-[1280px] h-screen"> 
                 {classData?.map(turma => (
                     <Link 
                         key={turma._id}
                         href={`/detalhes/turma/${turma._id}`}
                     >
-                        <div className="flex gap-5">
-                            <Avatar className="w-[100px] h-[100px]">
-                                <AvatarImage src="https://img.freepik.com/free-vector/empty-classroom-interior-with-chalkboard_1308-65378.jpg?size=626&ext=jpg&ga=GA1.1.1700460183.1713225600&semt=sph" />
-                            </Avatar>
+                        <div className="flex">
                             <div className="flex flex-col">
-                                <p className="text-xl"> Turma {turma.number}</p>
-                                {turma.students.length >= 1 && turma.students.length != 0 
-                                    ? <p className="text-slate-500 pb-5"> 1 Aluno </p>
-                                    : <p className="text-slate-500 pb-5"> {turma.students.length} Alunos </p>
-                                }
-                                <Link href="/" className="underline text-primaryPurple"> Cronograma de Aulas </Link>
-                                <Link href="/" className="underline text-primaryPurple"> Mural </Link>
+                                <div className="flex w-full justify-between">
+                                    <p className="text-xl text-primaryColor font-bold"> Turma {turma.number} </p>
+                                    <div className="flex text-slate-400 ">
+                                        <CalendarCheck className="hover:text-primaryColor"/>
+                                        <AppWindow className="hover:text-primaryColor"/>
+                                    </div>
+                                </div>
+                                <Image src="https://img.freepik.com/free-photo/medium-shot-kids-cheating-school_23-2150256554.jpg" width={500} height={500} className="rounded-3xl mt-3 w-[350px] h-[175px] object-cover"/>
                             </div>
                         </div>
                     </Link>

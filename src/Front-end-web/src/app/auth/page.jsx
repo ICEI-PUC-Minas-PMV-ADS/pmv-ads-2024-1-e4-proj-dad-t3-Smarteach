@@ -8,6 +8,7 @@ import validator from "validator";
 import Logo from "@/components/logo";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { SubmitButton } from "@/components/submit-button";
 
 const Login = () => {
  const {
@@ -74,9 +75,7 @@ const Login = () => {
         {/* {errors.password?.type === 'minLength' && <p className="pt-2 p text-red-500 text-sm"> A senha deve ser maior que 8 digitos </p>} */}
       </div>
 
-      <Button className="mt-5 shadow-lg w-full bg-[#8C52FF]" type="submit">
-        <LogIn className="mr-2"/> Entrar
-      </Button>
+      <SubmitButton label="Login" icon={<LogIn />} submitFunction={handleSubmit(handleLogin)}/>
 
       <p className="text-black pt-3"> Não possui uma conta? <Link href="/auth/cadastro" className="text-slate-600 hover:text-red-500"> Cadastre-se </Link> </p>
     </form>
