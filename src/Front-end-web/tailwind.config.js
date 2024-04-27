@@ -21,7 +21,7 @@ module.exports = {
         'classgrid': 'repeat(auto-fill, minmax(400px, 1fr))',
       },
       colors: {
-        primaryPurple: '#8C52FF',
+        primaryColor: '#004AAD',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

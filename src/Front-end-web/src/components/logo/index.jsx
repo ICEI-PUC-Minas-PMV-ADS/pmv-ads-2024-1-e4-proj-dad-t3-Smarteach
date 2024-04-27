@@ -9,7 +9,7 @@ const Logo = () => {
                 src={'/icon-512.png'}
                 alt="LOGO"
             />
-            <h1 className="text-primaryPurple font-[500] text-3xl"> Smarteach </h1>
+            <h1 className="text-primaryColor font-[500] text-3xl"> Smarteach </h1>
         </div>
     );
 }

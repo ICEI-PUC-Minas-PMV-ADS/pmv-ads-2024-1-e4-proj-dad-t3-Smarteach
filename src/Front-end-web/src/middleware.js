@@ -33,5 +33,5 @@ export default withAuth(
 )
 
 export const config = {
-    matcher: ["/", "/alunos", "/turmas"]
+    matcher: ["/", "/usuarios", "/turmas"]
 }
