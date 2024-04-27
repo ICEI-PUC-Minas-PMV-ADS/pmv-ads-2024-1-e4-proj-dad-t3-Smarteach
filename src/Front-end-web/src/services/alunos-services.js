@@ -14,7 +14,7 @@ export function getStudentsList() {
 
     return {
         ...query,
-        data: query.data,
+        studentList: query.data,
     };
 }
 
