@@ -1,25 +1,8 @@
 import Link from "next/link";
-import { Avatar, AvatarImage } from "../ui/avatar";
-import { ChevronRight } from "lucide-react";
-import { Separator } from "../ui/separator";
 import Image from "next/image";
 
 
-const Mural = () => {
-
-    const data = [
-        {
-          id: 1,
-          title: 'Aviso - Trabalho',
-          turma: 202,
-        },
-        {
-          id: 2,
-          title: 'Prova DIA 10',
-          turma: 303,
-        }
-    ]
-
+const MuralHome = () => {
     return (
         <div className="flex flex-col w-full justify-center items-center h-full min-w-[300px] gap-10">
               <div className="flex flex-col justify-center items-center">
@@ -39,4 +22,4 @@ const Mural = () => {
     )
 }
 
-export default Mural;
+export default MuralHome;

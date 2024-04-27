@@ -2,11 +2,12 @@
 import Title from "../logo";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import Link from "next/link"
-import { CircleUser, GraduationCap } from "lucide-react";
+import { CircleUser, GraduationCap, LogOut } from "lucide-react";
 import { useSession } from "next-auth/react";
+import ButtonLogout from "../logout-button";
 
 export default function Header() {
-  const session = useSession();
+ const session = useSession();
 
  return (
   <>
@@ -15,13 +16,14 @@ export default function Header() {
           <div className="w-[1280px] flex items-center justify-between">
             <Link href="/"><Title /></Link>
             <div className="flex items-center gap-10">
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center gap-4">
                 {session?.data?.user?.role === "admin" && 
                   <div className="flex gap-4"> 
                     <Link href="/usuarios"> <CircleUser/> </Link>
                     <Link href="/"> <GraduationCap/> </Link>
                   </div>
                 }
+                <ButtonLogout />
               </div>
               <div className="flex items-center justify-center gap-3">
                 {session?.data?.user?.name}
