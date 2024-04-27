@@ -3,7 +3,7 @@ from calendar import isleap
 
 class Class():
     def __init__(self, **kwargs):
-        self.number = kwargs['number']
+        self.number = int(kwargs['number'])
         self.teachers = []
         self.students = []
         self.timeline = create_month_timeline(datetime.now().year)
@@ -18,11 +18,15 @@ class Class():
         if not class_number:
             return 'Necessario enviar o campo "number" e o seu respectivo valor'
         
-        if type(class_number) != int:
-            return 'O valor da propriedade "number" deve ser um número inteiro, maior ou igual a 100 e menor que 1000'
+        if type(class_number) == str:
+            if not class_number.isnumeric():
+                return 'O valor da propriedade "number" deve ser um número inteiro, maior ou igual a 100 e menor que 10000'
+
+        if type(class_number) != int and type(class_number) != str:
+            return 'O valor da propriedade "number" deve ser um número inteiro, maior ou igual a 100 e menor que 10000'
         
-        if class_number < 100 or class_number >= 10000:
-            return 'O valor da propriedade "number" deve ser um número inteiro, maior ou igual a 100 e menor que 1000'
+        if int(class_number) < 100 or int(class_number) >= 10000:
+            return 'O valor da propriedade "number" deve ser um número inteiro, maior ou igual a 100 e menor que 10000'
 
 
     @staticmethod
@@ -30,7 +34,7 @@ class Class():
 
         db_classes_number_list = [x.get('number') for x in classes_data]
         
-        if number in db_classes_number_list:
+        if int(number) in db_classes_number_list:
             return 'Já existe uma turma registrada com este número'
 
 

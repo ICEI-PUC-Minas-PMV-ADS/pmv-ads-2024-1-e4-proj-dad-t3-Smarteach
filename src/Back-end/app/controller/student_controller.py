@@ -37,7 +37,7 @@ def insert_new_student(data: dict):
     student_collection.insert_one(new_student.__dict__)
     student_data = get_user_by_email(student_email, student_collection)
 
-    selected_class = classes_collection.find_one({'number': class_number})
+    selected_class = classes_collection.find_one({'number': int(class_number)})
     class_id = selected_class.get('_id')
     class_students = selected_class.get('students')
 

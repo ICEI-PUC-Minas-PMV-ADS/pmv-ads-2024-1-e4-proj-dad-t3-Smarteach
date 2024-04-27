@@ -19,7 +19,7 @@ def insert_new_class_activity(data):
     time_interval = data.get('time')
 
     new_activity = Activity(**data).__dict__
-    class_profile = classes_collection.find_one({'number': data.get('class_number')})
+    class_profile = classes_collection.find_one({'number': int(data.get('class_number'))})
     class_profile['timeline'][year][month][day].update({time_interval: new_activity})
 
     new_values = {"$set": class_profile}

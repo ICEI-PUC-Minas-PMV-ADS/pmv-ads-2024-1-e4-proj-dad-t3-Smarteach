@@ -54,7 +54,7 @@ def insert_new_teacher(data: dict):
     teacher_data = get_user_by_email(teacher_email, teacher_collection)
 
     for class_number in data.get("classes"):
-        selected_class = classes_collection.find_one({'number': class_number})
+        selected_class = classes_collection.find_one({'number': int(class_number)})
         class_id = selected_class.get('_id')
         class_teachers = selected_class.get('teachers')
 
