@@ -4,7 +4,7 @@ from bson import ObjectId
 from app.model import Student, Class
 from app.controller import student_collection, classes_collection
 from app.controller.class_controller import update_class_profile
-from app.services import verify_request_data, get_items_data, verify_user_email, update_time_data, verify_update_sent_data_request, get_data_by_id
+from app.services import verify_request_data, get_items_data, get_user_by_email, verify_user_email, update_time_data, verify_update_sent_data_request, get_data_by_id
 
 def get_available_students():
 
@@ -35,13 +35,15 @@ def insert_new_student(data: dict):
     
     new_student = Student(**data)
     student_collection.insert_one(new_student.__dict__)
+    student_data = get_user_by_email(student_email, student_collection)
 
-    student_class = classes_collection.find_one({'number': class_number})
-    class_id = student_class.get('_id')
-    class_students = student_class.get('students')
+    selected_class = classes_collection.find_one({'number': class_number})
+    class_id = selected_class.get('_id')
+    class_students = selected_class.get('students')
 
-    class_students.append(student_email)
-    update_class_profile({'id': class_id, 'students': class_students})
+    if student_data not in class_students:
+        class_students.append(student_data)
+        update_class_profile({'id': class_id, 'students': class_students})
     
     return 'Novo aluno cadastrado com sucesso!', 201
 
@@ -78,7 +80,15 @@ def delete_student_profile(data):
         return wrong_data_request, 400
     
     user_id = data.get('id')
+    student_data = get_data_by_id(user_id, student_collection)
     student_collection.delete_one({"_id": ObjectId(user_id) })
+    
+    selected_class = classes_collection.find_one({'number': student_data.get('class_number')})
+    class_id = selected_class.get('_id')
+    class_students = selected_class.get('students')
+
+    filtered_class_students = [student for student in class_students if student['_id'] != user_id]
+    update_class_profile({'id': class_id, 'students': filtered_class_students})
 
     return 'Perfil de Estudante deletado com sucesso!', 200
 

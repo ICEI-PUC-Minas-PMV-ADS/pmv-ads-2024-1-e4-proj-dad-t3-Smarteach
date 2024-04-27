@@ -62,6 +62,15 @@ def get_data_by_id(item_id, collection):
     return item
 
 
+def get_user_by_email(email, collection):
+
+    user_data = collection.find_one({'email': email})
+    user = {key: user_data[key] for key in user_data if key in ['_id', 'name', 'subject']}
+    user.update({'_id': str(user_data['_id'])})
+
+    return user
+
+
 def verify_data_format(data, type):
         
         regex = r"^'([01]?[0-9]|2[0-3]):([0-5][0-9])-([01]?[0-9]|2[0-3]):([0-5][0-9])$'"
@@ -82,3 +91,4 @@ def verify_update_sent_data_request(data, available_keys):
     
     if wrong_properties:
         return f"Propriedade(s) invalida(s): {wrong_properties}"
+        

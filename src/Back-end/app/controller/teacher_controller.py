@@ -4,7 +4,7 @@ from bson import ObjectId
 from app.model import Teacher, Class
 from app.controller import teacher_collection, classes_collection
 from app.controller.class_controller import update_class_profile
-from app.services import verify_request_data, get_items_data, get_data_by_id, verify_user_email, update_time_data, verify_update_sent_data_request
+from app.services import verify_request_data, get_items_data, get_data_by_id, get_user_by_email, verify_user_email, update_time_data, verify_update_sent_data_request
 
 
 def get_available_teachers():
@@ -32,7 +32,8 @@ def insert_new_teacher(data: dict):
     if is_wrong_data: 
         return is_wrong_data, 400
 
-    is_same_email = verify_user_email(data["email"], teacher_collection.find({}))
+    teacher_email = data.get('email')
+    is_same_email = verify_user_email(teacher_email, teacher_collection.find({}))
 
     if is_same_email: 
         return is_same_email, 409
@@ -50,15 +51,16 @@ def insert_new_teacher(data: dict):
 
     new_teacher = Teacher(**data)
     teacher_collection.insert_one(new_teacher.__dict__)
+    teacher_data = get_user_by_email(teacher_email, teacher_collection)
 
     for class_number in data.get("classes"):
-        teacher_class = classes_collection.find_one({'number': class_number})
-        class_id = teacher_class.get('_id')
-        class_teachers = teacher_class.get('students')
+        selected_class = classes_collection.find_one({'number': class_number})
+        class_id = selected_class.get('_id')
+        class_teachers = selected_class.get('teachers')
 
-        if class_number not in class_teachers:
-            class_teachers.append(class_number)
-            update_class_profile({'id': class_id, 'students': class_teachers})
+        if teacher_data not in class_teachers:
+            class_teachers.append(teacher_data)
+            update_class_profile({'id': class_id, 'teachers': class_teachers})
 
     return 'Novo Professor registrado com sucesso!', 201
     
@@ -94,6 +96,15 @@ def delete_teacher_profile(data):
         return wrong_data_request, 400
     
     user_id = data.get('id')
-    teacher_collection.delete_one({"_id": ObjectId(user_id) })
+    teacher_data = get_data_by_id(user_id, teacher_collection)
+    teacher_collection.delete_one({"_id": ObjectId(user_id)})
+
+    for class_number in teacher_data.get("classes"):
+        selected_class = classes_collection.find_one({'number': class_number})
+        class_id = selected_class.get('_id')
+        class_teachers = selected_class.get('teachers')
+
+        filtered_class_teachers = [teacher for teacher in class_teachers if teacher['_id'] != user_id]
+        update_class_profile({'id': class_id, 'teachers': filtered_class_teachers})
 
     return 'Perfil de Professor deletado com sucesso!', 200 
