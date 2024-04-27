@@ -3,6 +3,22 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { BASE_URL } from './url';
 
+export function getProfessorList() {
+    const query = useQuery({
+        queryKey: ['professor-list-data'],
+        queryFn: async () => {
+            const response = await axios.get(`${BASE_URL}teacher`);
+            return response.data;
+        }
+    })
+
+    return {
+        ...query,
+        professorList: query.data,
+    };
+}
+
+
 export function getProfessorProfile(id) {
     const query = useQuery({
         queryKey: ['professor-profile-data'],

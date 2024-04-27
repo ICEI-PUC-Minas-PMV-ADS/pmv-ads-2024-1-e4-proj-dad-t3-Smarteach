@@ -1,5 +1,4 @@
 'use client'
-
 import { getClassProfile } from "@/services/turmas-services"
 
 const Detalhes = ({params}) => {

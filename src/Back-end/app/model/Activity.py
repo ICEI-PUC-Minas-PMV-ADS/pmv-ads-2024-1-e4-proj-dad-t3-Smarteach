@@ -23,9 +23,6 @@ class Activity():
         if not class_number:
             return 'Necessario enviar o campo "number" e o seu respectivo valor'
         
-        if type(class_number) != int:
-            return 'O valor da propriedade "number" deve ser um número inteiro'
-        
         db_classes_number_list = [x.get('number') for x in classes_data]
         if class_number not in db_classes_number_list:
             return 'Turma inexistente'
