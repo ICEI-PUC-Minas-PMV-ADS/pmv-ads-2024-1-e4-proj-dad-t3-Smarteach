@@ -15,7 +15,7 @@ import {
 import { ChevronDown, Pen } from 'lucide-react';
 import Link from 'next/link';
 
-export function DataTable({ data }) {
+export function DataTable({ data, userType }) {
 
   return (
     <Table>
@@ -23,7 +23,7 @@ export function DataTable({ data }) {
         <TableRow>
           <TableHead>Name</TableHead>
           <TableHead>Email</TableHead>
-          <TableHead TableHead>Turma</TableHead>  
+          <TableHead TableHead>Turmas</TableHead>  
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -34,9 +34,10 @@ export function DataTable({ data }) {
             {data?.class_number 
               ? <TableCell>{data.class_number}</TableCell> 
               : <TableCell>
-                  {data?.classes?.map((classItem, index) => (
+                  {/* {data?.classes?.map((classItem, index) => (
                     <p key={index}>{classItem}</p>
-                  ))}
+                  ))} */}
+                  {data.classes}
                 </TableCell> 
             }
             <TableCell> 
@@ -46,7 +47,7 @@ export function DataTable({ data }) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem>
-                    <Link href={`/detalhes/${data._id}`} className='flex justify-between items-center w-full text-yellow-500'>
+                    <Link href={`/detalhes/${userType}/${data._id}`} className='flex justify-between items-center w-full text-yellow-500'>
                       Editar <Pen className="w-4 h-4 "/>
                     </Link>
                   </DropdownMenuItem>
