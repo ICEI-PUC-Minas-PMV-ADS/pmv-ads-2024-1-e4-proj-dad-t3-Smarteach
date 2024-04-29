@@ -34,6 +34,29 @@ export function getProfessorProfile(id) {
     };
 }
 
+export async function updateProfessor(data) {
+
+    try {
+        await axios.patch(`${BASE_URL}teacher`, {
+            id: data._id,
+            name: data.nome,
+            email: data.email,
+            password: data.senha,
+            classes: data.classes,
+            period: data.period,
+            subject: data.subject,
+        });
+
+        if (response.status === 200) {
+            console.log("Professor alterado com sucesso!");
+        } else {
+            console.error(`Falha ao alterar o Professor. Status code: ${response.status}`);
+        }
+    } catch (error) {
+        console.error("Ocorreu um erro ao tentar alterar o Professor:", error);
+    }
+}
+
 export async function deleteProfessor(id) {
     try {
         const response = await axios.delete(`${BASE_URL}teacher`, {
@@ -43,11 +66,11 @@ export async function deleteProfessor(id) {
         });
 
         if (response.status === 200) {
-            console.log("Aluno deletado com sucesso!");
+            console.log("Professor deletado com sucesso!");
         } else {
-            console.error(`Falha ao deletar o aluno. Status code: ${response.status}`);
+            console.error(`Falha ao deletar o Professor. Status code: ${response.status}`);
         }
     } catch (error) {
-        console.error("Ocorreu um erro ao tentar deletar o aluno:", error);
+        console.error("Ocorreu um erro ao tentar deletar o Professor:", error);
     }
 }
