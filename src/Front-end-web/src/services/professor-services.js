@@ -18,6 +18,27 @@ export function getProfessorList() {
     };
 }
 
+export async function createProfessor(data) {
+    console.log(data)
+    try {
+        await axios.post(`${BASE_URL}teacher`, {
+            name: data.nome,
+            subject: data.subject,
+            classes:[data.classes],
+            period: data.period,
+            email: data.email,
+            password: data.senha
+        });
+
+        if (response.status === 200) {
+            console.log("Professor criado com sucesso!");
+        } else {
+            console.error(`Falha ao criar o Professor. Status code: ${response.status}`);
+        }
+    } catch (error) {
+        console.error("Ocorreu um erro ao tentar criar o Professor:", error);
+    }
+}
 
 export function getProfessorProfile(id) {
     const query = useQuery({

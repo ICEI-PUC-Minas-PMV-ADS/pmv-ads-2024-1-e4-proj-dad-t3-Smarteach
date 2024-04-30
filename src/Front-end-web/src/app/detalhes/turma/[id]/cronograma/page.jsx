@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Calendar } from "@/components/ui/calendar";
 import SecondaryButton from "@/components/secondary-button";
 import { obterTarefasDoDia } from "@/utils/obterTarefasDoDia";
+import Link from "next/link";
 
 const Cronograma = ({params}) => {
     const [ date, setDate ] = useState(new Date());
@@ -19,7 +20,7 @@ const Cronograma = ({params}) => {
             </div>
             <div className="flex w-full gap-5">
                 <SecondaryButton label={"Filtrar Aulas"} />
-                <SecondaryButton label={"Adicionar Aulas"}/>
+                <Link href="/cadastro/tarefas"> <SecondaryButton label={"Adicionar Aulas"}/> </Link>
             </div>
             <div className="flex flex-col justify-center items-center gap-10">
                 <Calendar 

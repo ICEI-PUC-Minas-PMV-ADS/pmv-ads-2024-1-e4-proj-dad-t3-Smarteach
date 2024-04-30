@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AppWindow, CalendarCheck } from "lucide-react";
 import Image from "next/image";
 
+
 const ClassList = () => {
     const {classData} = getClassList();
     

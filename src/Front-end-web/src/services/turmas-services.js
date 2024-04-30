@@ -32,3 +32,20 @@ export function getClassProfile(id) {
         classProfileData: query.data,
     };
 }
+
+export async function createClass(data) {
+
+    try {
+        await axios.post(`${BASE_URL}class`, {
+            number: data.number,
+        });
+
+        if (response.status === 200) {
+            console.log("Turma criada com sucesso!");
+        } else {
+            console.error(`Falha ao criar o Turma. Status code: ${response.status}`);
+        }
+    } catch (error) {
+        console.error("Ocorreu um erro ao tentar criar a Turma:", error);
+    }
+}

@@ -1,53 +1,27 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
-import { PenLine, Trash2  } from "lucide-react";
+import { UserPlus } from "lucide-react";
 import validator from "validator";
 import { SubmitButton } from "@/components/submit-button";
-import { Button } from "@/components/ui/button"
-import { deleteStudent } from "@/services/alunos-services"
 import { useRouter } from "next/navigation";
-import { getStudentProfile, updateStudent } from "@/services/alunos-services"
+import { createStudent } from "@/services/alunos-services";
 import { getClassList } from "@/services/turmas-services";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
 
-const Detalhes = ({params}) => {
-    const {studentData} = getStudentProfile(params.id)
-    const {classData} = getClassList()
-
+const Page = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
       } = useForm();
 
+      const {classData} = getClassList();
+            
       const route = useRouter();
-      
-      const handleDeleteStudent = () => {
-        const studentId = params.id
-        
-        deleteStudent(studentId);
-        route.push("/usuarios")
-      }
     
       const onSubmit = async (data) => {
-        const student = {
-          ...data,
-          _id: params.id,
-        }
-
-        updateStudent(student);
-        route.push("/usuarios")
+        await createStudent(data)
+        route.push('/usuarios');
       };
 
     return (
@@ -61,7 +35,6 @@ const Detalhes = ({params}) => {
                   "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
                 }
                 type="text"
-                placeholder={`${studentData?.name}`}
                 {...register("nome", {
                   required: true,
                   minLength: 5,
@@ -85,7 +58,6 @@ const Detalhes = ({params}) => {
                   "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
                 }
                 type="text"
-                placeholder={`${studentData?.email}`}
                 {...register("email", {
                   required: true,
                   validate: (value) => {
@@ -103,36 +75,32 @@ const Detalhes = ({params}) => {
                 <p className="pt-2 text-red-500 text-sm"> O email é inválido </p>
               )}
             </div>
-    
+
             <div className="flex flex-col w-full">
-              <label className="pt-3 pb-2 text-black font-[500]"> Número da Turma </label>
-    
-              <div>
-                <select 
-                  name="Turma"
-                  placeholder="Selecione a turma"
-                  {...register("class_number", {required: true})}
-                  className={
-                    errors.class_number 
-                    ? "bg-red-300 border-red-500 text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500border block w-full p-2.5"
-                    : "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                  }
-                >
-                  <option value="" selected disabled> Selecione a Turma </option> 
-                  {classData?.map(turma => (
-                      <option value={turma.number}>{turma.number}</option>
-                    ))}
-                  {errors.class_number?.type === "required" && (
-                    <p className="pt-2 text-red-500 text-sm">
-                      É obrigatório informar o número da turma
-                    </p>
-                  )}
-                </select>
-              </div>
-    
+                <label className="pt-3 pb-2 text-black font-[500]"> Número da Turma </label>
+                <div>
+                    <select 
+                        name="Turma"
+                        placeholder="Selecione a turma"
+                        {...register("class_number", {required: true})}
+                        className={
+                        errors.class_number 
+                        ? "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
+                        : "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        }
+                    >
+                        {classData?.map(turma => (
+                            <option value={turma.number}>{turma.number}</option>
+                        ))}
+                        {errors.class_number?.type === "required" && (
+                        <p className="pt-2 text-red-500 text-sm">
+                            É obrigatório informar o número da turma
+                        </p>
+                        )}
+                    </select>
+                </div>
             </div>
-    
-            
+
     
             <div className="flex flex-col w-full">
               <label className="pt-3 pb-2 text-black font-[500]"> Senha </label>
@@ -142,7 +110,7 @@ const Detalhes = ({params}) => {
                   "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
                 }
                 type="password"
-                placeholder="Digite sua senha"
+                placeholder="Digite uma senha"
                 {...register("senha", {
                   required: true,
                 })}
@@ -155,29 +123,10 @@ const Detalhes = ({params}) => {
               )}
             </div>
     
-            <SubmitButton label="Alterar" icon={<PenLine />} submitFunction={handleSubmit(onSubmit)}/>
-
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button className="w-full mt-5 gap-2 shadow-lg" variant="destructive" > <Trash2 /> Excluir </Button> 
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Você tem certeza?! </AlertDialogTitle>
-                  <AlertDialogDescription>
-                    Esta ação não pode ser desfeita. <br/>
-                    Irá deletar permanentemente todos os dados do usuário selecionado!
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction className="bg-red-700 hover:bg-red-500" onClick={handleDeleteStudent}> Continue </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+            <SubmitButton label="Criar Aluno" icon={<UserPlus />} submitFunction={handleSubmit(onSubmit)}/>
           </div>
         </div>
       );
 }
 
-export default Detalhes;
+export default Page;

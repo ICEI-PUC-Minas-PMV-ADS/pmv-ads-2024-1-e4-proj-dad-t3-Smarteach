@@ -17,13 +17,6 @@ class Class():
 
         if not class_number:
             return 'Necessario enviar o campo "number" e o seu respectivo valor'
-        
-        if type(class_number) != int:
-            return 'O valor da propriedade "number" deve ser um número inteiro, maior ou igual a 100 e menor que 1000'
-        
-        if class_number < 100 or class_number >= 10000:
-            return 'O valor da propriedade "number" deve ser um número inteiro, maior ou igual a 100 e menor que 1000'
-
 
     @staticmethod
     def verify_if_exist_class_data(number, classes_data):
