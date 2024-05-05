@@ -23,6 +23,11 @@ export default function Header() {
                     <Link href="/"> <GraduationCap/> </Link>
                   </div>
                 }
+                 {session?.data?.user?.role === "aluno" && 
+                  <div className="flex gap-4"> 
+                    <Link href="/PerfilAluno"> <CircleUser/> </Link>
+                  </div>
+                } 
                 <ButtonLogout />
               </div>
               <div className="flex items-center justify-center gap-3">
