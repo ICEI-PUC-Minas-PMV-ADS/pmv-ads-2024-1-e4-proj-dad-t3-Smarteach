@@ -4,6 +4,7 @@ import { getProfessorList } from "@/services/professor-services";
 import { getAdminList } from "@/services/admin-services";
 import { DataTable } from "./data-table";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Alunos = () => { 
     const {studentList} = getStudentsList();
@@ -15,14 +16,14 @@ const Alunos = () => {
             <div className="flex flex-col">  
                 <div className="flex w-full justify-between items-center">
                     <p className="text-3xl font-bold text-primaryColor"> ADMINISTRADORES </p>
-                    <Button> Cadastrar Administrador </Button>
+                    <Link href="/cadastro/admin"> <Button> Cadastrar Administrador </Button> </Link>
                 </div>
                 <DataTable data={adminList} userType={"admin"}/>
             </div>
             <div className="flex flex-col">
                 <div className="flex w-full justify-between items-center">
                     <p className="text-3xl font-bold text-primaryColor"> PROFESSORES </p>
-                    <Button> Cadastrar Professor </Button>
+                    <Link href="/cadastro/professor"> <Button> Cadastrar Professor </Button> </Link>
                 </div>
                 <DataTable data={professorList} userType={"professor"}/>
 
@@ -30,7 +31,7 @@ const Alunos = () => {
             <div className="flex flex-col">
                 <div className="flex w-full justify-between items-center">
                     <p className="text-3xl font-bold text-primaryColor"> ALUNOS </p>
-                    <Button> Cadastrar Alunos </Button>
+                    <Link href="/cadastro/aluno"> <Button> Cadastrar Alunos </Button> </Link>
                 </div>
                 <DataTable data={studentList} userType={"aluno"}/>
             </div>

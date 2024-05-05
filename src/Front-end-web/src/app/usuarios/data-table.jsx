@@ -34,9 +34,6 @@ export function DataTable({ data, userType }) {
             {data?.class_number 
               ? <TableCell>{data.class_number}</TableCell> 
               : <TableCell>
-                  {/* {data?.classes?.map((classItem, index) => (
-                    <p key={index}>{classItem}</p>
-                  ))} */}
                   {data.classes}
                 </TableCell> 
             }

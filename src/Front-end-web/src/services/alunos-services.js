@@ -3,6 +3,26 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { BASE_URL } from './url';
 
+export async function createStudent(data) {
+
+    try {
+        await axios.post(`${BASE_URL}student`, {
+            name: data.nome,
+            class_number: data.class_number,
+            email: data.email,
+            password: data.senha
+        });
+
+        if (response.status === 200) {
+            console.log("Aluno alterado com sucesso!");
+        } else {
+            console.error(`Falha ao alterar o aluno. Status code: ${response.status}`);
+        }
+    } catch (error) {
+        console.error("Ocorreu um erro ao tentar alterar o aluno:", error);
+    }
+}
+
 export function getStudentsList() {
     const query = useQuery({
         queryKey: ['student-data'],
@@ -48,26 +68,6 @@ export async function deleteStudent(id) {
         }
     } catch (error) {
         console.error("Ocorreu um erro ao tentar deletar o aluno:", error);
-    }
-}
-
-export async function createStudent(data) {
-
-    try {
-        await axios.post(`${BASE_URL}student`, {
-            name: data.nome,
-            class_number: data.class_number,
-            email: data.email,
-            password: data.senha
-        });
-
-        if (response.status === 200) {
-            console.log("Aluno alterado com sucesso!");
-        } else {
-            console.error(`Falha ao alterar o aluno. Status code: ${response.status}`);
-        }
-    } catch (error) {
-        console.error("Ocorreu um erro ao tentar alterar o aluno:", error);
     }
 }
 

@@ -1,44 +1,35 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
-import { PenLine, Trash2 } from "lucide-react";
+import { UserPlus } from "lucide-react";
 import validator from "validator";
 import { SubmitButton } from "@/components/submit-button";
-import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, } from "@/components/ui/alert-dialog"
-import { getProfessorProfile, updateProfessor, deleteProfessor } from "@/services/professor-services";
+import { createProfessor } from "@/services/professor-services";
+import { getClassList } from "@/services/turmas-services";
 
-const Detalhes = ({params}) => {
-    const route = useRouter();
-    const { professorProfileData } = getProfessorProfile(params.id);
+const Page = () => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm();            
+      const route = useRouter();
+    
+      const onSubmit = async (data) => {
+        console.log(data)
+        await createProfessor(data)
+        console.log(await createProfessor(data))
+        // route.push('/usuarios');
+      };
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+      const {classData} = getClassList();
 
-    const turnos = [
-      { id: 1, nome: "Manhã" },
-      { id: 2, nome: "Tarde" },
-      { id: 3, nome: "Noite" }
-    ];
-
-    const handleDeleteProfessor = () => {
-        const professorId = params.id;
-        if (professorProfileData) {
-          deleteProfessor(professorId);
-        }
-        route.push("/usuarios");
-    };
-
-    const onSubmit = async (data) => {
-        const professor = {
-            ...data,
-            _id: params.id,
-        };
-        if (professorProfileData) {
-            updateProfessor(professor)
-        }
-        route.push("/usuarios");
-    };
+      const turnos = [
+        { id: 1, nome: "Manhã" },
+        { id: 2, nome: "Tarde" },
+        { id: 3, nome: "Noite" }
+      ];    
 
     return (
         <div className="w-screen h-screen flex justify-center items-center flex-col">
@@ -51,7 +42,7 @@ const Detalhes = ({params}) => {
                   "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
                 }
                 type="text"
-                placeholder={`${professorProfileData?.name}`}
+                placeholder="Digite o Nome Completo"
                 {...register("nome", {
                   required: true,
                   minLength: 5,
@@ -75,7 +66,7 @@ const Detalhes = ({params}) => {
                   "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
                 }
                 type="text"
-                placeholder={`${professorProfileData?.email}`}
+                placeholder="Digite o Email"
                 {...register("email", {
                   required: true,
                   validate: (value) => {
@@ -93,7 +84,27 @@ const Detalhes = ({params}) => {
                 <p className="pt-2 text-red-500 text-sm"> O email é inválido </p>
               )}
             </div>
-  
+
+            <div className="flex flex-col w-full">
+              <label className="pt-3 pb-2 text-black font-[500]"> Matéria </label>
+              <Input
+                className={
+                  errors.subject &&
+                  "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
+                }
+                type="text"
+                placeholder="Digite a Matéria"
+                {...register("subject", {
+                  required: true,
+                })}
+              />
+              {errors.subject?.type === "required" && (
+                <p className="pt-2 text-red-500 text-sm">
+                  É obrigatório informar uma máteria
+                </p>
+              )}
+            </div>
+
             <div className="flex flex-col w-full">
                 <label className="pt-3 pb-2 text-black font-[500]"> Turno </label>
                 <select 
@@ -119,26 +130,31 @@ const Detalhes = ({params}) => {
             </div>
 
             <div className="flex flex-col w-full">
-              <label className="pt-3 pb-2 text-black font-[500]"> Matéria </label>
-              <Input
-                className={
-                  errors.subject &&
-                  "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
-                }
-                type="text"
-                placeholder={`${professorProfileData?.subject}`}
-                {...register("subject", {
-                  required: true,
-                })}
-              />
-              {errors.subject?.type === "required" && (
-                <p className="pt-2 text-red-500 text-sm">
-                  É obrigatório informar uma máteria
-                </p>
-              )}
+                <label className="pt-3 pb-2 text-black font-[500]"> Número da Turma </label>
+                <div>
+                    <select 
+                        name="Turma"
+                        placeholder="Selecione a turma"
+                        {...register("classes", {required: true})}
+                        className={
+                        errors.class_number 
+                        ? "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
+                        : "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        }
+                    >
+                        {classData?.map(turma => (
+                            <option value={turma.number}>{turma.number}</option>
+                        ))}
+                        {errors.class_number?.type === "required" && (
+                        <p className="pt-2 text-red-500 text-sm">
+                            É obrigatório informar o número da turma
+                        </p>
+                        )}
+                    </select>
+                </div>
             </div>
-    
-            <div className="flex flex-col w-full">
+
+            {/* <div className="flex flex-col w-full">
               <label className="pt-3 pb-2 text-black font-[500]"> Número das Turmas </label>
               <div>
                 <Input
@@ -147,7 +163,6 @@ const Detalhes = ({params}) => {
                     "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
                   }
                   type="text"
-                  placeholder={`${professorProfileData?.classes}`}
                   {...register("classes", {
                     required: true,
                   })}
@@ -158,7 +173,7 @@ const Detalhes = ({params}) => {
                   </p>
                 )}
               </div>
-            </div>
+            </div> */}
     
             <div className="flex flex-col w-full">
               <label className="pt-3 pb-2 text-black font-[500]"> Senha </label>
@@ -168,7 +183,7 @@ const Detalhes = ({params}) => {
                   "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
                 }
                 type="password"
-                placeholder="Digite sua senha"
+                placeholder="Digite uma senha"
                 {...register("senha", {
                   required: true,
                 })}
@@ -181,29 +196,10 @@ const Detalhes = ({params}) => {
               )}
             </div>
     
-            <SubmitButton label="Alterar" icon={<PenLine />} submitFunction={handleSubmit(onSubmit)}/>
-
-            <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                      <Button className="w-full mt-5 gap-2 shadow-lg" variant="destructive" > <Trash2 /> Excluir </Button> 
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                      <AlertDialogHeader>
-                          <AlertDialogTitle>Você tem certeza?! </AlertDialogTitle>
-                          <AlertDialogDescription>
-                              Esta ação não pode ser desfeita. <br/>
-                              Irá deletar permanentemente todos os dados do usuário selecionado!
-                          </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction className="bg-red-700 hover:bg-red-500" onClick={handleDeleteProfessor}> Continue </AlertDialogAction>
-                      </AlertDialogFooter>
-                   </AlertDialogContent>
-              </AlertDialog>
+            <SubmitButton label="Criar Professor" icon={<UserPlus />} submitFunction={handleSubmit(onSubmit)}/>
           </div>
         </div>
       );
 }
 
-export default Detalhes;
+export default Page;

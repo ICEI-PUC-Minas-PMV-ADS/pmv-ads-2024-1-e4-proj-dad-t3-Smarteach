@@ -5,8 +5,6 @@ class Activity():
         self.name = kwargs['name']
         self.subject = kwargs["subject"]
         self.teacher_email = kwargs["teacher_email"]
-        self.recorrencia = kwargs["recurrency"]
-
     
     @staticmethod
     def verify_new_class_activity_data(data, collection):
@@ -39,11 +37,6 @@ class Activity():
         if verify_data_format(activity_time, "TIME"):
             return 'Formato do horário inválido! ele deve ser: hh:min'
         
-        if not activity_recorrency:
-            return 'Necessário enviar a recorrência desta aula'
-        
-        if activity_recorrency not in ['daily', 'monthly', 'weekly', 'yearly']:
-            return 'Valor inválido da propriedade recurrency'
 
         daily_class_list = [x for x in class_data.get('timeline').get(year).get(month).get(day)]
         if activity_time in daily_class_list:

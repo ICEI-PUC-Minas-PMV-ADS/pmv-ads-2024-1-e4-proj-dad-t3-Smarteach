@@ -20,14 +20,13 @@ class Class():
         
         if type(class_number) == str:
             if not class_number.isnumeric():
-                return 'O valor da propriedade "number" deve ser um número inteiro, maior ou igual a 100 e menor que 10000'
+                return 'O valor da propriedade "number" deve ser um número maior ou igual a 100 e menor que 10000'
 
         if type(class_number) != int and type(class_number) != str:
             return 'O valor da propriedade "number" deve ser um número inteiro, maior ou igual a 100 e menor que 10000'
         
         if int(class_number) < 100 or int(class_number) >= 10000:
             return 'O valor da propriedade "number" deve ser um número inteiro, maior ou igual a 100 e menor que 10000'
-
 
     @staticmethod
     def verify_if_exist_class_data(number, classes_data):

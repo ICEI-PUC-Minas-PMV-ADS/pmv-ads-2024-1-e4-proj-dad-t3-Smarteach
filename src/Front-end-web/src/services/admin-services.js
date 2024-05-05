@@ -33,6 +33,25 @@ export function getAdminProfile(id) {
     };
 }
 
+export async function createAdmin(data) {
+
+    try {
+        await axios.post(`${BASE_URL}admin`, {
+            name: data.nome,
+            email: data.email,
+            password: data.senha
+        });
+
+        if (response.status === 200) {
+            console.log("Admin criado com sucesso!");
+        } else {
+            console.error(`Falha ao criar o Admin. Status code: ${response.status}`);
+        }
+    } catch (error) {
+        console.error("Ocorreu um erro ao tentar criar o Admin:", error);
+    }
+}
+
 
 export async function updateAdmin(data) {
 

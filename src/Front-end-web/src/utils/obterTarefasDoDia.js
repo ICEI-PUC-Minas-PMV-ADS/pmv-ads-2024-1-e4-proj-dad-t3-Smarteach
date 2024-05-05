@@ -13,7 +13,6 @@ export function obterTarefasDoDia(classProfileData, date) {
         for (const hora in dayData) {
             const tarefaHora = dayData[hora];
             if (Object.keys(tarefaHora).length > 0) {
-                // Adiciona as informações de dia, mês e ano à tarefa
                 const tarefaComData = {
                     dia,
                     mes,
