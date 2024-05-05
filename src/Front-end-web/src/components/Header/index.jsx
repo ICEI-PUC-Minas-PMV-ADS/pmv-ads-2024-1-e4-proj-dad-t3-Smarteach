@@ -19,13 +19,18 @@ export default function Header() {
               <div className="flex items-center justify-center gap-4">
                 {session?.data?.user?.role === "admin" && 
                   <div className="flex gap-4"> 
-                    <Link href="/usuarios"> <CircleUser/> </Link>
-                    <Link href="/"> <GraduationCap/> </Link>
+                    <Link href="/PerfilAdmin"> <CircleUser/> </Link>
+                    <Link href="/usuarios"> <GraduationCap/> </Link>
                   </div>
                 }
                  {session?.data?.user?.role === "aluno" && 
                   <div className="flex gap-4"> 
                     <Link href="/PerfilAluno"> <CircleUser/> </Link>
+                  </div>
+                } 
+                {session?.data?.user?.role === "professor" && 
+                  <div className="flex gap-4"> 
+                    <Link href="/PerfilProfessor"> <CircleUser/> </Link>
                   </div>
                 } 
                 <ButtonLogout />

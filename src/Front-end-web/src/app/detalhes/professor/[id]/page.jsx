@@ -8,11 +8,12 @@ import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, } from "@/components/ui/alert-dialog"
 import { getProfessorProfile, updateProfessor, deleteProfessor } from "@/services/professor-services";
+import { getClassList } from "@/services/turmas-services";
 
 const Detalhes = ({params}) => {
     const route = useRouter();
     const { professorProfileData } = getProfessorProfile(params.id);
-
+    const {classData} = getClassList()
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const turnos = [
@@ -137,29 +138,31 @@ const Detalhes = ({params}) => {
                 </p>
               )}
             </div>
-    
             <div className="flex flex-col w-full">
-              <label className="pt-3 pb-2 text-black font-[500]"> Número das Turmas </label>
-              <div>
-                <Input
+              <label className="pt-3 pb-2 text-black font-[500]"> Número da Turma </label>
+          <div>
+            <select 
+                  name="Turma"
+                  placeholder="Selecione a turma"
+                  {...register("class_number", {required: true})}
                   className={
-                    errors.classes &&
-                    "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
+                    errors.class_number 
+                    ? "bg-red-300 border-red-500 text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500border block w-full p-2.5"
+                    : "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   }
-                  type="text"
-                  placeholder={`${professorProfileData?.classes}`}
-                  {...register("classes", {
-                    required: true,
-                  })}
-                />
-                {errors.classes?.type === "required" && (
-                  <p className="pt-2 text-red-500 text-sm">
-                    É obrigatório informar as Turmas
-                  </p>
-                )}
-              </div>
+                >
+                  <option value="" selected disabled> Selecione a Turma </option> 
+                  {classData?.map(turma => (
+                      <option value={turma.number}>{turma.number}</option>
+                    ))}
+                  {errors.class_number?.type === "required" && (
+                    <p className="pt-2 text-red-500 text-sm">
+                      É obrigatório informar o número da turma
+                    </p>
+                  )}
+                </select>
             </div>
-    
+            </div>
             <div className="flex flex-col w-full">
               <label className="pt-3 pb-2 text-black font-[500]"> Senha </label>
               <Input

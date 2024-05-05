@@ -5,7 +5,7 @@ import ClassList from "@/components/class-list";
 import Mural from "@/components/mural";
 
 function UserProfile(props,params) {
-  const { avatarUrl } = props;
+  const {avatarUrl } = props;
   const session = useSession();
 
   const profileStyle = {
@@ -49,13 +49,13 @@ function UserProfile(props,params) {
         <img style={avatarStyle} src={avatarUrl} alt="Avatar" />
       <div style={infoStyle}>
         <h2 style={headingStyle}>{session?.data?.user?.name}</h2>
-        <h3>Aluno</h3>
+        <h3>Administrador(a)</h3>
         <p style={paragraphStyle}><strong>Email:</strong> {session?.data?.user?.email}</p>
       </div>
-    <div style={{ display: 'flex', marginLeft: '150px',marginTop:'-200px' }}>
+    <div style={{ display: 'flex', marginLeft: '-600px',marginTop:'1000px' }}>
     <ClassList />
     </div>
-    <div style={{ display: 'flex', marginLeft: '-825px', marginTop:'450px' }}>
+    <div style={{ display: 'flex', marginLeft: '100px', marginTop:'-50px' }}>
     <Mural />
     </div>
     </div>
