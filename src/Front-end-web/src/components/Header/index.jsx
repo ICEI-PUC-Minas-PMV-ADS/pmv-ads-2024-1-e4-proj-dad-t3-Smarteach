@@ -19,11 +19,21 @@ export default function Header() {
             <div className="flex items-center gap-10">
               <div className="flex items-center justify-center gap-4">
                 {session?.data?.user?.role === "admin" && 
-                  <div className="flex gap-4"> 
-                    <TooltipComponent href={`/usuarios`} icon={<CircleUser/>} label={"Lista de usuários"} />
-                    <TooltipComponent href={`/`} icon={<GraduationCap />} label={"Turmas"} />
+                  <div className="flex gap-4">
+                    <TooltipComponent href={`/PerfilAdmin`} icon={<CircleUser/>} label={"Lista de usuários"} />
+                    <TooltipComponent href={`/usuarios`} icon={<GraduationCap />} label={"Turmas"} />
                   </div>
                 }
+                 {session?.data?.user?.role === "aluno" && 
+                  <div className="flex gap-4"> 
+                    <Link href="/PerfilAluno"> <CircleUser/> </Link>
+                  </div>
+                } 
+                {session?.data?.user?.role === "professor" && 
+                  <div className="flex gap-4"> 
+                    <Link href="/PerfilProfessor"> <CircleUser/> </Link>
+                  </div>
+                } 
                 <ButtonLogout />
               </div>
               <div className="flex items-center justify-center gap-3">
