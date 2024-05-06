@@ -1,16 +1,22 @@
 'use client'
-import { getClassList } from "@/services/turmas-services";
+import { getClassList, filterClasses } from "@/services/turmas-services";
 import Link from "next/link";
 import { AppWindow, CalendarCheck } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 
 
 const ClassList = () => {
-    const {classData} = getClassList();
+
+    const session = useSession();
+    const {classesData} = getClassList();
+
+    const user = session?.data?.user
+    const classList = filterClasses(user, classesData)
     
     return (
         <div className="container grid grid-cols-classgrid gap-5 max-w-[1280px] h-screen"> 
-                {classData?.map(turma => (
+                {classList?.map(turma => (
                     <div className="flex">
                          <div className="flex flex-col">
                             <div className="flex w-full justify-between">
