@@ -17,9 +17,7 @@ const Page = () => {
       const route = useRouter();
     
       const onSubmit = async (data) => {
-        console.log(data)
         await createProfessor(data)
-        console.log(await createProfessor(data))
          route.push('/usuarios');
       };
 

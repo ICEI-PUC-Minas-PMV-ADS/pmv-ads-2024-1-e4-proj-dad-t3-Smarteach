@@ -22,7 +22,6 @@ export function verificaTarefaNoDia(classProfileData, data) {
     return false;
   }
   
-  console.log("Dados encontrados para o dia", dia, "do mês", mes, "do ano", ano);
   
   for (const hour in dayData) {
     if (Object.keys(dayData[hour]).length > 0) {

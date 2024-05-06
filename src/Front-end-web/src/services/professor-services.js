@@ -19,7 +19,6 @@ export function getProfessorList() {
 }
 
 export async function createProfessor(data) {
-    console.log(data)
     try {
         await axios.post(`${BASE_URL}teacher`, {
             name: data.nome,
