@@ -14,7 +14,6 @@ class Activity():
         class_number = data.get('class_number')
         activity_date = data.get('date')
         activity_time = data.get('time')
-        # activity_recorrency = data.get('recurrency')
 
         day, month, year = data.get('date').split('/')
 

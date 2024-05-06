@@ -82,7 +82,6 @@ def test_insert_new_class_activity_with_same_timeline_of_another_activity(client
         "class_number": fake_profile.get('class_number'),
         "subject": "Botânica",
         "teacher_email": fake_profile.get('email'),
-        # "recurrency": "weekly"
     })
 
     assert response.status_code == 400
