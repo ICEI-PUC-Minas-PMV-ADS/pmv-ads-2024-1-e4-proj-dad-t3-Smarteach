@@ -45,12 +45,6 @@ export default function Header() {
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
               </div>
-              {isHoverUser && (
-                <div className="absolute text-xs mt-10 mr-10">Usuários</div>
-              )}
-              {isHoverCap && (
-                <div className="absolute text-xs mt-10 ml-8">Turmas</div>
-              )}
             </div>
           </div>
         </div>

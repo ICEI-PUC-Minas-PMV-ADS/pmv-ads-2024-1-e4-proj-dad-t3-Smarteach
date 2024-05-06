@@ -15,7 +15,7 @@ const ClassList = () => {
     const classList = filterClasses(user, classData)
     
     return (
-        <div className="container grid grid-cols-classgrid gap-5 max-w-[1280px] h-screen"> 
+        <div className="container grid grid-cols-classgrid gap-5 max-w-[1280px] h-full"> 
                 {classList?.map(turma => (
                     <div className="flex">
                          <div className="flex flex-col">
