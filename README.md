@@ -23,7 +23,10 @@ Sistema para a gestão de atividades escolares, onde é possível aos gestores e
 
 ## Instruções de utilização
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+Para iniciar o Front-End Web do projeto, basta acessar a pasta “src” e depois “Front-end-web”, abra o terminal nesta pasta e execute a seguinte sequência de comandos:
+<br>``` npm install ``` e  ``` npm run dev ```
+
+Feito isto, basta acessar o link que irá aparecer no terminal ou então copiar e colar no navegador “http://localhost:3000”
 
 # Documentação
 

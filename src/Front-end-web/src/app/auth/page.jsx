@@ -34,7 +34,7 @@ const Login = () => {
  return (
   <div className="w-screen h-screen flex justify-center items-center flex-col">
     <Logo />
-    <h1 className="text-3xl text-black pt-3"> Login </h1>
+  <h1 className="text-3xl text-black pt-3"> Login </h1>
     <form className="flex flex-col items-center justify-center w-[500px]" onSubmit={handleSubmit(handleLogin)}>
       <div className="flex flex-col w-full">
         <label className="pt-3 pb-2 text-black font-[500]"> Email </label>
@@ -74,7 +74,7 @@ const Login = () => {
         {/* {errors.password?.type === 'minLength' && <p className="pt-2 p text-red-500 text-sm"> A senha deve ser maior que 8 digitos </p>} */}
       </div>
 
-      <SubmitButton label="Login" icon={<LogIn />} submitFunction={handleSubmit(handleLogin)}/>
+      <SubmitButton label="Login" icon={<LogIn />} submitFunction={handleSubmit(handleLogin)} />
 
       <p className="text-black pt-3"> Não possui uma conta? <Link href="/auth/cadastro" className="text-slate-600 hover:text-red-500"> Cadastre-se </Link> </p>
     </form>

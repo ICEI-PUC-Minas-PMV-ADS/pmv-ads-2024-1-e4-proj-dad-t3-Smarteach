@@ -20,7 +20,7 @@ const Page = () => {
         console.log(data)
         await createProfessor(data)
         console.log(await createProfessor(data))
-        // route.push('/usuarios');
+         route.push('/usuarios');
       };
 
       const {classData} = getClassList();
