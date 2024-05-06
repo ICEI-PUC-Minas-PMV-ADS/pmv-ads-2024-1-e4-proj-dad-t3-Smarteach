@@ -24,6 +24,7 @@ const handler = NextAuth({
             
             if (response.data) {
               let userRole = response.data.user_level;
+              let userClass = response.data.user_class
               
               if (userRole == 3) {
                 userRole = "admin";
@@ -32,8 +33,8 @@ const handler = NextAuth({
               } else {
                 userRole = "aluno";
               }
-        
-              return { ...credentials, role: userRole, name: response.data.name };
+
+              return { ...credentials, role: userRole, name: response.data.name, userClass: userClass };
             } else {
               return null;
             }
@@ -51,11 +52,18 @@ const handler = NextAuth({
     },
     callbacks: {
       jwt: ({ token, user }) => {
-        if (user) token.role = user.role;
+        if (user) {
+          token.role = user.role
+          token.userClass = user.userClass
+          
+        };
         return token
       },
       session: async ({ session, token }) => {
-        if (session?.user ) session.user.role = token.role;
+        if (session?.user ) {
+          session.user.role = token.role
+          session.user.userClass = token.userClass
+        };
         return session
       }
     }
