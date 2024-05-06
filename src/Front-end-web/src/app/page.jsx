@@ -4,7 +4,6 @@ import Mural from "@/components/mural";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
 
 export default function Home() { 
   const session = useSession();
