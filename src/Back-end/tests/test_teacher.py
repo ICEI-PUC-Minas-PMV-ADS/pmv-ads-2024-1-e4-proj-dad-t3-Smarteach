@@ -117,13 +117,12 @@ def test_update_teacher_without_send_id(client):
 def test_delete_teacher_user(client):
 
     user = get_fake_data_profile(client, fake_profile)
+    fake_profile.update({"id": user.get("_id")})
+    response = client.delete('/teacher', json={"id": fake_profile.get("id")})
 
     fake_class_data = {'type': 'class', 'number': fake_profile.get('class_number')}
     fake_class = get_fake_data_profile(client, fake_class_data)
     client.delete('/class', json={"id": fake_class.get('_id')})
-
-    fake_profile.update({"id": user.get("_id")})
-    response = client.delete('/teacher', json={"id": fake_profile.get("id")})
 
     assert response.status_code == 200
 

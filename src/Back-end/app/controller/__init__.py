@@ -31,6 +31,8 @@ def signin_user(data):
     for collection in [student_collection, teacher_collection, admin_collection]:
 
         user = collection.find_one({'email': email})
+        collection_name = collection.name
+
         if not user:
             continue
         
@@ -46,6 +48,7 @@ def signin_user(data):
             user_info = {
                 'user_level': str(user_level),
                 'name': user.get('name'),
+                'user_class': user.get('class_number') if collection_name == "Alunos" else user.get('classes')
             }
 
             return user_info, 200

@@ -20,7 +20,5 @@ def get_fake_data_profile(client, fake_key_property):
     property = 'email' if fake_key_property.get('email') else 'number'
 
     for user_data in response.json:
-        print(property, '>>>>>>>>>>>>>>>>>>>>', user_data)
-        print(fake_key_property.get(property), '<<------------------->>', user_data.get(property))
         if user_data.get(property) == fake_key_property.get(property):
             return user_data

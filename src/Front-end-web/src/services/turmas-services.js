@@ -4,6 +4,7 @@ import axios from 'axios';
 import { BASE_URL } from './url';
 
 export function getClassList() {
+
     const query = useQuery({
         queryKey: ['classes-data'],
         queryFn: async () => {
@@ -46,6 +47,28 @@ export async function createClass(data) {
             console.error(`Falha ao criar o Turma. Status code: ${response.status}`);
         }
     } catch (error) {
+        console.error("Ocorreu um erro ao tentar criar a Turma:", error);
+    }
+}
+
+export function filterClasses(user, classesData){
+
+    try {
+        const userRole = user.role;
+    
+        if (userRole == 'aluno' && classesData){
+            const userClass = [user.userClass]
+            classesData = classesData.filter((elt) => userClass.includes(elt.number) == true)
+    
+        } else if (userRole == 'professor' && classesData) {
+            const userClasses = user.userClass
+            classesData = classesData.filter((elt) => userClasses.includes(elt.number))
+
+        }
+
+        return classesData
+
+    } catch (error){
         console.error("Ocorreu um erro ao tentar criar a Turma:", error);
     }
 }

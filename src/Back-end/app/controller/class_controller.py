@@ -26,12 +26,15 @@ def get_class_profile(class_id):
 
 def insert_new_class(data):
 
+    is_wrong_data = Class.verify_new_class_data(data)
+    if is_wrong_data: 
+        return is_wrong_data, 400
+    
     classes_data = classes_collection.find({})
-    is_wrong_data = Class.verify_new_class_data(data) 
-    is_inexistent_data = Class.verify_if_exist_class_data(data.get('number'), classes_data)  
-
-    if is_wrong_data or is_inexistent_data: 
-        return is_wrong_data or is_inexistent_data, 400
+    is_inexistent_data = Class.verify_if_exist_class_data(data.get('number'), classes_data)
+    
+    if is_inexistent_data: 
+        return is_inexistent_data, 400  
 
     new_class = Class(**data)
     classes_collection.insert_one(new_class.__dict__)

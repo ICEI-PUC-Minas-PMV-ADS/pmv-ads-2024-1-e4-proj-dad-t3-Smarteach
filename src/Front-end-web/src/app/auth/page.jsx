@@ -8,6 +8,13 @@ import Logo from "@/components/logo";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { SubmitButton } from "@/components/submit-button";
+import { TriangleAlert } from 'lucide-react';
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
+import { useState } from "react";
 
 const Login = () => {
  const {
@@ -15,6 +22,8 @@ const Login = () => {
   handleSubmit,
   formState: { errors },
  } = useForm();
+
+ const [loginError, setLoginError] = useState(null);
 
  const session = useSession();
 
@@ -25,16 +34,23 @@ const Login = () => {
  }
 
  const handleLogin = async (data) =>  {
-  await signIn('credentials', {
+  const login = await signIn('credentials', {
     ...data,
     callbackUrl: '/',
+    redirect: false,
   })
+
+  if (login.ok) {
+    route.push(login.url)
+  } else {
+    setLoginError(login.error)
+  }
 };
 
  return (
   <div className="w-screen h-screen flex justify-center items-center flex-col">
     <Logo />
-    <h1 className="text-3xl text-black pt-3"> Login </h1>
+  <h1 className="text-3xl text-black pt-3"> Login </h1>
     <form className="flex flex-col items-center justify-center w-[500px]" onSubmit={handleSubmit(handleLogin)}>
       <div className="flex flex-col w-full">
         <label className="pt-3 pb-2 text-black font-[500]"> Email </label>
@@ -72,9 +88,18 @@ const Login = () => {
         />
         {errors.password?.type === 'required' && <p className="pt-2 p text-red-500 text-sm"> É obrigatório informar a senha </p>}
         {/* {errors.password?.type === 'minLength' && <p className="pt-2 p text-red-500 text-sm"> A senha deve ser maior que 8 digitos </p>} */}
+
+        {loginError && (
+            <Alert variant="destructive" className="mt-5">
+              <TriangleAlert className="h-4 w-4" />
+              <AlertTitle className="font-bold">Erro</AlertTitle>
+              <AlertDescription> Email/Senha inválidos ou não existem! </AlertDescription>
+            </Alert>
+        )}
       </div>
 
-      <SubmitButton label="Login" icon={<LogIn />} submitFunction={handleSubmit(handleLogin)}/>
+
+      <SubmitButton label="Login" icon={<LogIn />} submitFunction={handleSubmit(handleLogin)} />
 
       <p className="text-black pt-3"> Não possui uma conta? <Link href="/auth/cadastro" className="text-slate-600 hover:text-red-500"> Cadastre-se </Link> </p>
     </form>

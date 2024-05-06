@@ -10,7 +10,6 @@ const Cronograma = ({params}) => {
     const [ date, setDate ] = useState(new Date());
     const {classProfileData} = getClassProfile(params.id)
 
-    const hoje = new Date();
     const tarefas = obterTarefasDoDia(classProfileData, date);
 
     return (
@@ -28,7 +27,6 @@ const Cronograma = ({params}) => {
                     selected={date}
                     onSelect={setDate}
                     className="rounded-lg shadow-xl"
-                    disabled={{ before: hoje }}
                 />
                 {tarefas.length > 0 && (
                     <div className="flex flex-col justify-center items-center gap-5">
@@ -41,6 +39,11 @@ const Cronograma = ({params}) => {
                                 <p>Email do Professor: {tarefa.teacher_email}</p>
                             </div>
                         ))}
+                    </div>
+                )}
+                {tarefas.length <= 0 && (
+                    <div>
+                        <h2 className="text-2xl font-bold text-primaryColor">Não há tarefas para o dia selecionado</h2>
                     </div>
                 )}
             </div>        

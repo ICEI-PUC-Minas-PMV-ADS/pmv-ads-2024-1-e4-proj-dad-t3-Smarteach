@@ -7,7 +7,7 @@ class Teacher():
         self.password = kwargs['password']
         self.period = kwargs['period']
         self.subject= kwargs['subject']
-        self.classes = kwargs['classes']
+        self.classes = [int(elt) for elt in kwargs['classes']]
         self.register_date = datetime.now().strftime("%d/%m/%Y - %H:%M")
         self.last_update_date = datetime.now().strftime("%d/%m/%Y - %H:%M") 
     
@@ -16,7 +16,7 @@ class Teacher():
     def verify_new_teacher_data(data: dict):
 
         available_keys = ['email' ,'name', 'password', 'subject', 'classes', 'period']
-
+        class_list = data.get("classes")
         data_keys = data.keys()
 
         if len(data_keys) < 6:
@@ -36,3 +36,13 @@ class Teacher():
 
         if wrong_values:
             return f'Valores incorretos foram atribuidos as seguintes propriedades: {none_values}'
+        
+        for class_number in class_list:
+            
+            if type(class_number) == str:
+                if not class_number.isnumeric():
+                    return 'Valor incorreto atribuído a propriedade class_number'
+                
+            if type(class_number) != int and type(class_number) != str:
+                return 'Valor incorreto atribuído a propriedade class_number'
+            

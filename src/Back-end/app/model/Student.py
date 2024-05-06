@@ -5,12 +5,13 @@ class Student():
         self.name = kwargs['name']
         self.email = kwargs['email']
         self.password = kwargs['password']
-        self.class_number = kwargs['class_number']
+        self.class_number = int(kwargs['class_number'])
     
     @staticmethod
     def verify_student_data(data: dict):
     
         available_keys = ['name', 'email', 'password', 'class_number']
+        class_number = data.get('class_number')
         data_keys = data.keys()
 
         if len(data_keys) < 4:
@@ -30,3 +31,10 @@ class Student():
 
         if wrong_values:
             return f'Valores incorretos foram atribuidos as seguintes propriedades: {none_values}'
+        
+        if type(class_number) == str:
+            if not class_number.isnumeric():
+                return 'Valor incorreto atribuído a propriedade class_number'
+            
+        if type(class_number) != int and type(class_number) != str:
+            return 'Valor incorreto atribuído a propriedade class_number'

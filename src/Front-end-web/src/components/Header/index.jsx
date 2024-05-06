@@ -1,16 +1,15 @@
 "use client";
 import Title from "../logo";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import Link from "next/link";
-import { CircleUser, GraduationCap, LogOut } from "lucide-react";
+import Link from "next/link"
+import { CircleUser, GraduationCap } from "lucide-react";
 import { useSession } from "next-auth/react";
 import ButtonLogout from "../logout-button";
-import { useState } from "react";
+import TooltipComponent from "../tooltip";
 
 export default function Header() {
   const session = useSession();
-  const [isHoverCap, setIsHoverCap] = useState(false);
-  const [isHoverUser, setIsHoverUser] = useState(false);
+
   return (
     <>
       {session.status == "authenticated" && (
@@ -21,26 +20,22 @@ export default function Header() {
             </Link>
             <div className="flex items-center gap-10">
               <div className="flex items-center justify-center gap-4">
-                {session?.data?.user?.role === "admin" && (
+                {session?.data?.user?.role === "admin" && 
                   <div className="flex gap-4">
-                    <Link
-                      href="/usuarios"
-                      onMouseEnter={() => setIsHoverUser(true)}
-                      onMouseLeave={() => setIsHoverUser(false)}
-                    >
-                      {" "}
-                      <CircleUser />{" "}
-                    </Link>
-                    <Link
-                      href="/turmas"
-                      onMouseEnter={() => setIsHoverCap(true)}
-                      onMouseLeave={() => setIsHoverCap(false)}
-                    >
-                      {" "}
-                      <GraduationCap />{" "}
-                    </Link>
+                    <TooltipComponent href={`/PerfilAdmin`} icon={<CircleUser/>} label={"Lista de usuários"} />
+                    <TooltipComponent href={`/usuarios`} icon={<GraduationCap />} label={"Turmas"} />
                   </div>
-                )}
+                }
+                 {session?.data?.user?.role === "aluno" && 
+                  <div className="flex gap-4"> 
+                    <Link href="/PerfilAluno"> <CircleUser/> </Link>
+                  </div>
+                } 
+                {session?.data?.user?.role === "professor" && 
+                  <div className="flex gap-4"> 
+                    <Link href="/PerfilProfessor"> <CircleUser/> </Link>
+                  </div>
+                } 
                 <ButtonLogout />
               </div>
               <div className="flex items-center justify-center gap-3">
