@@ -9,10 +9,10 @@ import Image from "next/image";
 const ClassList = () => {
 
     const session = useSession();
-    const {classesData} = getClassList();
+    const {classData} = getClassList();
 
     const user = session?.data?.user
-    const classList = filterClasses(user, classesData)
+    const classList = filterClasses(user, classData)
     
     return (
         <div className="container grid grid-cols-classgrid gap-5 max-w-[1280px] h-screen"> 

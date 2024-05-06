@@ -15,7 +15,7 @@ export function getClassList() {
 
     return {
         ...query,
-        classesData: query.data,
+        classData: query.data,
     };
 }
 
