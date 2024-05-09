@@ -36,9 +36,6 @@ export default function UserProfile() {
             <h2><strong>Nome:</strong> {session?.data?.user?.name}</h2>
             <h3><strong>Tipo de Perfil:</strong> {profileType}</h3>
             <p><strong>Email:</strong> {session?.data?.user?.email}</p>
-            <Link href={`/usuarios`} className='flex justify-between items-center w-full text-blue-500'>
-                      Mais detalhes
-            </Link>
           </div>
         </div>
     </div>
