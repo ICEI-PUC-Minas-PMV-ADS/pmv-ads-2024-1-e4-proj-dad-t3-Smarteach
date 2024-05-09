@@ -2,7 +2,7 @@
 import Title from "../logo";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import Link from "next/link"
-import { CircleUser, GraduationCap } from "lucide-react";
+import { CircleUser, GraduationCap, LogOut } from "lucide-react";
 import { useSession } from "next-auth/react";
 import ButtonLogout from "../logout-button";
 import TooltipComponent from "../tooltip";
@@ -20,10 +20,10 @@ export default function Header() {
             </Link>
             <div className="flex items-center gap-10">
               <div className="flex items-center justify-center gap-4">
+              <TooltipComponent href={`/meuPerfil`} icon={<CircleUser/>} label={"Meu perfil"} />
                 {session?.data?.user?.role === "admin" && 
                   <div className="flex gap-4">
-                    <TooltipComponent href={`/PerfilAdmin`} icon={<CircleUser/>} label={"Lista de usuários"} />
-                    <TooltipComponent href={`/usuarios`} icon={<GraduationCap />} label={"Turmas"} />
+                    <TooltipComponent href={`/usuarios`} icon={<GraduationCap />} label={"Usuários"} />
                   </div>
                 }
                  {session?.data?.user?.role === "aluno" && 
@@ -36,7 +36,7 @@ export default function Header() {
                     <Link href="/PerfilProfessor"> <CircleUser/> </Link>
                   </div>
                 } 
-                <ButtonLogout />
+                <ButtonLogout/>
               </div>
               <div className="flex items-center justify-center gap-3">
                 {session?.data?.user?.name}

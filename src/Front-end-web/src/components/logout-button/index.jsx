@@ -2,6 +2,8 @@
 import { signOut } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import { LogOut } from "lucide-react";
+import TooltipComponent from "../tooltip";
+
 
 
 const ButtonLogout = () => {
@@ -16,7 +18,12 @@ const ButtonLogout = () => {
     }
 
     return (
-        <LogOut onClick={logout} className="w-full cursor-pointer" />
+        <TooltipComponent
+            href=""
+            icon={<LogOut />}
+            label={"Sair"}
+            onClick={logout}
+        />
     )
 
 }
