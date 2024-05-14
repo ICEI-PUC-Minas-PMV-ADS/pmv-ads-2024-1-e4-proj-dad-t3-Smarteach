@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
-import FirstScreen from "./src/screens/FirstScreen";
+import SignInPage from "./src/screens/SignInPage";
+import LoginPage from "./src/screens/LoginPage";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,8 +23,9 @@ export default function App() {
           style={{ width: 252, height: 100, resizeMode: "contain" }}
         />
       ) : (
-        <FirstScreen />
+        <SignInPage/>
       )}
+      
     </View>
   );
 }
