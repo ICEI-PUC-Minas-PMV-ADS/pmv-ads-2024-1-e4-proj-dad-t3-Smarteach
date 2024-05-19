@@ -108,7 +108,7 @@ const Page = () => {
                 type="text"
                 {...register("date", {
                   required: true,
-                  pattern: /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/g
+                  pattern: /^(0[1-9]|[12][0-9]|3[01])[/.](0[1-9]|1[012])[/.](19|20)\d\d$/g
                 })}
               />
               {errors.date?.type === "required" && (
