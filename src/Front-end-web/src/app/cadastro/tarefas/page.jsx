@@ -28,10 +28,10 @@ const Page = () => {
       };
 
     return (
-        <div className="w-screen h-screen flex justify-center items-center flex-col">
+        <div className=" flex justify-center items-center flex-col">
           <div className="flex flex-col items-center justify-center w-[500px]">
             <div className="flex flex-col w-full">
-              <label className="pt-3 pb-2 text-black font-[500]"> Nome </label>
+              <label className="pt-0 pb-2 text-black font-[500]"> Nome </label>
               <Input
                 className={
                   errors.nome &&
