@@ -5,9 +5,9 @@ import { CalendarIcon, UserPlus } from "lucide-react";
 import { SubmitButton } from "@/components/submit-button";
 import { useRouter } from "next/navigation";
 import { getClassList } from "@/services/turmas-services";
+import {timeLineData} from "@/services/activities-service";
 import { getProfessorList } from "@/services/professor-services";
 import { createTask } from "@/services/task-services";
-import { useState } from "react";
 
 const Page = () => {
     const {
@@ -40,7 +40,7 @@ const Page = () => {
                 type="text"
                 {...register("nome", {
                   required: true,
-                  minLength: 5,
+                  minLength: 4,
                 })}
               />
               {errors.nome?.type === "required" && (
@@ -73,24 +73,29 @@ const Page = () => {
               )}
             </div>
 
+
             <div className="flex flex-col w-full">
               <label className="pt-3 pb-2 text-black font-[500]"> Horário </label>
-              <Input
+              <select
+                name="Horário"
+                placeholder="Selecione um horário"
+                {...register("time", {required: true})}
                 className={
                   errors.time &&
-                  "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
+                  errors.class_number 
+                  ? "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
+                  : "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 }
-                type="text"
-                {...register("time", {
-                  required: true,
-                })}
-              />
-              {errors.time?.type === "required" && (
-                <p className="pt-2 text-red-500 text-sm">
-    
-                  É obrigatório informar o horário
-                </p>
-              )}
+              >
+                {timeLineData?.map(time => (
+                  <option value={time}>{time}</option>
+                  ))}
+                {errors.time?.type === "required" && (
+                  <p className="pt-2 text-red-500 text-sm">
+                      É obrigatório informar um horário
+                  </p>
+                )}
+              </select>
             </div>
 
             <div className="flex flex-col w-full">
@@ -103,9 +108,7 @@ const Page = () => {
                 type="text"
                 {...register("date", {
                   required: true,
-                  // validate: (value) => {
-                  //   return validator.isDate(value);
-                  // },
+                  pattern: /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/g
                 })}
               />
               {errors.date?.type === "required" && (
@@ -114,9 +117,12 @@ const Page = () => {
                   É obrigatório informar a Data da Tarefa
                 </p>
               )}
-              {/* {errors.email?.type === "validate" && (
-                <p className="pt-2 text-red-500 text-sm"> A data informada é inválida </p>
-              )} */}
+              {errors.date?.type === "pattern" && (
+                <p className="pt-2 text-red-500 text-sm">
+    
+                  Data informada deve seguir o seguinte padrão: 01/01/2001
+                </p>
+              )}
             </div>
 
             <div className="flex flex-col w-full">

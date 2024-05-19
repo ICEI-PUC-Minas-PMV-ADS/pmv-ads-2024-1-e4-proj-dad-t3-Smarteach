@@ -5,6 +5,8 @@ import { BASE_URL } from './url';
 
 export async function createTask(data) {
 
+    console.log('>>>>>>>>>>>>>>>>>>', typeof data.class_number)
+
     try {
         await axios.post(`${BASE_URL}class/activity`, {
             name: data.nome,
@@ -12,7 +14,7 @@ export async function createTask(data) {
             time: data.time,
             date: data.date,
             teacher_email: data.teacher_email,
-            class_number: data.class_number,
+            class_number: Number(data.class_number),
         });
 
         if (response.status === 200) {
