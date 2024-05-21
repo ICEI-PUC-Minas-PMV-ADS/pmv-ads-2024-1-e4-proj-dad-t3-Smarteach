@@ -7,6 +7,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    console.log('App is loading');
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 3000);
