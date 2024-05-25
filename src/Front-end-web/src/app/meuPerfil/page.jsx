@@ -1,14 +1,32 @@
 'use client'
 import { useSession } from "next-auth/react";
 import React from 'react';
-import ClassList from "@/components/class-list";
-import Mural from "@/components/mural";
-import { Avatar, AvatarImage } from "@/components/ui/avatar"
+import Link from "next/link"
+import { Pen } from 'lucide-react';
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import Detalhes from './../detalhes/turma/[id]/page';
 
 export default function UserProfile() {
   const session = useSession();
 
+  let profileType;
+  switch (session?.data?.user?.role) {
+    case "professor":
+      profileType = "Professor(a)";
+      break;
+    case "aluno":
+      profileType = "Aluno(a)";
+      break;
+    case "admin":
+      profileType = "Administrador(a)";
+      break;
+    default:
+      profileType = "Tipo de Perfil Indefinido";
+      break;
+  }
+
   return (
+
     <div className="container pb-10 flex flex-col justify-center items-center gap-12">
         <div className="flex w-[500px] h-[200px] justify-center items-center gap-10 border-4 border-border rounded-xl">
           <Avatar className="w-[100px] h-[100px]">
@@ -16,15 +34,10 @@ export default function UserProfile() {
           </Avatar>
           <div>
             <h2><strong>Nome:</strong> {session?.data?.user?.name}</h2>
-            <h3><strong>Tipo de Perfil:</strong> Aluno(a)</h3>
+            <h3><strong>Tipo de Perfil:</strong> {profileType}</h3>
             <p><strong>Email:</strong> {session?.data?.user?.email}</p>
           </div>
         </div>
-        <div className="flex w-full">
-          <ClassList />
-          <Mural />
-        </div>
     </div>
-
   );
 }
