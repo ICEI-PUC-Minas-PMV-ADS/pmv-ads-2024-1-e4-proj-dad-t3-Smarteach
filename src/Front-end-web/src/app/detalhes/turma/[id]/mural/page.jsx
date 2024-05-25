@@ -56,13 +56,13 @@ const Mural = ({ params }) => {
                                   <p className="flex text-2xl font-light text justify-center mt-3 text-gray-500">{task.subject}</p>
                                   <p className=""><span id={`pontos-${taskId}`}></span>
                                     <span id={`mais-${taskId}`} style={{ display: 'none' }}>
-                                      <p className="text-x leading-5 text-gray-500 mt-3 mb-3 px-10"><strong>Email:</strong> {task.teacher_email}</p>
                                       <p className=" text-x leading-5 text-gray-500 mt-3 mb-3 px-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed sollicitudin ex.<br />
                                         Nam semper efficitur orci ac pellentesque. Nullam luctus euismod eros.<br />
                                         Duis mollis, ante in mollis elementum, sapien elit congue felis, nec commodo<br />
                                         velit risus sit amet quam. Quisque elementum orci non sagittis commodo.<br />
                                         In egestas ligula turpis, id scelerisque arcu pharetra et.<br />
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br /></p></span>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br /></p>
+                                        <p className="text-x leading-5 text-gray-500 mt-3 mb-3 px-10"><strong>Email:</strong> {task.teacher_email}</p></span>
                                   </p>
                                 </div>
                                 <div className=" px-10">
