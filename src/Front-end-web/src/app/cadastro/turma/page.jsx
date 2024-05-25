@@ -32,7 +32,7 @@ const Page = () => {
                   "bg-red-300 border-red-500 placeholder:text-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
                 }
                 type="number"
-                placeholder="Digite uma number"
+                placeholder="Digite uma turma"
                 {...register("number", {
                   required: true,
                   minLenght: 3,
@@ -41,7 +41,7 @@ const Page = () => {
               {errors.number?.type === "required" && (
                 <p className="pt-2 p text-red-500 text-sm">
     
-                  É obrigatório informar a number
+                  É obrigatório informar a turma
                 </p>
               )}
               {errors.number?.type === "minLenght" && (
