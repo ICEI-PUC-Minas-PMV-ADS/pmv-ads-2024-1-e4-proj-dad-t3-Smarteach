@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@radix-ui/react-tooltip": "^1.0.7",
+    "axios": "^1.7.2"
+  }
+}
