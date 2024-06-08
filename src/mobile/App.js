@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Image, StyleSheet, View } from "react-native";
-import SignInPage from "./src/screens/SignInPage";
+import FirstScreen from "./src/screens/FirstScreen";
 import LoginPage from "./src/screens/LoginPage";
+import SignInPage from "./src/screens/SignInPage";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log('App is loading');
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 3000);
@@ -15,19 +19,25 @@ export default function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  return (
-    <View style={styles.container}>
-      {isLoading ? (
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
         <Image
-          StyleSheet
-          source={"/assets/SMARTEACH.png"}
+          source={require("./assets/SMARTEACH.png")}
           style={{ width: 252, height: 100, resizeMode: "contain" }}
         />
-      ) : (
-        <SignInPage/>
-      )}
-      
-    </View>
+      </View>
+    );
+  }
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="FirstScreen">
+        <Stack.Screen name="FirstScreen" component={FirstScreen} />
+        <Stack.Screen name="LoginPage" component={LoginPage} />
+        <Stack.Screen name="SignInPage" component={SignInPage} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

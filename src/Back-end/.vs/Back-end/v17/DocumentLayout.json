@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\Documents\\Projetos\\Repos\\Smarteach\\pmv-ads-2024-1-e4-proj-dad-t3-Smarteach\\src\\Back-end\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\Documents\\Projetos\\Repos\\Smarteach\\pmv-ads-2024-1-e4-proj-dad-t3-Smarteach\\src\\Back-end\\app\\view\\post_views.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:app\\view\\post_views.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\Documents\\Projetos\\Repos\\Smarteach\\pmv-ads-2024-1-e4-proj-dad-t3-Smarteach\\src\\Back-end\\app\\services\\__init__.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:app\\services\\__init__.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\Documents\\Projetos\\Repos\\Smarteach\\pmv-ads-2024-1-e4-proj-dad-t3-Smarteach\\src\\Back-end\\app\\controller\\activity_controller.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:app\\controller\\activity_controller.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "post_views.py",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\Projetos\\Repos\\Smarteach\\pmv-ads-2024-1-e4-proj-dad-t3-Smarteach\\src\\Back-end\\app\\view\\post_views.py",
+              "RelativeDocumentMoniker": "app\\view\\post_views.py",
+              "ToolTip": "C:\\Users\\User\\Documents\\Projetos\\Repos\\Smarteach\\pmv-ads-2024-1-e4-proj-dad-t3-Smarteach\\src\\Back-end\\app\\view\\post_views.py",
+              "RelativeToolTip": "app\\view\\post_views.py",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAowCgAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-06-08T12:38:22.955Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "__init__.py",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\Projetos\\Repos\\Smarteach\\pmv-ads-2024-1-e4-proj-dad-t3-Smarteach\\src\\Back-end\\app\\services\\__init__.py",
+              "RelativeDocumentMoniker": "app\\services\\__init__.py",
+              "ToolTip": "C:\\Users\\User\\Documents\\Projetos\\Repos\\Smarteach\\pmv-ads-2024-1-e4-proj-dad-t3-Smarteach\\src\\Back-end\\app\\services\\__init__.py",
+              "RelativeToolTip": "app\\services\\__init__.py",
+              "ViewState": "AQIAADkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-06-08T12:38:04.41Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "activity_controller.py",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\Projetos\\Repos\\Smarteach\\pmv-ads-2024-1-e4-proj-dad-t3-Smarteach\\src\\Back-end\\app\\controller\\activity_controller.py",
+              "RelativeDocumentMoniker": "app\\controller\\activity_controller.py",
+              "ToolTip": "C:\\Users\\User\\Documents\\Projetos\\Repos\\Smarteach\\pmv-ads-2024-1-e4-proj-dad-t3-Smarteach\\src\\Back-end\\app\\controller\\activity_controller.py",
+              "RelativeToolTip": "app\\controller\\activity_controller.py",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAsAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-06-08T12:37:47.397Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

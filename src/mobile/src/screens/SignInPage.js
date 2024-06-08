@@ -2,7 +2,7 @@ import { Button } from "react-native-paper";
 import { StyleSheet, View, Text, TextInput, ScrollView, TouchableOpacity, Dimensions, Modal, Image } from 'react-native';
 import { Input } from '@rneui/themed';
 
-const SignInPage = () => {
+const SignInPage = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.card}>

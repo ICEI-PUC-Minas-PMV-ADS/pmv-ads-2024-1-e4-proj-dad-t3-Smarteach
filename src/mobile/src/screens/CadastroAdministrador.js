@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   buttonAltText: {
     color: '#fff',
     fontSize: 16,
-    textAlign: 'center', // Centraliza o texto
+    textAlign: 'center',
   },
   footer: {
     position: 'absolute',
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#004AAD',
     justifyContent: 'space-around',
-    paddingVertical: 20, // Aumentando o espaço para o footer
+    paddingVertical: 20,
   },
   footerButton: {
     alignItems: 'center',
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
     marginTop: 20,
-    textAlign: 'center', // Adiciona alinhamento ao centro para o texto
+    textAlign: 'center',
   },
 });
 

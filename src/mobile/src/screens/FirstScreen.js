@@ -1,19 +1,25 @@
+import React from "react";
 import { View, Image, StyleSheet } from "react-native";
 import { Button } from "@rneui/themed";
 
-const FirstScreen = () => {
+const FirstScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Image source={"/assets/SMARTEACH.png"} style={styles.image} />
+      <Image
+        source={require("../../assets/SMARTEACH.png")}
+        style={styles.image}
+      />
       <Button
         title="ENTRAR"
         buttonStyle={styles.button}
         titleStyle={{ fontWeight: "bold", fontSize: 18, color: "#004AAD" }}
+        onPress={() => navigation.navigate("LoginPage")}
       />
       <Button
         title="CADASTRE-SE"
         buttonStyle={styles.button}
         titleStyle={{ fontWeight: "bold", fontSize: 18, color: "#004AAD" }}
+        onPress={() => navigation.navigate("SignInPage")}
       />
     </View>
   );
@@ -38,7 +44,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#004AAD",
     backgroundColor: "transparent",
-    marginBottom: 19
+    marginBottom: 19,
   },
 });
 
