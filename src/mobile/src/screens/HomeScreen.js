@@ -6,7 +6,6 @@ import TelaTeste1 from "./TelaTeste1";
 const Tab = createBottomTabNavigator();
 
 function HomeTabs({route}) {
-    const { user } = route.params;
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
