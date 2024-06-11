@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+import {Picker} from '@react-native-picker/picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const CadastroProfessor = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, ScrollView, TouchableOpacity, Dimensions, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import axios from 'axios';
+//import axios from 'axios';
 
 const EditarAdministrador = () => {
   const [nomeCompleto, setNomeCompleto] = useState('');
@@ -110,12 +110,12 @@ const email = data.email
 const password = data.password
 const class_number = data.class_number
 
-const response = await axios.post($(baseUrl)/student, {
-    name,
-    email,
-    password,
-    class_number
-  });
+//const response = await axios.post($(baseUrl)/student, {
+//    name,
+//    email,
+//    password,
+//    class_number
+//  });
 
 console.log(response.data)
 

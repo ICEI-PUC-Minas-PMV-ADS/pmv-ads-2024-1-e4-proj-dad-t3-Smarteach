@@ -3,6 +3,12 @@ import { Image, StyleSheet, View } from "react-native";
 import FirstScreen from "./src/screens/FirstScreen";
 import LoginPage from "./src/screens/LoginPage";
 import SignInPage from "./src/screens/SignInPage";
+import CadastroAdministrador from "./src/screens/CadastroAdministrador";
+import CadastroProfessor from "./src/screens/CadastroProfessor";
+import CadastroAluno from "./src/screens/CadastroAluno";
+//import EditarAdministrador from "./src/screens/EditarAdministrador";
+import EditarProfessor from "./src/screens/EditarProfessor";
+import EditarAluno from "./src/screens/EditarAluno";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -36,6 +42,11 @@ export default function App() {
         <Stack.Screen name="FirstScreen" component={FirstScreen} />
         <Stack.Screen name="LoginPage" component={LoginPage} />
         <Stack.Screen name="SignInPage" component={SignInPage} />
+        <Stack.Screen name="CadastroAdministrador" component={CadastroAdministrador} />
+        <Stack.Screen name="CadastroProfessor" component={CadastroProfessor} />
+        <Stack.Screen name="CadastroAluno" component={CadastroAluno} />
+        <Stack.Screen name="EditarProfessor" component={EditarProfessor} />
+        <Stack.Screen name="EditarAluno" component={EditarAluno} />
       </Stack.Navigator>
     </NavigationContainer>
   );
