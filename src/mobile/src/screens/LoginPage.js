@@ -21,6 +21,7 @@ const LoginPage = ({ navigation }) => {
       const data = response.data;
 
       console.log("Usuário autenticado:", data);
+      navigation.navigate("HomeScreen", { user: data });
     } catch (error) {
       Alert.alert("Erro", "Email ou senha incorretos.");
     }
