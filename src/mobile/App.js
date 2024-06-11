@@ -3,6 +3,7 @@ import { Image, StyleSheet, View } from "react-native";
 import FirstScreen from "./src/screens/FirstScreen";
 import LoginPage from "./src/screens/LoginPage";
 import SignInPage from "./src/screens/SignInPage";
+import HomeScreen from "./src/screens/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -33,9 +34,26 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="FirstScreen">
-        <Stack.Screen name="FirstScreen" component={FirstScreen} />
-        <Stack.Screen name="LoginPage" component={LoginPage} />
-        <Stack.Screen name="SignInPage" component={SignInPage} />
+        <Stack.Screen
+          name="FirstScreen"
+          component={FirstScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="LoginPage"
+          component={LoginPage}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignInPage"
+          component={SignInPage}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
