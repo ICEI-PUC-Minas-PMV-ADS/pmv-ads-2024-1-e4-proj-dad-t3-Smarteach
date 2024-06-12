@@ -9,8 +9,8 @@ const Route = () => {
         <>
             {
                 signed
-                    ? <Main />
-                    : <Auth />
+                ? <Main />
+                : <Auth />
             }
         </>
     )

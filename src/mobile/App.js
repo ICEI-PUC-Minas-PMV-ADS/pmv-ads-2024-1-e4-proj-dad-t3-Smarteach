@@ -3,8 +3,7 @@ import { Image, StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Route from "./src/navigations/Route";
-import Auth from "./src/navigations/Auth";
-import Mural from "./src/screens/Mural";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -32,8 +31,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      {/* <Auth /> */}
-      <Mural />
+      <Route />
     </NavigationContainer>
   );
 }
