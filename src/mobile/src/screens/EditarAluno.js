@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, ScrollView, TouchableOpacity, Dimensions, Modal } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {Picker} from '@react-native-picker/picker';
-const turmas=['turma','turma1','turma2','turma3'];
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const EditarAluno = () => {
   const [turma,setTurma] = useState();
@@ -12,6 +11,8 @@ const EditarAluno = () => {
   const [confirmarSenha, setConfirmarSenha] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
 
+  const turmas=['turma','turma1','turma2','turma3'];
+  
   const handleSubmit = () => {
     setModalVisible(true);
   };

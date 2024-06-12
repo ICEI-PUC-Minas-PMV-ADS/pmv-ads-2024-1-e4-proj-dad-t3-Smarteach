@@ -21,6 +21,42 @@ const FirstScreen = ({ navigation }) => {
         titleStyle={{ fontWeight: "bold", fontSize: 18, color: "#004AAD" }}
         onPress={() => navigation.navigate("Cadastro")}
       />
+      <Button
+        title="CadastroAdministrador"
+        buttonStyle={styles.button}
+        titleStyle={{ fontWeight: "bold", fontSize: 18, color: "#004AAD" }}
+        onPress={() => navigation.navigate("CadastroAdministrador")}
+      />
+      <Button
+          title="CadastroProfessor"
+          buttonStyle={styles.button}
+          titleStyle={{ fontWeight: "bold", fontSize: 18, color: "#004AAD" }}
+          onPress={() => navigation.navigate("CadastroProfessor")}
+        />
+      <Button
+        title="CadastroAluno"
+        buttonStyle={styles.button}
+        titleStyle={{ fontWeight: "bold", fontSize: 18, color: "#004AAD" }}
+        onPress={() => navigation.navigate("CadastroAluno")}
+      />
+      <Button
+        title="EditarAdministrador"
+        buttonStyle={styles.button}
+        titleStyle={{ fontWeight: "bold", fontSize: 18, color: "#004AAD" }}
+        onPress={() => navigation.navigate("EditarAdministrador")}
+      />
+      <Button
+        title="EditarProfessor"
+        buttonStyle={styles.button}
+        titleStyle={{ fontWeight: "bold", fontSize: 18, color: "#004AAD" }}
+        onPress={() => navigation.navigate("EditarProfessor")}
+      />
+      <Button
+        title="EditarAluno"
+        buttonStyle={styles.button}
+        titleStyle={{ fontWeight: "bold", fontSize: 18, color: "#004AAD" }}
+        onPress={() => navigation.navigate("EditarAluno")}
+      />
     </View>
   );
 };
