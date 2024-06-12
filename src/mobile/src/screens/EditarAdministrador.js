@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, ScrollView, TouchableOpacity, Dimensions, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-//import axios from 'axios';
+import axios from 'axios';
 
 const EditarAdministrador = () => {
   const [nomeCompleto, setNomeCompleto] = useState('');
@@ -116,8 +116,8 @@ const class_number = data.class_number
 //    password,
 //    class_number
 //  });
-
-console.log(response.data)
+//
+//console.log(response.data)
 
 
 const styles = StyleSheet.create({

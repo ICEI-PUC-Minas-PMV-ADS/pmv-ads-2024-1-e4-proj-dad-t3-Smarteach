@@ -6,7 +6,7 @@ import SignInPage from "./src/screens/SignInPage";
 import CadastroAdministrador from "./src/screens/CadastroAdministrador";
 import CadastroProfessor from "./src/screens/CadastroProfessor";
 import CadastroAluno from "./src/screens/CadastroAluno";
-//import EditarAdministrador from "./src/screens/EditarAdministrador";
+import EditarAdministrador from "./src/screens/EditarAdministrador";
 import EditarProfessor from "./src/screens/EditarProfessor";
 import EditarAluno from "./src/screens/EditarAluno";
 import { NavigationContainer } from "@react-navigation/native";
@@ -45,6 +45,7 @@ export default function App() {
         <Stack.Screen name="CadastroAdministrador" component={CadastroAdministrador} />
         <Stack.Screen name="CadastroProfessor" component={CadastroProfessor} />
         <Stack.Screen name="CadastroAluno" component={CadastroAluno} />
+        <Stack.Screen name="EditarAdministrador" component={EditarAdministrador} />
         <Stack.Screen name="EditarProfessor" component={EditarProfessor} />
         <Stack.Screen name="EditarAluno" component={EditarAluno} />
       </Stack.Navigator>

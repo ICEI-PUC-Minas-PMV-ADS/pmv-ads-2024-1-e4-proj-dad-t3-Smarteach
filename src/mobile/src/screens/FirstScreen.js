@@ -42,7 +42,7 @@ const FirstScreen = ({ navigation }) => {
       <Button
         title="EditarAdministrador"
         buttonStyle={styles.button}
-        titleStyle={{ fontWeight: "bold", fontSize: 18, color: "red" }}
+        titleStyle={{ fontWeight: "bold", fontSize: 18, color: "#004AAD" }}
         onPress={() => navigation.navigate("EditarAdministrador")}
       />
       <Button
