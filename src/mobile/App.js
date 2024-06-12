@@ -9,6 +9,7 @@ import CadastroAluno from "./src/screens/CadastroAluno";
 import EditarAdministrador from "./src/screens/EditarAdministrador";
 import EditarProfessor from "./src/screens/EditarProfessor";
 import EditarAluno from "./src/screens/EditarAluno";
+import HomeScreen from "./src/screens/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
