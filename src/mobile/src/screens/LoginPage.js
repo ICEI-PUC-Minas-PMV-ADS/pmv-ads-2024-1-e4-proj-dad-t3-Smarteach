@@ -1,31 +1,29 @@
 import React, { useState } from "react";
 import { View, Image, StyleSheet, Alert } from "react-native";
 import { Input, Button } from "@rneui/themed";
-import axios from "axios";
+import { login } from "../services/auth.services";
 
-const LoginPage = ({ navigation }) => {
+const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
-    if (!email || !password) {
-      Alert.alert("Erro", "Por favor, insira email e senha.");
-      return;
-    }
+  const handleLogin = () => {
 
-    try {
-      const response = await axios.post("http://localhost:5000/login", {
-        email,
-        password,
-      });
-      const data = response.data;
+    login({
+      email: email,
+      password: password,
+    }).then(res => {
+      console.log(res)
+      // if (res && res.user) {
+      //   setSigned(true);
+      //   setName(res.user.name);
+      // } else {
+      //   Alert.alert('Atenção!', 'Email/Senha inválidos')
 
-      console.log("Usuário autenticado:", data);
-      navigation.navigate("HomeScreen", { user: data });
-    } catch (error) {
-      Alert.alert("Erro", "Email ou senha incorretos.");
-    }
-  };
+      // }
+    });
+
+  }
 
   return (
     <View style={styles.container}>

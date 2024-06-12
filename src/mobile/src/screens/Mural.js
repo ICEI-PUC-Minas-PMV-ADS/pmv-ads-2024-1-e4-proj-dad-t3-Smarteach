@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import React from 'react';
 
-export default function App() {
+export default function Mural() {
   return (
     <><ScrollView contentContainerStyle={styles.scrollContainer}>
     <View style={styles.container}>

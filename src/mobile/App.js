@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Image, StyleSheet, View } from "react-native";
-import FirstScreen from "./src/screens/FirstScreen";
-import LoginPage from "./src/screens/LoginPage";
-import SignInPage from "./src/screens/SignInPage";
-import HomeScreen from "./src/screens/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Route from "./src/navigations/Route";
+import Auth from "./src/navigations/Auth";
+import Mural from "./src/screens/Mural";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,28 +32,8 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="FirstScreen">
-        <Stack.Screen
-          name="FirstScreen"
-          component={FirstScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="LoginPage"
-          component={LoginPage}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SignInPage"
-          component={SignInPage}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="HomeScreen"
-          component={HomeScreen}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
+      {/* <Auth /> */}
+      <Mural />
     </NavigationContainer>
   );
 }
