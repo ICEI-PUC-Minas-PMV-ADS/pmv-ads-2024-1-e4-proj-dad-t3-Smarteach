@@ -1,12 +1,8 @@
 'use client'
-import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { BASE_URL } from './url';
 
 export async function createTask(data) {
-
-    console.log('>>>>>>>>>>>>>>>>>>', typeof data.class_number)
-
     try {
         await axios.post(`${BASE_URL}class/activity`, {
             name: data.nome,

@@ -13,13 +13,13 @@ const FirstScreen = ({ navigation }) => {
         title="ENTRAR"
         buttonStyle={styles.button}
         titleStyle={{ fontWeight: "bold", fontSize: 18, color: "#004AAD" }}
-        onPress={() => navigation.navigate("LoginPage")}
+        onPress={() => navigation.navigate("Login")}
       />
       <Button
         title="CADASTRE-SE"
         buttonStyle={styles.button}
         titleStyle={{ fontWeight: "bold", fontSize: 18, color: "#004AAD" }}
-        onPress={() => navigation.navigate("SignInPage")}
+        onPress={() => navigation.navigate("Cadastro")}
       />
     </View>
   );

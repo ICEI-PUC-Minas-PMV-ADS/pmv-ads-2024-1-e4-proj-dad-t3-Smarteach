@@ -110,14 +110,14 @@ const email = data.email
 const password = data.password
 const class_number = data.class_number
 
-const response = await axios.post($(baseUrl)/student, {
-    name,
-    email,
-    password,
-    class_number
-  });
-
-console.log(response.data)
+//const response = await axios.post($(baseUrl)/student, {
+//    name,
+//    email,
+//    password,
+//    class_number
+//  });
+//
+//console.log(response.data)
 
 
 const styles = StyleSheet.create({

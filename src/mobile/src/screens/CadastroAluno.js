@@ -1,27 +1,28 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, ScrollView, TouchableOpacity, Dimensions, Modal } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {StyleSheet,View,Text,TextInput,ScrollView,TouchableOpacity,Dimensions} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-const materias=['Matéria','Matéria1','Matéria2','Matéria3'];
-const turmas=['turma','turma1','turma2','turma3'];
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-const EditarProfessor = () => {
-  const [materia,setMateria] = useState();
-  const [turma,setTurma] = useState();
+const CadastroAluno = () => {
   const [nomeCompleto, setNomeCompleto] = useState('');
   const [email, setEmail] = useState('');
+  const [turno, setTurno] = useState('');
+  const [numeroTurma, setNumeroTurma] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
-  const [modalVisible, setModalVisible] = useState(false);
-
 
   const handleSubmit = () => {
-    setModalVisible(true);
+    console.log({
+      nomeCompleto,
+      email,
+      turno,
+      numeroTurma,
+      senha,
+      confirmarSenha,
+    });
   };
-const handleValueChange=(itemValue, itemIndex) =>setMateria(itemValue)
-const handleValueChange1=(itemValue1, itemIndex) =>setTurma(itemValue1)
+
   return (
-    
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.navbar}>
         <TouchableOpacity>
@@ -33,8 +34,7 @@ const handleValueChange1=(itemValue1, itemIndex) =>setTurma(itemValue1)
         </TouchableOpacity>
       </View>
       <View style={styles.card}>
-      
-        <Text style={styles.subtitle}>Atualizar Professor</Text>
+        <Text style={styles.subtitle}>Cadastro Aluno</Text>
         <TextInput
           style={styles.input}
           placeholder="Nome Completo"
@@ -48,30 +48,31 @@ const handleValueChange1=(itemValue1, itemIndex) =>setTurma(itemValue1)
           onChangeText={setEmail}
           keyboardType="email-address"
         />
-        <View style={styles.inputPicker}>
-        <Picker
-        style={styles.picker}
-        selectedValue={materia}
-        onValueChange={handleValueChange}>
-          {
-            materias.map(materia=> <Picker.Item key={materia} label={materia} value={materia}/>)
-          }
-        </Picker>
+        <View style={styles.pickerContainer}>
+          <Picker
+            selectedValue={turno}
+            style={styles.picker}
+            onValueChange={(itemValue) => setTurno(itemValue)}>
+            <Picker.Item label="Turno" value="" />
+            <Picker.Item label="Manhã" value="Manhã" />
+            <Picker.Item label="Tarde" value="Tarde" />
+            <Picker.Item label="Noite" value="Noite" />
+          </Picker>
         </View>
-
-        <View style={styles.inputPicker}>
-        <Picker
-        style={styles.picker}
-        selectedValue={turma}
-        onValueChange={handleValueChange1}>
-          {
-            turmas.map(turma=> <Picker.Item key={turma} label={turma} value={turma}/>)
-          }
-        </Picker>
+        <View style={styles.pickerContainer}>
+          <Picker
+            selectedValue={numeroTurma}
+            style={styles.picker}
+            onValueChange={(itemValue) => setNumeroTurma(itemValue)}>
+            <Picker.Item label="Número da Turma" value="" />
+            <Picker.Item label="1" value="1" />
+            <Picker.Item label="2" value="2" />
+            <Picker.Item label="3" value="3" />
+          </Picker>
         </View>
         <TextInput
           style={styles.input}
-          placeholder="Turma"
+          placeholder="Senha"
           value={senha}
           onChangeText={setSenha}
           secureTextEntry
@@ -84,10 +85,7 @@ const handleValueChange1=(itemValue1, itemIndex) =>setTurma(itemValue1)
           secureTextEntry
         />
         <TouchableOpacity style={styles.buttonAlt} onPress={handleSubmit}>
-          <Text style={styles.buttonAltText}>ALTERAR</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonDelAlt} onPress={handleSubmit}>
-          <Text style={styles.buttonDelText}>DELETAR PROFESSOR</Text>
+          <Text style={styles.buttonAltText}>CADASTRAR ALUNO</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.footer}>
@@ -104,21 +102,6 @@ const handleValueChange1=(itemValue1, itemIndex) =>setTurma(itemValue1)
           <Icon name="cog" size={24} color="#fff" />
         </TouchableOpacity>
       </View>
-      <Modal
-        transparent={true}
-        visible={modalVisible}
-        animationType="slide"
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalContainer}>
-            <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
-              <Icon name="times" size={24} color="#fff" />
-            </TouchableOpacity>
-            <Text style={styles.modalText}>Cadastro atualizado com sucesso!</Text>
-          </View>
-        </View>
-      </Modal>
     </ScrollView>
   );
 };
@@ -147,18 +130,16 @@ const styles = StyleSheet.create({
     color: '#004AAD',
     fontSize: 18,
     fontWeight: 'bold',
-    marginTop: windowHeight * 0.1
   },
   card: {
     width: windowWidth * 0.9,
     backgroundColor: '#fff',
     borderRadius: 10,
     padding: 20,
-    marginTop: 5,
+    marginTop: 20,
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
-    shadowColor: '#004AAD',
     shadowRadius: 8,
     elevation: 3,
     alignItems: 'center',
@@ -179,45 +160,29 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     width: '100%',
   },
-  inputPicker: {
-    height: 50,
+  pickerContainer: {
+    height: 40,
     borderColor: '#004AAD',
     borderWidth: 1,
     borderRadius: 5,
     marginBottom: 15,
-    paddingLeft: 10,
+    justifyContent: 'center',
     width: '100%',
   },
   picker: {
-    height: 50,
-    marginLeft: -10,
-    textAlign: 'Left'
+    height: 40,
+    width: '100%',
   },
   buttonAlt: {
+    backgroundColor: '#004AAD',
     padding: 10,
-    borderWidth:1,
-    borderColor: '#004AAD',
     borderRadius: 5,
     alignItems: 'center',
     marginTop: 20,
     width: '100%',
   },
-  buttonDelAlt: {
-    padding: 10,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginTop: 20,
-    width: '100%',
-    borderWidth:  2,
-    borderColor:'red',
-  },
   buttonAltText: {
-    color: '#004AAD',
-    fontSize: 16,
-    textAlign: 'center', // Centraliza o texto
-  },
-  buttonDelText: {
-    color: 'red',
+    color: '#fff',
     fontSize: 16,
     textAlign: 'center', // Centraliza o texto
   },
@@ -233,31 +198,6 @@ const styles = StyleSheet.create({
   footerButton: {
     alignItems: 'center',
   },
-  modalOverlay: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContainer: {
-    width: windowWidth * 0.8,
-    backgroundColor: '#004AAD',
-    borderRadius: 10,
-    padding: 20,
-    alignItems: 'center',
-  },
-  closeButton: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
-  },
-  modalText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginTop: 20,
-    textAlign: 'center', // Adiciona alinhamento ao centro para o texto
-  },
 });
 
-export default EditarProfessor;
+export default CadastroAluno;
