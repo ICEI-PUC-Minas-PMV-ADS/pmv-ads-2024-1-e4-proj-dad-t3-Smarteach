@@ -47,12 +47,11 @@ def test_insert_new_class_activity_with_wrong_data(client):
         
     response = client.post('/class/activity', json= {
         "name":"Aula",
-        "date":"11/03/2024",
-        "time": "10:00-11:00",
+        "date":"$#%",
+        "time": "null",
         "class_number": fake_profile.get('class_number'),
-        "subject898": "Biologia",
-        "teacher_email": fake_profile.get('email'),
-        "null": 'foo'
+        "subject": "Biologia",
+        "teacher_email": fake_profile.get('email')
     })
 
     assert response.status_code == 400

@@ -1,9 +1,13 @@
 import os
+import urllib.parse
 from pymongo import MongoClient
 from dotenv import load_dotenv
 
 load_dotenv()
-STR_CONNECTION = os.getenv('DB_STR_CONNECTION')
+DB_USER = urllib.parse.quote_plus(os.getenv('DB_USER'))
+PASSWORD = urllib.parse.quote_plus(os.getenv('PASSWORD'))
+STR_CONNECTION = os.getenv('DB_STR_CONNECTION').format(DB_USER, PASSWORD)
+
 client = MongoClient(STR_CONNECTION)
 
 db = client['SmarTeach']

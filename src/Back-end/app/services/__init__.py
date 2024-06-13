@@ -76,11 +76,13 @@ def verify_data_format(data, type):
         regex = r"^'([01]?[0-9]|2[0-3]):([0-5][0-9])-([01]?[0-9]|2[0-3]):([0-5][0-9])$'"
 
         if type == 'DATE':
-            regex = r"^'(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\d{4}$'"
+            regex = r"^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$"
 
         is_wrong_format = re.search(regex, data)
+
         if is_wrong_format:
             return True
+
 
 def verify_update_sent_data_request(data, available_keys):
         
