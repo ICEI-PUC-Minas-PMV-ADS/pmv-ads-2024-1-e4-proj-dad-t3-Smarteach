@@ -40,20 +40,20 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="FirstScreen">
-        <Stack.Screen name="FirstScreen" component={FirstScreen} />
-        <Stack.Screen name="LoginPage" component={LoginPage} />
-        <Stack.Screen name="SignInPage" component={SignInPage} />
-        <Stack.Screen name="CadastroAdministrador" component={CadastroAdministrador} />
-        <Stack.Screen name="CadastroProfessor" component={CadastroProfessor} />
-        <Stack.Screen name="CadastroAluno" component={CadastroAluno} />
-        <Stack.Screen name="EditarAdministrador" component={EditarAdministrador} />
-        <Stack.Screen name="EditarProfessor" component={EditarProfessor} />
-        <Stack.Screen name="EditarAluno" component={EditarAluno} />
+        <Stack.Screen name="FirstScreen" component={FirstScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="LoginPage" component={LoginPage} options={{ headerShown: false }}/>
+        <Stack.Screen name="SignInPage" component={SignInPage} options={{ headerShown: false }}/>
+        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="CadastroAdministrador" component={CadastroAdministrador} options={{ headerShown: false }}/>
+        <Stack.Screen name="CadastroProfessor" component={CadastroProfessor} options={{ headerShown: false }}/>
+        <Stack.Screen name="CadastroAluno" component={CadastroAluno} options={{ headerShown: false }}/>
+        <Stack.Screen name="EditarAdministrador" component={EditarAdministrador} options={{ headerShown: false }}/>
+        <Stack.Screen name="EditarProfessor" component={EditarProfessor} options={{ headerShown: false }}/>
+        <Stack.Screen name="EditarAluno" component={EditarAluno} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

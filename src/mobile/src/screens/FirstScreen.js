@@ -22,6 +22,12 @@ const FirstScreen = ({ navigation }) => {
         onPress={() => navigation.navigate("SignInPage")}
       />
       <Button
+        title="HomeScreen"
+        buttonStyle={styles.button}
+        titleStyle={{ fontWeight: "bold", fontSize: 18, color: "#004AAD" } }
+        onPress={() => navigation.navigate("HomeScreen")}
+      />
+      <Button
         title="CadastroAdministrador"
         buttonStyle={styles.button}
         titleStyle={{ fontWeight: "bold", fontSize: 18, color: "#004AAD" }}
