@@ -4,6 +4,7 @@ import { BottomNavigation } from 'react-native-paper';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import HomeScreen from './HomeScreen';
 import CadastroAdministrador from './CadastroAdministrador';
 import CadastroAluno from './CadastroAluno';
 import CadastroProfessor from './CadastroProfessor';
@@ -31,8 +32,8 @@ function Routes() {
       }}>
 
       <Tab.Screen
-        name="LoginPage"
-        component={LoginPage}
+        name="HomeScreen"
+        component={HomeScreen}
         options={{
           headerShown: false,
           tabBarIcon: ({color, size, focused}) => {
