@@ -80,20 +80,6 @@ export default function Mural() {
             </View>
           </View>
 
-          <View style={styles.footer}>
-            <TouchableOpacity style={styles.footerButton}>
-              <Icon name="th-large" size={24} color="#fff" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.footerButton}>
-              <Icon name="calendar" size={24} color="#fff" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.footerButton}>
-              <Icon name="user" size={24} color="#fff" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.footerButton}>
-              <Icon name="cog" size={24} color="#fff" />
-            </TouchableOpacity>
-          </View>
         </View>
 
       </View>
@@ -120,19 +106,6 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingVertical: 20, // Aumentando o espaço para o header
     paddingHorizontal: 20,
-    backgroundColor: '#fff',
+    marginTop: 25,
   },
-  footer: {
-    marginTop: 15,
-    bottom: 0,
-    flexDirection: 'row',
-    minWidth: windowWidth,
-    backgroundColor: '#004AAD',
-    justifyContent: 'space-around',
-    paddingVertical: 20,
-  },
-  footerButton: {
-    alignItems: 'center',
-  },
-
 });

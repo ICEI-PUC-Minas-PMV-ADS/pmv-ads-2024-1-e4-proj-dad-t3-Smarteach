@@ -19,7 +19,7 @@ const CadastroAdministrador = () => {
         <TouchableOpacity>
           <Icon name="bars" size={28} color="#004AAD" />
         </TouchableOpacity>
-        <Text style={styles.navbarTitle}>USUÁRIOS</Text>
+        <Text style={{ color: '#004AAD', fontSize: 25, fontWeight: 700, }}>USUÁRIOS</Text>
         <TouchableOpacity>
           <Icon name="sign-in" size={28} color="#004AAD" />
         </TouchableOpacity>
@@ -57,20 +57,7 @@ const CadastroAdministrador = () => {
           <Text style={styles.buttonAltText}>CADASTRAR ADMINISTRADOR</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.footer}>
-        <TouchableOpacity style={styles.footerButton}>
-          <Icon name="th-large" size={24} color="#fff" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.footerButton}>
-          <Icon name="calendar" size={24} color="#fff" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.footerButton}>
-          <Icon name="user" size={24} color="#fff" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.footerButton}>
-          <Icon name="cog" size={24} color="#fff" />
-        </TouchableOpacity>
-      </View>
+
       <Modal
         transparent={true}
         visible={modalVisible}
@@ -108,7 +95,7 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingVertical: 20, // Aumentando o espaço para o header
     paddingHorizontal: 20,
-    backgroundColor: '#fff',
+    marginTop: 25,
   },
   navbarTitle: {
     color: '#004AAD',
@@ -156,18 +143,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     textAlign: 'center',
-  },
-  footer: {
-    position: 'absolute',
-    bottom: 0,
-    flexDirection: 'row',
-    width: '100%',
-    backgroundColor: '#004AAD',
-    justifyContent: 'space-around',
-    paddingVertical: 20,
-  },
-  footerButton: {
-    alignItems: 'center',
   },
   modalOverlay: {
     flex: 1,

@@ -48,7 +48,7 @@ const LoginPage = () => {
       <Button
         title="ENTRAR"
         buttonStyle={styles.button}
-        titleStyle={{ fontWeight: "bold", fontSize: 18, color: "#004AAD" }}
+        titleStyle={{ flex: 1, fontWeight: "bold", fontSize: 18, color: "#004AAD", }}
         onPress={handleLogin}
       />
     </View>
@@ -57,7 +57,8 @@ const LoginPage = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 8,
+    padding: 20,
+    marginTop: 25,
     alignItems: "center",
   },
   image: {
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     marginBottom: 88,
   },
   button: {
-    width: "100%",
+    width: "70%",
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#004AAD",

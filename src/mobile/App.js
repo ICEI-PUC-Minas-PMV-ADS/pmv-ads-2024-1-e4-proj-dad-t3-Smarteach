@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Barnav from "./src/screens/Barnav";
 import Route from "./src/navigations/Route";
 import Mural from "./src/screens/Mural";
+import LoginPage from "./src/screens/LoginPage";
+import FirstScreen from "./src/screens/FirstScreen";
 
 
 const Stack = createNativeStackNavigator();
@@ -32,7 +35,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Mural />
+      <Barnav />
     </NavigationContainer>
   );
 }

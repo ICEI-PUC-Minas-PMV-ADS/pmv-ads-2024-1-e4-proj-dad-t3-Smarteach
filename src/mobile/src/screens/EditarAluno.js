@@ -23,7 +23,7 @@ const handleValueChange1=(itemValue1, itemIndex) =>setTurma(itemValue1)
         <TouchableOpacity>
           <Icon name="bars" size={28} color="#004AAD" />
         </TouchableOpacity>
-        <Text style={styles.navbarTitle}>USUÁRIOS</Text>
+        <Text style={{ color: '#004AAD', fontSize: 25, fontWeight: 700, }}>USUÁRIOS</Text>
         <TouchableOpacity>
           <Icon name="sign-in" size={28} color="#004AAD" />
         </TouchableOpacity>
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingVertical: 20, // Aumentando o espaço para o header
     paddingHorizontal: 20,
-    backgroundColor: '#fff',
+    marginTop: 25,
   },
   navbarTitle: {
     color: '#004AAD',
@@ -203,18 +203,6 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: 16,
     textAlign: 'center', // Centraliza o texto
-  },
-  footer: {
-    position: 'absolute',
-    bottom: 0,
-    flexDirection: 'row',
-    width: '100%',
-    backgroundColor: '#004AAD',
-    justifyContent: 'space-around',
-    paddingVertical: 20, // Aumentando o espaço para o footer
-  },
-  footerButton: {
-    alignItems: 'center',
   },
   modalOverlay: {
     flex: 1,
