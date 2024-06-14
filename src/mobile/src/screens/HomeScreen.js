@@ -6,7 +6,7 @@ const HomeScreen = ({ onExitPress, onSettingsPress, Calendario, Mural }) => {
   const turma = '111'
   return (
     <View style={styles.container}>
-      <View style={styles.navbar}>
+       <View style={styles.navbar}>
         <TouchableOpacity>
           <Icon name="bars" size={28} color="#004AAD" />
         </TouchableOpacity>
@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginTop: 25,
   },
+
 
   box: {
     position: 'absolute',
