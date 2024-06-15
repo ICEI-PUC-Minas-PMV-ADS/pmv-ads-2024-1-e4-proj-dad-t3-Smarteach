@@ -28,7 +28,7 @@ export default function Mural() {
 
             <View style={{ height: 280, width: 310, marginTop: 15, borderColor: '#BEBEBE', borderWidth: 1, borderRadius: 10, backgroundColor: '#F4F4F4', }}>
               <View style={{ height: 55, width: 310, backgroundColor: '#004AAD', borderRadius: 10, justifyContent: 'center', flexDirection: 'row', gap: 100, }}>
-                <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 80, height: 50, }}>
+                <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 90, height: 50,  }}>
                   <Text style={{ fontSize: 23, color: 'white', fontWeight: 600, }}>Música</Text>
                   <Text style={{ fontSize: 18, color: 'white', fontWeight: 500, }}>Nancy</Text>
                 </View>
@@ -46,7 +46,7 @@ export default function Mural() {
 
             <View style={{ height: 280, width: 310, marginTop: 15, borderColor: '#BEBEBE', borderWidth: 1, borderRadius: 10, backgroundColor: '#F4F4F4', }}>
               <View style={{ height: 55, width: 310, backgroundColor: '#004AAD', borderRadius: 10, justifyContent: 'center', flexDirection: 'row', gap: 100, }}>
-                <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 80, height: 50, }}>
+                <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 90, height: 50, }}>
                   <Text style={{ fontSize: 23, color: 'white', fontWeight: 600, }}>Arte</Text>
                   <Text style={{ fontSize: 18, color: 'white', fontWeight: 500, }}>Kendrick</Text>
                 </View>
@@ -64,7 +64,7 @@ export default function Mural() {
 
             <View style={{ height: 280, width: 310, marginTop: 15, marginBottom: 65, borderColor: '#BEBEBE', borderWidth: 1, borderRadius: 10, backgroundColor: '#F4F4F4', }}>
               <View style={{ height: 55, width: 310, backgroundColor: '#004AAD', borderRadius: 10, justifyContent: 'center', flexDirection: 'row', gap: 100, }}>
-                <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 80, height: 50, }}>
+                <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 90, height: 50, }}>
                   <Text style={{ fontSize: 23, color: 'white', fontWeight: 600, }}>Arte</Text>
                   <Text style={{ fontSize: 18, color: 'white', fontWeight: 500, }}>Kendrick</Text>
                 </View>
