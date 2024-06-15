@@ -125,6 +125,8 @@ const styles = StyleSheet.create({
     paddingVertical: 20, // Aumentando o espaço para o header
     paddingHorizontal: 20,
     marginTop: 25,
+    borderColor: '#004AAD',
+    borderBottomWidth: 2,
   },
   navbarTitle: {
     color: '#004AAD',
