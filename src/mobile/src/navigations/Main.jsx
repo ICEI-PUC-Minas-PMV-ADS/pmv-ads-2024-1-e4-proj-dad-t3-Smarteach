@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './../screens/HomeScreen';
+import Home from '../screens/Home';
+import Turmas from '../screens/Turmas';
 import CadastroAdministrador from './../screens/CadastroAdministrador';
 import CadastroAluno from './../screens/CadastroAluno';
 import CadastroProfessor from './../screens/CadastroProfessor';
@@ -16,7 +17,14 @@ const Main = () => {
         <Stack.Navigator initialRouteName='Home'>
             <Stack.Screen
                 name='Home'
-                component={HomeScreen}
+                component={Home}
+                options={{
+                    header: () => null,
+                }}
+            />
+            <Stack.Screen
+                name='Turmas'
+                component={Turmas}
                 options={{
                     header: () => null,
                 }}
@@ -59,13 +67,6 @@ const Main = () => {
             <Stack.Screen
                 name='EditarAdmin'
                 component={EditarAdministrador}
-                options={{
-                    header: () => null,
-                }}
-            />
-            <Stack.Screen
-                name='Mural'
-                component={Mural}
                 options={{
                     header: () => null,
                 }}

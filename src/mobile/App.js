@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Barnav from "./src/screens/Barnav";
 import Route from "./src/navigations/Route";
-import Mural from "./src/screens/Mural";
-import LoginPage from "./src/screens/LoginPage";
-import FirstScreen from "./src/screens/FirstScreen";
-
-
-const Stack = createNativeStackNavigator();
+import Auth from "./src/navigations/Auth";
+import UserProvider from "./src/context/UserContex";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,9 +28,11 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Barnav />
-    </NavigationContainer>
+    <UserProvider>
+      <NavigationContainer>
+        <Route />
+      </NavigationContainer>
+    </UserProvider>
   );
 }
 

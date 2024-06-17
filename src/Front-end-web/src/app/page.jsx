@@ -1,9 +1,6 @@
 'use client'
 import ClassList from "@/components/class-list";
 import Mural from "@/components/mural";
-import { Button } from "@/components/ui/button";
-import { useSession } from "next-auth/react";
-import Link from "next/link";
 
 export default function Home() { 
   return (

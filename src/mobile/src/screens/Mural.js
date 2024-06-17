@@ -1,26 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Dimensions, } from 'react-native';
 import React from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Dimensions, } from 'react-native';
+
+import Header from '../components/Header';
 
 export default function Mural() {
   return (
-    <>
+    <ScrollView style={styles.body}>
+      <Header />
       <View style={styles.container}>
-        <StatusBar style="auto" />
-
-        <View style={styles.navbar}>
-          <TouchableOpacity>
-            <Icon name="bars" size={28} color="#004AAD" />
-          </TouchableOpacity>
-          <Text style={{ color: '#004AAD', fontSize: 25, fontWeight: 700, }}>MURAL</Text>
-          <TouchableOpacity>
-            <Icon name="sign-in" size={28} color="#004AAD" />
-          </TouchableOpacity>
-        </View>
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-
-
           <View style={{ flex: 1, alignItems: 'center', }}>
             <View style={{ height: 35, width: 340, marginTop: 12, backgroundColor: '#004AAD', borderRadius: 10, justifyContent: 'center', }}>
               <Text style={{ marginLeft: 10, color: '#ffffff', fontWeight: 800, fontSize: 23, }}>Turma 101</Text>
@@ -44,70 +31,23 @@ export default function Mural() {
               </View>
             </View>
 
-            <View style={{ height: 280, width: 310, marginTop: 15, borderColor: '#BEBEBE', borderWidth: 1, borderRadius: 10, backgroundColor: '#F4F4F4', }}>
-              <View style={{ height: 55, width: 310, backgroundColor: '#004AAD', borderRadius: 10, justifyContent: 'center', flexDirection: 'row', gap: 100, }}>
-                <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 90, height: 50, }}>
-                  <Text style={{ fontSize: 23, color: 'white', fontWeight: 600, }}>Arte</Text>
-                  <Text style={{ fontSize: 18, color: 'white', fontWeight: 500, }}>Kendrick</Text>
-                </View>
-                <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 80, height: 50, }}>
-                  <Text style={{ fontSize: 16, color: 'white', fontWeight: 700, }}>25/04</Text>
-                  <Text style={{ fontSize: 14, color: 'white', fontWeight: 200, }}>11:00-12:00</Text>
-                </View>
-              </View>
-              <View style={{ marginTop: 4, gap: 10, }}>
-                <Text style={{ alignSelf: 'center', fontWeight: 600, opacity: 0.85, fontSize: 20, }}>Aula: Pintura II</Text>
-                <Image source={{ uri: 'https://img.global.news.samsung.com/br/wp-content/uploads/2018/01/flip-samsung.png' }} style={{ alignSelf: 'center', width: 280, height: 150, borderRadius: 10, }} />
-                <Image source={{ uri: 'https://img.icons8.com/?size=256&id=26139&format=png' }} style={{ alignSelf: 'center', width: 20, height: 20, }} />
-              </View>
-            </View>
-
-            <View style={{ height: 280, width: 310, marginTop: 15, marginBottom: 65, borderColor: '#BEBEBE', borderWidth: 1, borderRadius: 10, backgroundColor: '#F4F4F4', }}>
-              <View style={{ height: 55, width: 310, backgroundColor: '#004AAD', borderRadius: 10, justifyContent: 'center', flexDirection: 'row', gap: 100, }}>
-                <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 90, height: 50, }}>
-                  <Text style={{ fontSize: 23, color: 'white', fontWeight: 600, }}>Arte</Text>
-                  <Text style={{ fontSize: 18, color: 'white', fontWeight: 500, }}>Kendrick</Text>
-                </View>
-                <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 80, height: 50, }}>
-                  <Text style={{ fontSize: 16, color: 'white', fontWeight: 700, }}>25/04</Text>
-                  <Text style={{ fontSize: 14, color: 'white', fontWeight: 200, }}>11:00-12:00</Text>
-                </View>
-              </View>
-              <View style={{ marginTop: 4, gap: 10, }}>
-                <Text style={{ alignSelf: 'center', fontWeight: 600, opacity: 0.85, fontSize: 20, }}>Aula: Pintura II</Text>
-                <Image source={{ uri: 'https://img.global.news.samsung.com/br/wp-content/uploads/2018/01/flip-samsung.png' }} style={{ alignSelf: 'center', width: 280, height: 150, borderRadius: 10, }} />
-                <Image source={{ uri: 'https://img.icons8.com/?size=256&id=26139&format=png' }} style={{ alignSelf: 'center', width: 20, height: 20, }} />
-              </View>
-            </View>
-
           </View>
-        </ScrollView>
       </View>
 
-    </>
+    </ScrollView>
 
   );
 };
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
 const styles = StyleSheet.create({
-  container: {
+  body: {
     flex: 1,
-    backgroundColor: '#fffff',
-    minHeight: windowHeight,
-    alignItems: 'center',
   },
-  navbar: {
+  container: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
-    paddingVertical: 20, // Aumentando o espaço para o header
-    paddingHorizontal: 20,
-    marginTop: 25,
-    borderColor: '#004AAD',
-    borderBottomWidth: 2,
+    marginHorizontal: 16,
+    marginVertical: 16,
   },
 });

@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import LoginPage from "../screens/LoginPage";
-import FirstScreen from '../screens/FirstScreen';
+import Login from "../screens/Login";
+import Inicial from '../screens/Inicial';
 import Cadastro from '../screens/Cadastro';
 
 
@@ -13,14 +13,14 @@ const Auth = () => {
         <Navigator initialRouteName=''>
             <Screen
                 name='Inicial'
-                component={FirstScreen}
+                component={Inicial}
                 options={{
                     header: () => null,
                 }}
             />
             <Screen
                 name='Login'
-                component={LoginPage}
+                component={Login}
                 options={{
                     header: () => null,
                 }}

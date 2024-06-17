@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 
-import { Button } from "react-native-paper";
-import { StyleSheet, View, Text, Image } from "react-native";
-import { Input } from "@rneui/themed";
-import axios from "axios";
+import { Button, TextInput } from "react-native-paper";
+import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Keyboard } from "react-native";
 
-const SignInPage = ({ navigation }) => {
+import axios from "axios";
+import Title from "../components/Title";
+
+const Cadastro = ({ navigation }) => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [name, setName] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
   const [errors, setErrors] = useState("");
 
   const validateEmail = (email) => {
@@ -42,97 +44,89 @@ const SignInPage = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.card}>
-        <Image source={"/assets/SMARTEACH.png"} style={styles.image} />
-        <Input
-          placeholder="  Nome Completo"
-          inputContainerStyle={styles.input}
-          onChangeText={(text) => setName(text)}
-          value={name}
-        />
-        <Input
-          placeholder="  E-mail"
-          inputContainerStyle={styles.input}
-          onChangeText={(text) => setEmail(text)}
-          value={email}
-        />
-        <Input
-          placeholder="  Senha"
-          inputContainerStyle={styles.input}
-          secureTextEntry={true}
-          rightIcon={{ type: "font-awesome", name: "eye" }}
-          onChangeText={(text) => setConfirmPassword(text)}
-          value={confirmPassword}
-        />
-        <Input
-          placeholder="  Confirme a senha"
-          inputContainerStyle={styles.input}
-          secureTextEntry={true}
-          rightIcon={{ type: "font-awesome", name: "eye" }}
-          onChangeText={(text) => setPassword(text)}
-          value={password}
-        />
-        <Button mode="outlined" style={styles.button} onPress={handleRegister}>
-          <Text style={styles.modalText}>CRIAR CONTA</Text>
-        </Button>
+    <TouchableWithoutFeedback
+      onPress={Keyboard.dismiss}
+      accessible={false}
+    >
+      <View style={styles.container}>
+        <Title />
+
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            onChangeText={setName}
+            value={name}
+            placeholder="Nome"
+          />
+          <TextInput
+            style={styles.input}
+            onChangeText={setEmail}
+            value={email}
+            placeholder="Email"
+          />
+          <TextInput
+            style={styles.input}
+            onChangeText={setPassword}
+            value={password}
+            placeholder="Senha"
+            textContentType='password'
+            secureTextEntry={true}
+          />
+
+          <TextInput
+            style={styles.input}
+            onChangeText={setPasswordConfirmation}
+            value={passwordConfirmation}
+            placeholder="Confirmar senha"
+            secureTextEntry={true}
+          />
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <Button
+            mode="contained"
+            style={styles.button}
+            buttonColor="#004AAD"
+            onPress={handleRegister}
+          > Cadastrar </Button>
+          <Button
+            mode="contained"
+            style={styles.button}
+            buttonColor="#931603"
+            onPress={() => navigation.goBack()}
+          > Voltar </Button>
+        </View>
+
+        <Text style={{ fontSize: 16, textAlign: 'center', color: 'white', margin: 16 }}> Ou cadastre-se com </Text>
+
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
-    backgroundColor: "#ffffff",
-    paddingBottom: 70,
-    alignItems: "center",
-  },
-  card: {
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    padding: 20,
-    marginTop: 20,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 1, height: 2 },
-    shadowRadius: 8,
-    elevation: 3,
-    alignItems: "center",
-    shadowColor: "#004AAD",
-  },
-  image: {
-    width: 220,
-    height: 53,
-    resizeMode: "contain",
-    marginBottom: "88px",
-  },
-  button: {
-    padding: 10,
-    borderWidth: 1,
-    backgroundColor: "#004AAD",
-    borderColor: "#004AAD",
-    borderRadius: 5,
-    alignItems: "center",
-    width: "100%",
-    shadowOffset: { width: 1, height: 1 },
+    flex: 1,
+    justifyContent: 'center',
   },
   input: {
-    height: 40,
-    borderColor: "#004AAD",
-    borderWidth: 1,
-    borderRadius: 5,
-    marginBottom: 15,
-    width: "100%",
-    shadowOffset: { width: 1, height: 1 },
+    margin: 12,
+    color: '#fff',
   },
-  modalText: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#fff",
-    marginTop: 20,
-    textAlign: "center",
+  inputContainer: {
+    margin: 16,
   },
-});
+  buttonContainer: {
+    display: 'flex',
+    alignContent: 'center',
+    justifyContent: 'center',
+    marginHorizontal: 20,
+  },
+  button: {
+    marginBottom: 8,
+    marginHorizontal: 16,
+    fontWeight: '700',
+  },
+})
 
-export default SignInPage;
+export default Cadastro;
