@@ -6,6 +6,7 @@ import { CircleUser, GraduationCap, LogOut } from "lucide-react";
 import { useSession } from "next-auth/react";
 import ButtonLogout from "../logout-button";
 import TooltipComponent from "../tooltip";
+import { Button } from "@/components/ui/button";
 
 export default function Header() {
   const session = useSession();
@@ -18,6 +19,15 @@ export default function Header() {
             <Link href="/">
               <Title />
             </Link>
+            <div>
+              {session?.data?.user?.role === "admin" &&
+                <div className="flex justify-center">
+                  <Link href="/cadastro/turma" >
+                    <Button>Cadastrar Nova Turma</Button>
+                  </Link>
+                </div>
+              }
+            </div>
             <div className="flex items-center gap-10">
               <div className="flex items-center justify-center gap-4">
               <TooltipComponent href={`/meuPerfil`} icon={<CircleUser/>} label={"Meu perfil"} />
@@ -26,16 +36,6 @@ export default function Header() {
                     <TooltipComponent href={`/usuarios`} icon={<GraduationCap />} label={"Usuários"} />
                   </div>
                 }
-                 {session?.data?.user?.role === "aluno" && 
-                  <div className="flex gap-4"> 
-                    <Link href="/PerfilAluno"> <CircleUser/> </Link>
-                  </div>
-                } 
-                {session?.data?.user?.role === "professor" && 
-                  <div className="flex gap-4"> 
-                    <Link href="/PerfilProfessor"> <CircleUser/> </Link>
-                  </div>
-                } 
                 <ButtonLogout/>
               </div>
               <div className="flex items-center justify-center gap-3">
