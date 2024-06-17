@@ -17,7 +17,7 @@ const ClassList = () => {
     return (
         <div className="container grid grid-cols-classgrid gap-5 max-w-[1280px] h-full"> 
                 {classList?.map(turma => (
-                    <div className="flex">
+                    <div className="flex" key={turma._id}>
                          <div className="flex flex-col">
                             <div className="flex w-full justify-between">
                                 <p className="text-xl text-primaryColor font-bold"> Turma {turma.number} </p>

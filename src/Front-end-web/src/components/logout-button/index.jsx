@@ -2,26 +2,33 @@
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
-import TooltipComponent from "../tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 const ButtonLogout = () => {
   const route = useRouter();
 
   async function logout() {
-    await signOut({
+    signOut({
       redirect: false,
     });
-    route.push("/auth");
+    route.push('/auth');
     route.refresh();
   }
 
   return (
-    <TooltipComponent
-      href=""
-      icon={<LogOut />}
-      label={"Sair"}
-      onClick={logout}
-    />
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger> <LogOut onClick={logout}/> </TooltipTrigger>
+        <TooltipContent>
+          <p>Sair </p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 };
 
