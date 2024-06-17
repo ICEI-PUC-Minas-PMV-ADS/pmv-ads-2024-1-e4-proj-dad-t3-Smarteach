@@ -1,10 +1,39 @@
-import { Text } from "react-native-paper";
+import React from 'react';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Dimensions, } from 'react-native';
 
-const Usuarios = () => {
+import Header from '../components/Header';
 
+export default function Mural() {
     return (
-        <Text> Usuarios </Text>
-    );
-}
+        <ScrollView style={styles.body}>
+            <Header />
+            <View style={styles.container}>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
+                    <View style={{ height: 300, width: 340, marginTop: 130, backgroundColor: '#004AAD', borderRadius: 10, justifyContent: 'center', gap: 20,}}>
+                        <Text style={{ marginLeft: 10, color: '#ffffff', fontWeight: 500, fontSize: 20, }}>Nome: Geremildo</Text>
+                        <Text style={{ marginLeft: 10, color: '#ffffff', fontWeight: 500, fontSize: 20, }}>Tipo de Perfil: Administrador(a)</Text>
+                        <Text style={{ marginLeft: 10, color: '#ffffff', fontWeight: 500, fontSize: 20, }}>Email: Administrador@homtmail.com</Text>
+                    </View>
 
-export default Usuarios;
+
+                </View>
+            </View>
+
+        </ScrollView>
+
+    );
+};
+
+const styles = StyleSheet.create({
+    body: {
+        flex: 1,
+    },
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginHorizontal: 16,
+        marginVertical: 16,
+        
+    },
+});

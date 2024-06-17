@@ -21,6 +21,7 @@ export default Header = ({goBack}) => {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: '#004AAD',
-  }
+  },
+  
 })
   
