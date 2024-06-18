@@ -2,25 +2,22 @@ import { StyleSheet } from "react-native";
 import { Appbar } from "react-native-paper";
 import { useUser } from '../context/UserContex';
 
-export default Header = ({goBack}) => {
+export default Header = ({title}) => {
   const { setSigned } = useUser();
 
     return (
-      <Appbar.Header style={styles.header}>
-        <Appbar.Action iconColor="white" icon="menu" onPress={() => {}} />
-        {
-          goBack && 
-          <Appbar.BackAction iconColor="white" onPress={goBack} />
-        }
-        <Appbar.Content color="white" title="Smarteach" />
-        <Appbar.Action iconColor="white" icon="logout" onPress={() => setSigned(false)} />
+      <Appbar.Header style={styles.header} mode="center-aligned">
+        <Appbar.Action iconColor="#004AAD" icon="menu" onPress={() => {}} />
+        <Appbar.Content color="#004AAD" title={title} titleStyle={{ fontWeight: 'bold'}} />
+        <Appbar.Action iconColor="#004AAD" icon="logout" onPress={() => setSigned(false)} />
       </Appbar.Header>
     );
 };
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#004AAD',
+    borderBottomColor: '#004AAD',
+    borderBottomWidth: 2,
   }
 })
   

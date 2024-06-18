@@ -1,10 +1,40 @@
-import { Text } from "react-native-paper";
+import React from 'react';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Dimensions, } from 'react-native';
 
-const Usuarios = () => {
+import Header from '../components/Header';
 
-    return (
-        <Text> Usuarios </Text>
-    );
-}
+export default function Usuarios() {
+  return (
+    <ScrollView style={styles.body}>
+      <Header title={'Usuários'}/>
+      <View style={styles.container}>
+        <View style={styles.main}>
+            <View>
+                <Text> Administradores </Text>
+            </View>
+            <View>
+                <Text> Professores </Text>
+            </View>
+            <View>
+                <Text> Alunos </Text>
+            </View>
+        </View>
+      </View>
+    </ScrollView>
 
-export default Usuarios;
+  );
+};
+
+const styles = StyleSheet.create({
+  body: {
+    flex: 1,
+  },
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 16,
+    marginVertical: 16,
+  },
+  main: {
+  },
+});

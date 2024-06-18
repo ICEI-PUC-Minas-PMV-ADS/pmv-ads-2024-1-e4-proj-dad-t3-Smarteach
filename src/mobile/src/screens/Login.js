@@ -13,15 +13,14 @@ const Login = () => {
   const { setSigned, setName } = useUser();
 
   const handleLogin = () => {
-
-    setSigned(true)
+    setSigned(true);
     // login({
     //   email: email,
     //   password: password,
     // }).then(res => {
-    //   if (res && res.user) {
+    //   if (res) {
     //     setSigned(true);
-    //     setName(res.user.name);
+    //     setName(res.user?.name);
     //   } else {
     //     Alert.alert('Atenção!', 'Email/Senha inválidos')
     //   }

@@ -3,7 +3,7 @@ import { BASE_URL } from './urls';
 
 export const getClassList = async () => {
   try {
-    const response = await API.get(`${BASE_URL}/admin`);
+    const response = await API.get(`${BASE_URL}/class`);
     return response.data;
   } catch (error) {
     console.log(error);

@@ -1,43 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Button, TextInput } from "react-native-paper";
-import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
 
 import axios from "axios";
 import Title from "../components/Title";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { getClassList } from "../services/turmas.services";
+import { Picker } from '@react-native-picker/picker';
+import { register } from "../services/auth.services";
 
-const Cadastro = ({ navigation }) => {
+const Cadastro = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [classNumber, setClassNumber] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [ classList, setClassList ] = useState([]);
+  const isFocused = useIsFocused();
 
-  const [errors, setErrors] = useState("");
-
-  const validateEmail = (email) => {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
+  const fetchData = () => {
+    getClassList().then((data) => setClassList(data));
   };
 
+  useEffect(() => {
+    fetchData();
+  }, [isFocused]);
+
+  const navigation = useNavigation();
+
   const handleRegister = async () => {
-    const newErrors = {};
-    if (name.length < 3) {
-      newErrors.name = "Por favor, insira o nome completo";
-    }
-
-    if (!validateEmail(email)) {
-      newErrors.email = "Por favor, insira um e-mail válido";
-    }
-    setErrors(newErrors);
-
     try {
-      const response = await axios.post("http://localhost:5000/admin", {
-        name,
-        email,
-        password,
+      register({
+          name: name,
+          email: email,
+          password: password,
+          class_number: classNumber,
+        }).then(res => {
+          if (res) {
+            console.log(res)
+            // navigation.goBack();
+          } else {
+            Alert.alert('Atenção!', 'Email/Senha inválidos')
+          }
       });
-      const data = response.data;
-      console.log("Usuario cadastrado", data);
     } catch (error) {
       console.log("erro");
     }
@@ -64,6 +70,23 @@ const Cadastro = ({ navigation }) => {
             value={email}
             placeholder="Email"
           />
+          {/* <Picker
+            selectedValue={selectedClass}
+            onValueChange={(itemValue) => setSelectedClass(itemValue)}
+            style={styles.picker}
+          >
+             {classList.map((turma) => (
+                <Picker.Item key={turma.number} label={turma.number} value={turma.number} />
+              ))}
+          </Picker> */}
+          
+          <TextInput
+            style={styles.input}
+            onChangeText={setClassNumber}
+            value={classNumber}
+            placeholder="Turma"
+          />
+
           <TextInput
             style={styles.input}
             onChangeText={setPassword}
@@ -112,6 +135,10 @@ const styles = StyleSheet.create({
   input: {
     margin: 12,
     color: '#fff',
+  },
+  picker: {
+    margin: 12,
+    color: 'black',
   },
   inputContainer: {
     margin: 16,

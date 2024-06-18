@@ -1,53 +1,156 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Dimensions, } from 'react-native';
+import React, { useEffect, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
 
-import Header from '../components/Header';
+import { useIsFocused, useNavigation, useRoute } from "@react-navigation/native";
+import { Appbar } from "react-native-paper";
+import { getClassProfile } from '../services/turmas.services';
 
 export default function Mural() {
+  const route = useRoute();
+  const navigation = useNavigation();
+  const { turma } = route.params;
+  const [classProfileData, setClassProfileData] = useState({});
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+    fetchData();
+  }, [isFocused]);
+
+  const fetchData = () => {
+    getClassProfile(turma._id).then((data) => setClassProfileData(data));
+  };
+
+  const renderTaskItem = ({ item }) => {
+    return (
+      <View style={styles.taskContainer}>
+        <View style={styles.taskHeader}>
+          <Text style={styles.taskTitle}>{item.name}</Text>
+          <Text style={styles.taskDateTime}>{item.timeSlot}</Text>
+        </View>
+        <View style={styles.taskContent}>
+          <Text style={styles.taskSubject}>{item.subject}</Text>
+          <Text style={styles.taskDetail}>{item.teacher_email}</Text>
+        </View>
+      </View>
+    );
+  };
+
+  const renderTaskList = () => {
+    const tasks = [];
+
+    // Iterating over years, months, days, and hours to collect tasks
+    Object.keys(classProfileData.timeline || {}).forEach(year => {
+      Object.keys(classProfileData.timeline[year] || {}).forEach(month => {
+        Object.keys(classProfileData.timeline[year][month] || {}).forEach(day => {
+          Object.keys(classProfileData.timeline[year][month][day] || {}).forEach(hour => {
+            const timeSlot = `${day}:${month}:${year}:${hour}`;
+            const task = classProfileData.timeline[year][month][day][hour];
+            tasks.push({ ...task, timeSlot: timeSlot });
+          });
+        });
+      });
+    });
+
+    return (
+      <FlatList
+        data={tasks}
+        keyExtractor={(item, index) => `${item.name}-${index}`}
+        renderItem={renderTaskItem}
+        contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 10 }}
+      />
+    );
+  };
+
   return (
     <ScrollView style={styles.body}>
-      <Header />
+      <Appbar.Header style={styles.header} mode="center-aligned">
+        <Appbar.Action iconColor="#004AAD" icon="arrow-left" onPress={() => navigation.goBack()} />
+        <Appbar.Content color="#004AAD" title={'Mural'} titleStyle={{ fontWeight: 'bold' }} />
+        <Appbar.Action iconColor="#004AAD" icon="logout" onPress={() => setSigned(false)} />
+      </Appbar.Header>
       <View style={styles.container}>
-          <View style={{ flex: 1, alignItems: 'center', }}>
-            <View style={{ height: 35, width: 340, marginTop: 12, backgroundColor: '#004AAD', borderRadius: 10, justifyContent: 'center', }}>
-              <Text style={{ marginLeft: 10, color: '#ffffff', fontWeight: 800, fontSize: 23, }}>Turma 101</Text>
-            </View>
-
-            <View style={{ height: 280, width: 310, marginTop: 15, borderColor: '#BEBEBE', borderWidth: 1, borderRadius: 10, backgroundColor: '#F4F4F4', }}>
-              <View style={{ height: 55, width: 310, backgroundColor: '#004AAD', borderRadius: 10, justifyContent: 'center', flexDirection: 'row', gap: 100, }}>
-                <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 90, height: 50,  }}>
-                  <Text style={{ fontSize: 23, color: 'white', fontWeight: 600, }}>Música</Text>
-                  <Text style={{ fontSize: 18, color: 'white', fontWeight: 500, }}>Nancy</Text>
-                </View>
-                <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 80, height: 50, }}>
-                  <Text style={{ fontSize: 16, color: 'white', fontWeight: 700, }}>25/04</Text>
-                  <Text style={{ fontSize: 14, color: 'white', fontWeight: 200, }}>08:00-10:00</Text>
-                </View>
-              </View>
-              <View style={{ marginTop: 4, gap: 10, }}>
-                <Text style={{ alignSelf: 'center', fontWeight: 600, opacity: 0.85, fontSize: 20, }}>Para casa: Partitura II</Text>
-                <Image source={{ uri: 'https://img.global.news.samsung.com/br/wp-content/uploads/2018/01/flip-samsung.png' }} style={{ alignSelf: 'center', width: 280, height: 150, borderRadius: 10, }} />
-                <Image source={{ uri: 'https://img.icons8.com/?size=256&id=26139&format=png' }} style={{ alignSelf: 'center', width: 20, height: 20, }} />
-              </View>
-            </View>
-
+        <View style={{ flex: 1, alignItems: "center" }}>
+          <View
+            style={{
+              height: 35,
+              width: 340,
+              marginTop: 12,
+              backgroundColor: "#004AAD",
+              borderRadius: 10,
+              justifyContent: "center",
+            }}
+          >
+            <Text
+              style={{
+                marginLeft: 10,
+                color: "#ffffff",
+                fontWeight: 800,
+                fontSize: 23,
+              }}
+            >
+              {turma.number}
+            </Text>
           </View>
+          {renderTaskList()}
+        </View>
       </View>
-
     </ScrollView>
-
   );
-};
+}
 
 const styles = StyleSheet.create({
   body: {
     flex: 1,
   },
   container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginHorizontal: 16,
     marginVertical: 16,
+  },
+  header: {
+    backgroundColor: "#fff",
+  },
+  taskContainer: {
+    backgroundColor: "#E5E7EB",
+    borderRadius: 10,
+    marginVertical: 10,
+    padding: 10,
+  },
+  taskHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "#1E40AF",
+    padding: 10,
+    borderRadius: 10,
+  },
+  taskTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "white",
+  },
+  taskDateTime: {
+    fontSize: 16,
+    color: "white",
+    textAlign: "right",
+  },
+  taskContent: {
+    marginTop: 10,
+    paddingHorizontal: 10,
+  },
+  taskSubject: {
+    fontSize: 18,
+    color: "#374151",
+  },
+  taskDetail: {
+    fontSize: 16,
+    color: "#6B7280",
   },
 });
