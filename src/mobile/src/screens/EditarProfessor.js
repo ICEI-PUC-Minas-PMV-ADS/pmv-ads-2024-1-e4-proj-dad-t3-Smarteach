@@ -1,77 +1,84 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, ScrollView, TouchableOpacity, Dimensions, Modal } from 'react-native';
-import {Picker} from '@react-native-picker/picker';
-import Icon from 'react-native-vector-icons/FontAwesome';
-const materias=['Matéria','Matéria1','Matéria2','Matéria3'];
-const turmas=['turma','turma1','turma2','turma3'];
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, ScrollView } from 'react-native';
+import { useIsFocused, useNavigation, useRoute } from "@react-navigation/native";
+import { Appbar, Button, TextInput } from 'react-native-paper';
+import { getTeacherProfile, deleteTeacher, updateTeacher } from '../services/professor.services';
 
 const EditarProfessor = () => {
-  const [materia,setMateria] = useState();
-  const [turma,setTurma] = useState();
-  const [nomeCompleto, setNomeCompleto] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [classNumber, setClassNumber] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
-  const [modalVisible, setModalVisible] = useState(false);
 
+  const [professorProfileData, setProfessorProfileData] = useState([]);
+  const route = useRoute();
+  const navigation = useNavigation();
+  const { id } = route.params;
+  const isFocused = useIsFocused();
+  
+  useEffect(() => {
+    fetchData();
+  }, [isFocused]);
+  
+  const fetchData = () => {
+    if (id) {
+      getTeacherProfile(id).then((data) => 
+        setProfessorProfileData(data)
+    );
+    } else {
+      console.error('ID parameter is missing or invalid');
+    }
+  }; 
 
-  const handleSubmit = () => {
-    setModalVisible(true);
-  };
-const handleValueChange=(itemValue, itemIndex) =>setMateria(itemValue)
-const handleValueChange1=(itemValue1, itemIndex) =>setTurma(itemValue1)
-  return (
-    
-    <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.navbar}>
-        <TouchableOpacity>
-          <Icon name="bars" size={28} color="#004AAD" />
-        </TouchableOpacity>
-        <Text style={{ color: '#004AAD', fontSize: 25, fontWeight: 700, }}>USUÁRIOS</Text>
-        <TouchableOpacity>
-          <Icon name="sign-in" size={28} color="#004AAD" />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.card}>
+  const handleDeleteProfessor = () => {
+    const teacherId = professorProfileData._id
       
-        <Text style={styles.subtitle}>Atualizar Professor</Text>
+    deleteTeacher(teacherId);
+  }
+
+  const handleUpdateProfessor = () => {
+    const teacherId = professorProfileData._id;
+    const updatedTeacherData = {
+      id: teacherId,
+      name,
+      email,
+      class_number: classNumber,
+      senha,
+    }
+    updateTeacher(updatedTeacherData);
+  }
+
+  return (
+    <ScrollView contentContainerStyle={styles.body}>
+      <Appbar.Header style={styles.header} mode="center-aligned">
+        <Appbar.Action iconColor="#004AAD" icon="arrow-left" onPress={() => navigation.goBack()} />
+        <Appbar.Content color="#004AAD" title={'Editar Professor'} titleStyle={{ fontWeight: 'bold' }} />
+      </Appbar.Header>
+      <View style={styles.container}>
         <TextInput
           style={styles.input}
-          placeholder="Nome Completo"
-          value={nomeCompleto}
-          onChangeText={setNomeCompleto}
+          placeholder={`${professorProfileData.name}`}
+          value={name}
+          onChangeText={setName}
         />
         <TextInput
           style={styles.input}
-          placeholder="E-mail"
+          placeholder={`${professorProfileData.email}`}
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
         />
-        <View style={styles.inputPicker}>
-        <Picker
-        style={styles.picker}
-        selectedValue={materia}
-        onValueChange={handleValueChange}>
-          {
-            materias.map(materia=> <Picker.Item key={materia} label={materia} value={materia}/>)
-          }
-        </Picker>
-        </View>
-
-        <View style={styles.inputPicker}>
-        <Picker
-        style={styles.picker}
-        selectedValue={turma}
-        onValueChange={handleValueChange1}>
-          {
-            turmas.map(turma=> <Picker.Item key={turma} label={turma} value={turma}/>)
-          }
-        </Picker>
-        </View>
         <TextInput
           style={styles.input}
-          placeholder="Turma"
+          placeholder={`${professorProfileData.class_number}`}
+          value={classNumber}
+          onChangeText={setClassNumber}
+          keyboardType="text"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Senha"
           value={senha}
           onChangeText={setSenha}
           secureTextEntry
@@ -83,183 +90,29 @@ const handleValueChange1=(itemValue1, itemIndex) =>setTurma(itemValue1)
           onChangeText={setConfirmarSenha}
           secureTextEntry
         />
-        <TouchableOpacity style={styles.buttonAlt} onPress={handleSubmit}>
-          <Text style={styles.buttonAltText}>ALTERAR</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonDelAlt} onPress={handleSubmit}>
-          <Text style={styles.buttonDelText}>DELETAR PROFESSOR</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.footer}>
-        <TouchableOpacity style={styles.footerButton}>
-          <Icon name="th-large" size={24} color="#fff" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.footerButton}>
-          <Icon name="calendar" size={24} color="#fff" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.footerButton}>
-          <Icon name="user" size={24} color="#fff" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.footerButton}>
-          <Icon name="cog" size={24} color="#fff" />
-        </TouchableOpacity>
-      </View>
-      <Modal
-        transparent={true}
-        visible={modalVisible}
-        animationType="slide"
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalContainer}>
-            <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
-              <Icon name="times" size={24} color="#fff" />
-            </TouchableOpacity>
-            <Text style={styles.modalText}>Cadastro atualizado com sucesso!</Text>
-          </View>
+        <View style={styles.buttonContainer}>
+          <Button onPress={handleUpdateProfessor} mode='contained'>Alterar</Button>
+          <Button onPress={handleDeleteProfessor} mode='contained' buttonColor="#931603">Excluir</Button>
         </View>
-      </Modal>
+      </View>
     </ScrollView>
   );
 };
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
 const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    backgroundColor: '#ffffff',
-    paddingBottom: 70, // Aumentando o espaço para o footer
-    minHeight: windowHeight,
-    alignItems: 'center',
-  },
-  navbar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-    paddingVertical: 20, // Aumentando o espaço para o header
-    paddingHorizontal: 20,
-    marginTop: 25,
-    borderColor: '#004AAD',
-    borderBottomWidth: 2,
-  },
-  navbarTitle: {
-    color: '#004AAD',
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginTop: windowHeight * 0.1
-  },
-  card: {
-    width: windowWidth * 0.9,
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 20,
-    marginTop: 5,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
-    shadowColor: '#004AAD',
-    shadowRadius: 8,
-    elevation: 3,
-    alignItems: 'center',
-  },
-  subtitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#004AAD',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  input: {
-    height: 40,
-    borderColor: '#004AAD',
-    borderWidth: 1,
-    borderRadius: 5,
-    marginBottom: 15,
-    paddingLeft: 10,
-    width: '100%',
-  },
-  inputPicker: {
-    height: 50,
-    borderColor: '#004AAD',
-    borderWidth: 1,
-    borderRadius: 5,
-    marginBottom: 15,
-    paddingLeft: 10,
-    width: '100%',
-  },
-  picker: {
-    height: 50,
-    marginLeft: -10,
-    textAlign: 'Left'
-  },
-  buttonAlt: {
-    padding: 10,
-    borderWidth:1,
-    borderColor: '#004AAD',
-    borderRadius: 5,
-    alignItems: 'center',
-    marginTop: 20,
-    width: '100%',
-  },
-  buttonDelAlt: {
-    padding: 10,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginTop: 20,
-    width: '100%',
-    borderWidth:  2,
-    borderColor:'red',
-  },
-  buttonAltText: {
-    color: '#004AAD',
-    fontSize: 16,
-    textAlign: 'center', // Centraliza o texto
-  },
-  buttonDelText: {
-    color: 'red',
-    fontSize: 16,
-    textAlign: 'center', // Centraliza o texto
-  },
-  footer: {
-    position: 'absolute',
-    bottom: 0,
-    flexDirection: 'row',
-    width: '100%',
-    backgroundColor: '#004AAD',
-    justifyContent: 'space-around',
-    paddingVertical: 20, // Aumentando o espaço para o footer
-  },
-  footerButton: {
-    alignItems: 'center',
-  },
-  modalOverlay: {
+  body: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  modalContainer: {
-    width: windowWidth * 0.8,
-    backgroundColor: '#004AAD',
-    borderRadius: 10,
-    padding: 20,
-    alignItems: 'center',
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 16,
+    marginVertical: 16,
+    gap: 12,
   },
-  closeButton: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
-  },
-  modalText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginTop: 20,
-    textAlign: 'center', // Adiciona alinhamento ao centro para o texto
-  },
+  buttonContainer: {
+    gap: 12,
+  }
 });
 
 export default EditarProfessor;

@@ -31,12 +31,11 @@ export const createAdmin = async (data) => {
   }
 };
 
-export const updateAdmin = async (id) => {
+export const updateAdmin = async (data) => {
   try {
     const response = await API.patch(`${BASE_URL}/admin`, {
-        id: data._id,
-        name: data.nome,
-        class_number: data.class_number,
+        id: data.id,
+        name: data.name,
         email: data.email,
         password: data.senha
     });;

@@ -31,11 +31,11 @@ export const createStudent = async (data) => {
   }
 };
 
-export const updateStudent = async (id) => {
+export const updateStudent = async (data) => {
   try {
     const response = await API.patch(`${BASE_URL}/student`, {
-        id: data._id,
-        name: data.nome,
+        id: data.id,
+        name: data.name,
         class_number: data.class_number,
         email: data.email,
         password: data.senha

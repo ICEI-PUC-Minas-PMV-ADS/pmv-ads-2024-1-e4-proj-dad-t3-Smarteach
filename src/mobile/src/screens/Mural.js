@@ -4,7 +4,6 @@ import {
   Text,
   View,
   ScrollView,
-  TouchableOpacity,
   FlatList,
 } from "react-native";
 
@@ -16,7 +15,7 @@ export default function Mural() {
   const route = useRoute();
   const navigation = useNavigation();
   const { turma } = route.params;
-  const [classProfileData, setClassProfileData] = useState({});
+  const [classProfileData, setClassProfileData] = useState([]);
   const isFocused = useIsFocused();
 
   useEffect(() => {
@@ -73,7 +72,6 @@ export default function Mural() {
       <Appbar.Header style={styles.header} mode="center-aligned">
         <Appbar.Action iconColor="#004AAD" icon="arrow-left" onPress={() => navigation.goBack()} />
         <Appbar.Content color="#004AAD" title={'Mural'} titleStyle={{ fontWeight: 'bold' }} />
-        <Appbar.Action iconColor="#004AAD" icon="logout" onPress={() => setSigned(false)} />
       </Appbar.Header>
       <View style={styles.container}>
         <View style={{ flex: 1, alignItems: "center" }}>
