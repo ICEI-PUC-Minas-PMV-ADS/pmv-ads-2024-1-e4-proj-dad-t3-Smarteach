@@ -41,13 +41,9 @@ const Usuarios = () => {
         </View>
       </View>
     </ScrollView>
-  );
-};
+ )}
 
 const styles = StyleSheet.create({
-  body: {
-    flex: 1,
-  },
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
@@ -70,6 +66,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#004AAD',
     borderRadius: 12,
     padding: 8,
+    paddingBottom: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 12,
   },
 });
 
