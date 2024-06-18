@@ -39,7 +39,7 @@ export default function Turmas() {
         <View>
           <View
             style={{
-              marginTop: 20,
+              marginTop: 10,
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "center",
@@ -53,7 +53,9 @@ export default function Turmas() {
               <Icon name="book" size={24} color="#004AAD" />
             </TouchableOpacity>
           </View>
-          <Text style={{ fontSize: 18, fontWeight: 'bold'}}> Turma: {item.number}</Text>
+          <View style={{ flex: 1, backgroundColor: '#004AAD', borderRadius: 10, alignItems: 'center', alignSelf: 'center',  width: '90%' }}>
+            <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'white', justifyContent: 'center' }}> Turma: {item.number}</Text>
+          </View>
           <Image
             source={{ uri: "https://img.freepik.com/free-photo/medium-shot-kids-cheating-school_23-2150256554.jpg" }}
             style={{

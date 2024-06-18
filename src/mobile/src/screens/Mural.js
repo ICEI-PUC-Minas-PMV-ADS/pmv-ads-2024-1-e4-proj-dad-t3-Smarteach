@@ -5,6 +5,7 @@ import {
   View,
   ScrollView,
   FlatList,
+  Image,
 } from "react-native";
 
 import { useIsFocused, useNavigation, useRoute } from "@react-navigation/native";
@@ -28,13 +29,19 @@ export default function Mural() {
 
   const renderTaskItem = ({ item }) => {
     return (
-      <View style={styles.taskContainer}>
-        <View style={styles.taskHeader}>
+      <View style={{ backgroundColor: "#E5E7EB", borderRadius: 10, marginVertical: 10, padding: 10, width: 350, }}>
+        <View style={{ flexDirection: "row", justifyContent: 'center',alignSelf: 'center', backgroundColor: "#1E40AF", padding: 10, borderRadius: 10, width: '90%', }}>
           <Text style={styles.taskTitle}>{item.name}</Text>
-          <Text style={styles.taskDateTime}>{item.timeSlot}</Text>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
+            <Text style={styles.taskDateTime}>{item.timeSlot1}</Text>
+            <Text style={styles.taskDateTime}>{item.timeSlot2}</Text>
+          </View>
         </View>
         <View style={styles.taskContent}>
           <Text style={styles.taskSubject}>{item.subject}</Text>
+          <Image
+            style={styles.taskImage}
+            source={{ uri: 'https://img.global.news.samsung.com/br/wp-content/uploads/2018/01/flip-samsung.png' }} />
           <Text style={styles.taskDetail}>{item.teacher_email}</Text>
         </View>
       </View>
@@ -43,15 +50,16 @@ export default function Mural() {
 
   const renderTaskList = () => {
     const tasks = [];
-
-    // Iterating over years, months, days, and hours to collect tasks
     Object.keys(classProfileData.timeline || {}).forEach(year => {
       Object.keys(classProfileData.timeline[year] || {}).forEach(month => {
         Object.keys(classProfileData.timeline[year][month] || {}).forEach(day => {
           Object.keys(classProfileData.timeline[year][month][day] || {}).forEach(hour => {
-            const timeSlot = `${day}:${month}:${year}:${hour}`;
+            const timeSlot = `${day}/${month}/  ${hour}`;
+            const timeSlot1 = `${day}/${month}`;
+            const timeSlot2 = `${hour}`;
             const task = classProfileData.timeline[year][month][day][hour];
-            tasks.push({ ...task, timeSlot: timeSlot });
+            tasks.push({ ...task, timeSlot1: timeSlot1, timeSlot2: timeSlot2 });
+
           });
         });
       });
@@ -116,39 +124,43 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: "#fff",
   },
-  taskContainer: {
-    backgroundColor: "#E5E7EB",
-    borderRadius: 10,
-    marginVertical: 10,
-    padding: 10,
-  },
-  taskHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    backgroundColor: "#1E40AF",
-    padding: 10,
-    borderRadius: 10,
-  },
+
   taskTitle: {
     fontSize: 20,
     fontWeight: "bold",
     color: "white",
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginLeft: 15,
   },
   taskDateTime: {
+    flex: 1,
     fontSize: 16,
     color: "white",
-    textAlign: "right",
+    flexWrap: 'wrap',  
   },
   taskContent: {
+    
     marginTop: 10,
-    paddingHorizontal: 10,
   },
   taskSubject: {
     fontSize: 18,
     color: "#374151",
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  taskImage: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    width: '90%',
+    height: 130,
+    marginVertical: 10,
+    borderRadius: 10,
   },
   taskDetail: {
     fontSize: 16,
     color: "#6B7280",
+    justifyContent: 'center',
+    alignSelf: 'center',
   },
 });
