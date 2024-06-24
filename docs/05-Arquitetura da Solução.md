@@ -70,14 +70,10 @@ Ferramentas de Desenvolvimento:
 
 ## Hospedagem
 
-Explique como a hospedagem e o lançamento da plataforma foi feita.
-
 > **Links Úteis**:
 >
-> - [Website com GitHub Pages](https://pages.github.com/)
-> - [Programação colaborativa com Repl.it](https://repl.it/)
-> - [Getting Started with Heroku](https://devcenter.heroku.com/start)
-> - [Publicando Seu Site No Heroku](http://pythonclub.com.br/publicando-seu-hello-world-no-heroku.html)
+> - [Website publicado via vercel](https://pmv-ads-2024-1-e4-proj-dad-t3-smarteach.vercel.app/)
+> - [back-end publicado via azure](https://smarteach.azurewebsites.net)
 
 ## Qualidade de Software
 
